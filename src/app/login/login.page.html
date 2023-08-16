@@ -1,0 +1,32 @@
+
+<ion-content class="background">
+  <div class="centrado">
+    <ion-card class="card">
+      <ion-card-header>
+        <h2 class="login">Ingreso</h2>
+      </ion-card-header>
+    
+      <ion-card-content>
+        
+          
+            <ion-input label="Email" type="email" label-placement="floating" errorText="Email Inválido" ngModel email></ion-input>
+    
+            <ion-input label="Contraseña" type="password" label-placement="floating" errorText="Invalid Password" ngModel></ion-input>
+        
+   
+      </ion-card-content>
+      <div class="login">
+        <ion-button (click)="login()" class="boton">Ingresar</ion-button>
+        
+      </div>
+      <div class="login">
+        <ion-button fill="clear" class="colorboton" (click)="register()"><span>¿No eres usuario?</span></ion-button>
+      </div>
+      <br>
+    </ion-card>
+    
+  </div>
+  
+  
+</ion-content>
+ 
