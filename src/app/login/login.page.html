@@ -16,11 +16,11 @@
    
       </ion-card-content>
       <div class="login">
-        <ion-button class="boton">Ingresar</ion-button>
+        <ion-button (click)="login()" class="boton">Ingresar</ion-button>
         
       </div>
       <div class="login">
-        <ion-button fill="clear" class="colorboton" (click)="login()"><span>¿No eres usuario?</span></ion-button>
+        <ion-button fill="clear" class="colorboton" (click)="register()"><span>¿No eres usuario?</span></ion-button>
       </div>
       <br>
     </ion-card>
