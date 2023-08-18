@@ -30,7 +30,19 @@ const routes: Routes = [
   {
     path: 'start',
     loadChildren: () => import('./start/start.module').then( m => m.StartPageModule)
+  },  {
+    path: 'conductor',
+    loadChildren: () => import('./conductor/conductor.module').then( m => m.ConductorPageModule)
+  },
+  {
+    path: 'ingresaconductor',
+    loadChildren: () => import('./ingresaconductor/ingresaconductor.module').then( m => m.IngresaconductorPageModule)
+  },
+  {
+    path: 'registerconductor',
+    loadChildren: () => import('./registerconductor/registerconductor.module').then( m => m.RegisterconductorPageModule)
   }
+
 
 
 ];

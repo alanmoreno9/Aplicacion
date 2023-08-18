@@ -12,7 +12,7 @@ export class AppComponent {
     { title: 'Estadisticas', url: '/folder/archived', icon: 'archive' },
     { title: 'Campeon', url: '/folder/trash', icon: 'trash' },
     { title: 'Fichaje', url: '/folder/spam', icon: 'warning' },
-    { title: 'Iniciar Sesión', url: 'login', icon: 'log-in' },
+    { title: 'Modo Conductor', url: 'ingresaconductor', icon: 'car' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor() {}
