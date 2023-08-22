@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonRouterOutlet, MenuController } from '@ionic/angular';
 
 @Component({
@@ -8,7 +9,7 @@ import { IonRouterOutlet, MenuController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
-  constructor(private menu: MenuController, private routerOutlet: IonRouterOutlet) { }
+  constructor(private router: Router,private menu: MenuController, private routerOutlet: IonRouterOutlet) { }
 
   ngOnInit() {
     this.menu.enable(true);

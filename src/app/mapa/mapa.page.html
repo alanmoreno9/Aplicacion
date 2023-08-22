@@ -1,0 +1,39 @@
+<ion-content class="background">
+  <div>
+    <ion-toolbar>
+      <ion-buttons slot="start" style="margin-top: 3%;">
+        <ion-back-button defaultHref="/home"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+  
+  <div class="abajo">
+    <ion-card>
+      <ion-card-content>
+        <div>
+          <ion-input placeholder="¿A donde vas?" class="styleboton"></ion-input>
+        </div>
+        <br>
+        <div>
+          <ion-list>
+            <ion-item>
+              <ion-select
+                label="Método de pago"
+                interface="action-sheet"
+                placeholder="Selecciona el metodo de pago"
+                cancelText="Cancelar"
+              >
+                <ion-select-option value="Efectivo">Efectivo</ion-select-option>
+                <ion-select-option value="Débito">Débito</ion-select-option>
+                <ion-select-option value="Transferencia">Transferencia</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div>
+        <div class="login">
+          <ion-button shape="round" class="botonabajo">Pedir</ion-button>
+        </div>  
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

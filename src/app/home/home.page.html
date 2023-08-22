@@ -1,9 +1,24 @@
 <ion-content class="background">
+  
   <div>
-    <ion-img src="img/logo.png" alt=""></ion-img>
+    <ion-card class="cardsize">
+          
+          <div>
+            
+              <ion-img class="fotosize" src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt=""></ion-img>
+              <br>
+              <ion-label style="color: white;margin-left: 3%;">Nombre</ion-label>
+              <br>
+              <span style="margin-left: 3%;">Apellido</span>
+              <ion-img class="configsize" [routerLink]="['/config']" src="https://icon-library.com/images/white-settings-icon/white-settings-icon-0.jpg"></ion-img>
+          </div>
+        
+    </ion-card>
   </div>
   <div class="login">
-    
-    <ion-button shape="round" class="botonabajo">¡Empecemos!</ion-button>
+    <ion-img class="fotoabajo" src="https://static.vecteezy.com/system/resources/previews/016/017/119/original/current-location-logo-world-map-location-logo-sign-map-graphic-free-png.png" alt=""></ion-img>
+  </div>
+  <div class="login">
+    <ion-button shape="round" [routerLink]="['/mapa']" class="botonabajo">¡Empecemos!</ion-button>
   </div>  
 </ion-content>

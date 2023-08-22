@@ -41,6 +41,14 @@ const routes: Routes = [
   {
     path: 'registerconductor',
     loadChildren: () => import('./registerconductor/registerconductor.module').then( m => m.RegisterconductorPageModule)
+  },
+  {
+    path: 'config',
+    loadChildren: () => import('./config/config.module').then( m => m.ConfigPageModule)
+  },
+  {
+    path: 'mapa',
+    loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
   }
 
 
