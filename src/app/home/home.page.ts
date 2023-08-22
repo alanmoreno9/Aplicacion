@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IonRouterOutlet, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,private menu: MenuController, private routerOutlet: IonRouterOutlet) { }
 
   ngOnInit() {
+    this.menu.enable(true);
+    this.routerOutlet.swipeGesture = false;
   }
 
 }
