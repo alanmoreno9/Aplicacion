@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'loading',
     pathMatch: 'full'
   },
   {
@@ -59,6 +59,8 @@ const routes: Routes = [
     path: 'encontrado',
     loadChildren: () => import('./encontrado/encontrado.module').then( m => m.EncontradoPageModule)
   }
+
+
 
 
 ];
