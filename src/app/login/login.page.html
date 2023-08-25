@@ -8,17 +8,17 @@
     
       <ion-card-content>
         
-          
-            <ion-input label="Email" type="email" label-placement="floating" errorText="Email Inválido" ngModel email></ion-input>
+          <form [formGroup]="formularioLogin">
+            <ion-input formControlName="nombre" label="Email" type="email" label-placement="floating" errorText="Email Inválido" email></ion-input>
     
-            <ion-input label="Contraseña" type="password" label-placement="floating" errorText="Invalid Password" ngModel></ion-input>
-        
-   
+            <ion-input formControlName="password" label="Contraseña" type="password" label-placement="floating" errorText="Invalid Password"></ion-input>
+          
+          <div class="login">
+            <ion-button (click)="login()" class="boton">Ingresar</ion-button>
+          </div>
+          </form>
       </ion-card-content>
-      <div class="login">
-        <ion-button (click)="login()" class="boton">Ingresar</ion-button>
-        
-      </div>
+      
       <div class="login">
         <ion-button fill="clear" class="colorboton" (click)="register()"><span>¿No eres usuario?</span></ion-button>
       </div>

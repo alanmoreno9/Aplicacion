@@ -2,19 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-loading',
-  templateUrl: './loading.page.html',
-  styleUrls: ['./loading.page.scss'],
+  selector: 'app-buscando',
+  templateUrl: './buscando.page.html',
+  styleUrls: ['./buscando.page.scss'],
 })
-export class LoadingPage implements OnInit {
+export class BuscandoPage implements OnInit {
 
   constructor(private router: Router) { }
 
   ngOnInit() {
     setTimeout(() =>{
-      this.router.navigate(['login']);
+      this.router.navigate(['encontrado']);
     }, 3000);
   }
-  
 
 }
