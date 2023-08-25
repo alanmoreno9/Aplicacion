@@ -2,7 +2,7 @@ ion-content.background{
     --background:   url(img/maps.png)
 }
 .abajo{
-    margin-top: 110%;
+    margin-top: 105%;
 }
 ion-input.styleboton{
     background-color: white;
@@ -10,7 +10,8 @@ ion-input.styleboton{
     --placeholder-color: #292929;
     --padding-start: 20px;
     --color: #000000;
-    border-style: dotted;
+    border-style: groove;
+    
     
 }
 ion-button{
@@ -19,7 +20,6 @@ ion-button{
     --background-activated: #049c7c;
 }
 .botonabajo{
-    
     display: flex;
     justify-content: center;
     width: 100%;
