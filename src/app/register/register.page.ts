@@ -3,6 +3,14 @@ import { UsuariosService } from '../services/usuarios.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
+import {
+  FormGroup,
+  FormControl,
+  Validator,
+  FormBuilder,
+  Validators
+} from '@angular/forms'
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -10,16 +18,26 @@ import { ToastController } from '@ionic/angular';
 })
 export class RegisterPage implements OnInit {
 
+  formularioRegistro: FormGroup;
+
   constructor(
     private UsuariosService: UsuariosService,
     private router: Router,
-    private toastController: ToastController
-  ) { }
+    private toastController: ToastController,
+    public fb: FormBuilder
+  ) { 
+    this.formularioRegistro = this.fb.group({
+      'nombre': new FormControl("", Validators.required),
+      'apellido': new FormControl("", Validators.required),
+      'correo': new FormControl("", Validators.required),
+      'contraseña': new FormControl("", Validators.required)
+    })
+  }
 
   ngOnInit() {
   }
-  //Mensaje en pantalla 
-  async mensajeToast(mensaje: string){
+
+  async mensajerrorregister(mensaje: string){
     const toast = await this.toastController.create({
       message: mensaje,
       duration: 2000,
@@ -28,10 +46,33 @@ export class RegisterPage implements OnInit {
     toast.present()
   }
 
-  addUsuario(nombre: any, apellido: any, correo: any, numero: any, contraseña: any){
-    this.UsuariosService.addUsuario(nombre.value, apellido.value, correo.value,numero.value,contraseña.value);
-    this.mensajeToast("Usuario creado correctamente")
-    this.router.navigate(['home'])
-  };
+  guardar(){
+    var f = this.formularioRegistro.value;
+
+    if(this.formularioRegistro.invalid){
+      this.mensajerrorregister('Debes llenar todos los campos')
+    }else{
+      this.mensajerrorregister('Registro exitoso, en unos momentos te redirigimos')
+      setTimeout(() =>{
+        this.router.navigate(['home']);
+      }, 2000);
+    };
+
+    var usuario = {
+      nombre: f.nombre,
+      apellido: f.apellido,
+      correo: f.correo,
+      contraseña: f.contraseña
+    };
+
+    localStorage.setItem('usuario',JSON.stringify(usuario));
+
+    
+  }
+
+  //Mensaje en pantalla 
+  
+
+
   
 }
