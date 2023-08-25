@@ -46,16 +46,7 @@ const routes: Routes = [
   {
     path: 'mapa',
     loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
-  },
-  {
-    path: 'buscando',
-    loadChildren: () => import('./buscando/buscando.module').then( m => m.BuscandoPageModule)
-  },
-  {
-    path: 'encontrado',
-    loadChildren: () => import('./encontrado/encontrado.module').then( m => m.EncontradoPageModule)
   }
-
 
 
 
