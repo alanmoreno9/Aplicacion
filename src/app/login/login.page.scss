@@ -8,3 +8,21 @@ ion-button.boton{
     --background-hover: #087060 ;
     --background-activated: #049c7c 
 }
+.olvide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -20px;
+}
+.nouser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -20px;
+}
+ion-button.olvidebtn{
+    --background:  dark;
+    --background-hover: dark ;
+    --background-activated: dark-tint;
+    --color: dark;
+}

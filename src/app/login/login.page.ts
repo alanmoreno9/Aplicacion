@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
     toast.present()
   }
 
-  async login(){
+  login(){
     var f = this.formularioLogin.value;
 
     var usuario = JSON.parse(localStorage.getItem('usuario')!);
@@ -53,6 +53,10 @@ export class LoginPage implements OnInit {
     if(usuario.correo == f.nombre && usuario.contraseña == f.password){
       console.log('si está')
       this.message('En un momento te redireccionaremos')
+      setTimeout(() =>{
+        this.router.navigate(['home']);
+      }, 2000);
+      console.log(localStorage.getItem('usuario'));
     }else{
       console.log('no está')
       this.message('Credenciales Inválidas')
