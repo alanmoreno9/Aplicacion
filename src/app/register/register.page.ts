@@ -63,7 +63,7 @@ export class RegisterPage implements OnInit {
     }else{
       this.mensajerrorregister('Registro exitoso, en unos momentos te redirigimos')
       setTimeout(() =>{
-        this.router.navigate(['home']);
+        this.router.navigate(['login']);
       }, 2000);
     };
 

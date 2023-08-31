@@ -62,6 +62,10 @@ const routes: Routes = [
     path: 'olvido',
     loadChildren: () => import('./olvido/olvido.module').then( m => m.OlvidoPageModule)
   },
+  {
+    path: 'restablecer',
+    loadChildren: () => import('./restablecer/restablecer.module').then( m => m.RestablecerPageModule)
+  },
 
 
 

@@ -1,4 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import {
+  FormGroup,
+  FormControl,
+  Validator,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
+
 
 @Component({
   selector: 'app-olvido',
@@ -7,9 +17,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OlvidoPage implements OnInit {
 
-  constructor() { }
+  olvido: FormGroup;
+
+  constructor(
+    private router: Router, 
+    private menu: MenuController, 
+    public fb: FormBuilder,
+    private toastController: ToastController
+  ) { 
+
+    this.olvido = this.fb.group({
+      'email' : new FormControl("", Validators.required),
+    })
+
+  }
 
   ngOnInit() {
+    this.menu.enable(false);
+  }
+
+  async message(mensaje: string){
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      position: 'bottom'
+    });
+    toast.present()
+  }
+
+  verificar(){
+    var f = this.olvido.value;
+
+    var usuario = JSON.parse(localStorage.getItem('usuario')!);
+
+    if(usuario.correo == f.email){
+      this.message('Redireccionando')
+      setTimeout(() =>{
+        this.router.navigate(['restablecer']);
+      }, 2000);
+    }else{
+      this.message('Éste correo no existe')
+    }
   }
 
 }
