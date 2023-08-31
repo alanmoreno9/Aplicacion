@@ -33,7 +33,7 @@ export class OlvidoPage implements OnInit {
   }
 
   ngOnInit() {
-    this.menu.enable(false);
+    
   }
 
   async message(mensaje: string){

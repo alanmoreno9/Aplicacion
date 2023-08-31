@@ -9,7 +9,8 @@ export class CardComponent  implements OnInit {
 
   @Input() nombre!: any;
   @Input() apellido!: any;
-
+  @Input() foto!: any;
+  
   constructor() { }
 
   ngOnInit() {}

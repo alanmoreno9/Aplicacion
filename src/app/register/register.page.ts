@@ -36,15 +36,7 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
   }
-  //Mensaje en pantalla 
-  async mensajeToast(mensaje: string){
-    const toast = await this.toastController.create({
-      message: mensaje,
-      duration: 2000,
-      position: 'bottom'
-    });
-    toast.present()
-  }
+  //Mensaje en pantalla
 
   async mensajerrorregister(mensaje: string){
     const toast = await this.toastController.create({

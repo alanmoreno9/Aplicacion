@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button defaultHref="/login"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -14,11 +14,11 @@
         
       </ion-card-header>
       <div class="login">
-      Ingresa tú correo para verificar tu cuentas
+      Ingresa tú correo para verificar tu cuenta
       </div>
       <ion-card-content>
         <form [formGroup]="olvido">     
-            <ion-input formControlName="correo" label="Email" type="email" label-placement="floating" errorText="Email Inválido" email></ion-input>
+          <ion-input formControlName="email" label="Email" type="email" label-placement="floating" errorText="Email Inválido" email></ion-input>
           <div class="login">
             <ion-button class="boton" (click)="verificar()">Recuperar contraseña</ion-button>
           </div>
