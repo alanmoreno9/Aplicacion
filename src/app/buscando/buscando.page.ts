@@ -11,9 +11,7 @@ export class BuscandoPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    setTimeout(() =>{
-      this.router.navigate(['encontrado']);
-    }, 2000);
+    
   }
 
 }
