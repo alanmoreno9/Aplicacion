@@ -36,15 +36,7 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
   }
-  //Mensaje en pantalla 
-  async mensajeToast(mensaje: string){
-    const toast = await this.toastController.create({
-      message: mensaje,
-      duration: 2000,
-      position: 'bottom'
-    });
-    toast.present()
-  }
+  //Mensaje en pantalla
 
   async mensajerrorregister(mensaje: string){
     const toast = await this.toastController.create({
@@ -63,7 +55,7 @@ export class RegisterPage implements OnInit {
     }else{
       this.mensajerrorregister('Registro exitoso, en unos momentos te redirigimos')
       setTimeout(() =>{
-        this.router.navigate(['home']);
+        this.router.navigate(['login']);
       }, 2000);
     };
 

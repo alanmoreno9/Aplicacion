@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MapaPageRoutingModule } from './mapa-routing.module';
+import { OlvidoPageRoutingModule } from './olvido-routing.module';
 
-import { MapaPage } from './mapa.page';
+import { OlvidoPage } from './olvido.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { MapaPage } from './mapa.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    MapaPageRoutingModule
+    OlvidoPageRoutingModule
   ],
-  declarations: [MapaPage]
+  declarations: [OlvidoPage]
 })
-export class MapaPageModule {}
+export class OlvidoPageModule {}

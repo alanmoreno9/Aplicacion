@@ -46,7 +46,26 @@ const routes: Routes = [
   {
     path: 'mapa',
     loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
-  }
+  },
+  {
+    path: 'loadingoff',
+    loadChildren: () => import('./loadingoff/loadingoff.module').then( m => m.LoadingoffPageModule)
+  },
+  {
+    path: 'buscando',
+    loadChildren: () => import('./buscando/buscando.module').then( m => m.BuscandoPageModule)
+  },
+  {
+    path: 'encontrado',
+    loadChildren: () => import('./encontrado/encontrado.module').then( m => m.EncontradoPageModule)
+  },  {
+    path: 'olvido',
+    loadChildren: () => import('./olvido/olvido.module').then( m => m.OlvidoPageModule)
+  },
+  {
+    path: 'restablecer',
+    loadChildren: () => import('./restablecer/restablecer.module').then( m => m.RestablecerPageModule)
+  },
 
 
 

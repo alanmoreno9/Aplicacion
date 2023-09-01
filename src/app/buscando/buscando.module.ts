@@ -8,6 +8,8 @@ import { BuscandoPageRoutingModule } from './buscando-routing.module';
 
 import { BuscandoPage } from './buscando.page';
 
+import { CardComponent } from '../components/card/card.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,6 @@ import { BuscandoPage } from './buscando.page';
     IonicModule,
     BuscandoPageRoutingModule
   ],
-  declarations: [BuscandoPage]
+  declarations: [BuscandoPage, CardComponent]
 })
 export class BuscandoPageModule {}

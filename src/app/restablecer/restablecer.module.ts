@@ -4,9 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MapaPageRoutingModule } from './mapa-routing.module';
+import { RestablecerPageRoutingModule } from './restablecer-routing.module';
 
-import { MapaPage } from './mapa.page';
+import { RestablecerPage } from './restablecer.page';
+
+
 
 @NgModule({
   imports: [
@@ -14,8 +16,8 @@ import { MapaPage } from './mapa.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    MapaPageRoutingModule
+    RestablecerPageRoutingModule
   ],
-  declarations: [MapaPage]
+  declarations: [RestablecerPage]
 })
-export class MapaPageModule {}
+export class RestablecerPageModule {}

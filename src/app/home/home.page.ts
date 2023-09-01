@@ -9,11 +9,20 @@ import { IonRouterOutlet, MenuController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
-  constructor(private router: Router,private menu: MenuController, private routerOutlet: IonRouterOutlet) { }
+  usuario:any;
+
+  constructor(private router: Router,private menu: MenuController, private routerOutlet: IonRouterOutlet) { 
+    
+  }
 
   ngOnInit() {
     this.menu.enable(true);
     this.routerOutlet.swipeGesture = false;
+    this.usuario = JSON.parse(localStorage.getItem("usuario") || "")
+  }
+  ionViewWillLoad(){
+    
+    
   }
 
 }

@@ -1,38 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/jugadores"></ion-back-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>config</ion-title>
+    
+    <ion-title>Configuracion</ion-title>
   </ion-toolbar>
 </ion-header>
- 
-<ion-item>
+<ion-content>
+  <ion-item>
     <ion-icon name="person-outline"></ion-icon>
-    <ion-label>Juan</ion-label>
-    <ion-label>+56 96463728</ion-label>
-    <ion-label>juanito@gmail.com</ion-label>
+    <ion-label>{{usuario.nombre}}</ion-label>
+    <ion-label>{{usuario.correo}}</ion-label>
     </ion-item>
 
     <ion-item>
       <ion-icon name="home-outline"></ion-icon>
-      <ion-label>Agregar dirección</ion-label>
+      <ion-label> Agregar dirección</ion-label>
       </ion-item>
 
       <ion-item>
     <ion-icon name="lock-closed-outline"></ion-icon>
-    <ion-label>Privacidad</ion-label>
+    <ion-label> Privacidad</ion-label>
     </ion-item>
 
     <ion-item>
     <ion-icon name="shield-checkmark-outline"></ion-icon>
-    <ion-label>Seguridad</ion-label>
+    <ion-label> Seguridad</ion-label>
     </ion-item>
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>asd
-      <ion-title size="large">config</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  </ion-content>
+
 

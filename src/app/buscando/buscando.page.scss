@@ -1,10 +1,14 @@
 ion-content.background{
     --background:   url(img/buscando.png)
 }
-.abajo{
-    margin-top: 145%;
+
+.background2{
+    max-height: 35%;
+    margin: 0 auto;
 }
-.bcondu{
-    margin-top: 25%;
-    margin-bottom: 25%;
+.card{
+    width: 87%;
+    border-radius: 20px;
+    background-color: #1C1C1D;
+    color: whitesmoke;
 }

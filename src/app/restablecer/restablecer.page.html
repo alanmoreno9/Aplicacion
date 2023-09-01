@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/olvido"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <div class="centrado">
+    <ion-card>
+      <h1 class="login">Cambiar contraseña</h1>
+    
+      <ion-card-content>
+
+        <form [formGroup]="formularioCambio">
+          <ion-input formControlName="contraseña" label="Contraseña" type="password" label-placement="floating" errorText="Contraseña Inválido" ></ion-input>
+          <ion-input formControlName="confirmcontraseña" label="Contraseña" type="password" label-placement="floating" errorText="Contraseña Inválido" ></ion-input>
+          <div class="login">
+            <ion-button class="boton" (click)="guardar()">Registrarse</ion-button>
+          </div>
+        </form>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

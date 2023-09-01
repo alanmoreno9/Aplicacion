@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigPage implements OnInit {
 
+  usuario: any;
+  
   constructor() { }
 
   ngOnInit() {
+    this.usuario = JSON.parse(localStorage.getItem("usuario") || "")
   }
 
+  entregar(){
+       
+    this.usuario = JSON.parse(localStorage.getItem("usuario")!)
+    
+    
+  }
 }
