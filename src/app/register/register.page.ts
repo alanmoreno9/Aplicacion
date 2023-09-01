@@ -54,19 +54,20 @@ export class RegisterPage implements OnInit {
       this.mensajerrorregister('Debes llenar todos los campos')
     }else{
       this.mensajerrorregister('Registro exitoso, en unos momentos te redirigimos')
+      var usuario = {
+        nombre: f.nombre,
+        apellido: f.apellido,
+        correo: f.correo,
+        contraseña: f.contraseña
+      };
+      localStorage.clear()
+      localStorage.setItem('usuario',JSON.stringify(usuario));
       setTimeout(() =>{
         this.router.navigate(['login']);
       }, 2000);
     };
 
-    var usuario = {
-      nombre: f.nombre,
-      apellido: f.apellido,
-      correo: f.correo,
-      contraseña: f.contraseña
-    };
-
-    localStorage.setItem('usuario',JSON.stringify(usuario));
+    
 
     
   }

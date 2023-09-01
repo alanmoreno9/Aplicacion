@@ -8,14 +8,14 @@
 
 <ion-content class="background">
   <div class="centrado">
-    <ion-card>
+    <ion-card class="card">
       <h1 class="login">Cambiar contraseña</h1>
     
       <ion-card-content>
 
         <form [formGroup]="formularioCambio">
           <ion-input formControlName="contraseña" label="Contraseña" type="password" label-placement="floating" errorText="Contraseña Inválido" ></ion-input>
-          <ion-input formControlName="confirmcontraseña" label="Contraseña" type="password" label-placement="floating" errorText="Contraseña Inválido" ></ion-input>
+          <ion-input formControlName="confirmcontraseña" label="Confirmar Contraseña" type="password" label-placement="floating" errorText="Contraseña Inválido" ></ion-input>
           <div class="login">
             <ion-button class="boton" (click)="guardar()">Registrarse</ion-button>
           </div>

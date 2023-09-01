@@ -14,13 +14,9 @@ export class AppComponent {
   constructor() {}
 
   usuario:any;
-  
-  
-  
 
   ngOnInit() {
-
- 
+    this.usuario = JSON.parse(localStorage.getItem('usuario')!);
   }
   ionViewWillLoad(){
     

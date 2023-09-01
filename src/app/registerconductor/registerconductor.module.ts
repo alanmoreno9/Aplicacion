@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 import { RegisterconductorPageRoutingModule } from './registerconductor-routing.module';
 
 import { RegisterconductorPage } from './registerconductor.page';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RegisterconductorPageRoutingModule
+    ReactiveFormsModule,
+    RegisterconductorPageRoutingModule,
+    BrowserModule
   ],
   declarations: [RegisterconductorPage]
 })

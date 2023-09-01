@@ -1,13 +1,33 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>registerconductor</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">registerconductor</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="background">
+  
+  <div class="centrado">
+    <ion-card class="card">
+      <ion-card-header>
+        <h2 class="login">Registro</h2>
+      </ion-card-header>
+    
+      <ion-card-content>
+        
+          <form [formGroup]="FormRegisterConductor">
+
+           
+          
+            <div class="login">
+              <ion-button class="boton" (click)="guardar()">Registrarse</ion-button>
+            </div>
+          </form>
+   
+      </ion-card-content>
+    </ion-card>
+    
+  </div>
+  
 </ion-content>
