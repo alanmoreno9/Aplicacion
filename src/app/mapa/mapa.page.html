@@ -7,10 +7,9 @@
     </ion-toolbar>
   </div>
   <div class="login">
-    <form [formGroup]="formularioir"></form>
     <ion-input  placeholder="¿A dónde vas?" class="styleboton"></ion-input>
   </div>
   <div class="abajo">
-    <ion-button *ngIf="mostrarboton" [routerLink]="['/buscando']">Pedir</ion-button>
+    <ion-button class="login" [routerLink]="['/buscando']">Pedir</ion-button>
   </div>
 </ion-content>

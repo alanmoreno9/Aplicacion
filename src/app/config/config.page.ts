@@ -15,4 +15,10 @@ export class ConfigPage implements OnInit {
     this.usuario = JSON.parse(localStorage.getItem("usuario") || "")
   }
 
+  entregar(){
+       
+    this.usuario = JSON.parse(localStorage.getItem("usuario")!)
+    
+    
+  }
 }

@@ -16,21 +16,13 @@ import { MenuController, ToastController } from '@ionic/angular';
 })
 export class MapaPage implements OnInit {
 
-  formularioir: FormGroup;
-  
- 
-
-  @Input() mostrarboton: boolean = true;
-
   constructor(
     private router: Router, 
     private menu: MenuController, 
     public fb: FormBuilder,
     private toastController: ToastController
   ) { 
-    this.formularioir = this.fb.group({
-      'ir' : new FormControl("", Validators.required)
-    })
+    
   }
   
   ngOnInit() {
