@@ -11,9 +11,24 @@ export class LoadingoffPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    localStorage.clear();
+    localStorage.removeItem('usuario');
+
     setTimeout(() =>{
       this.router.navigate(['login']);
     }, 2000);
   }
 
 }
+function ionViewWillLoad() {
+  throw new Error('Function not implemented.');
+}
+
+function ionNavWillChange() {
+  throw new Error('Function not implemented.');
+}
+
+function ionNavDidChange() {
+  throw new Error('Function not implemented.');
+}
+

@@ -67,8 +67,7 @@ export class RegisterPage implements OnInit {
     };
 
     localStorage.setItem('usuario',JSON.stringify(usuario));
-
-    
+ 
   }
 
   //Mensaje en pantalla 

@@ -7,7 +7,8 @@ import {
   Validator,
   FormBuilder,
   Validators
-} from '@angular/forms'
+} from '@angular/forms';
+import { DataProvider } from '../home/providers/data.provider';
 
 
 @Component({
@@ -18,12 +19,14 @@ import {
 export class LoginPage implements OnInit {
 
   formularioLogin: FormGroup;
+  //dataProvider: DataProvider = new DataProvider;
 
   constructor(
     private router: Router, 
     private menu: MenuController, 
     public fb: FormBuilder,
-    private toastController: ToastController
+    private toastController: ToastController,
+    public dataProvider: DataProvider
     ) { 
     
       this.formularioLogin = this.fb.group({
@@ -49,7 +52,9 @@ export class LoginPage implements OnInit {
     var f = this.formularioLogin.value;
 
     var usuario = JSON.parse(localStorage.getItem('usuario')!);
-
+    console.log('1---->'+usuario.nombre)
+    this.dataProvider.userData = usuario;
+    console.log('2---->'+this.dataProvider.userData.nombre)
     if(usuario.correo == f.nombre && usuario.contraseña == f.password){
       console.log('si está')
       this.message('En un momento te redireccionaremos')
