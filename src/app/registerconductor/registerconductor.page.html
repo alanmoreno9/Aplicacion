@@ -17,9 +17,12 @@
       <ion-card-content>
         
           <form [formGroup]="FormRegisterConductor">
-
-           
-          
+            <ion-input formControlName="telefono" label="Teléfono" type="tel" label-placement="floating" placeholder="912341234" errorText="Teléfono Inválido"></ion-input>
+            <ion-input formControlName="marca" label="Marca de tu vehículo" type="text" labelPlacement="floating" placeholder="Marca" errorText="Marca Inválido"></ion-input>
+            <ion-input formControlName="modelo" label="Modelo de tu vehículo" type="text" labelPlacement="floating" placeholder="Modelo" errorText="Modelo Inválido"></ion-input>
+            <ion-input formControlName="año" label="Año de tu vehículo" type="number" labelPlacement="floating" placeholder="Año" errorText="Año Inválido"></ion-input>
+            <ion-input formControlName="placa" label="Placa de tu vehículo" type="text" labelPlacement="floating" placeholder="Placa" errorText="Placa Inválido"></ion-input>
+            <ion-input formControlName="rut" label="Tú Rut" type="text" labelPlacement="floating" placeholder="12345678-9" errorText="Rut Inválido"></ion-input>
             <div class="login">
               <ion-button class="boton" (click)="guardar()">Registrarse</ion-button>
             </div>

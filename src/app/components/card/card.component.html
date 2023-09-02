@@ -5,5 +5,13 @@
         <ion-label style="color: white">{{nombre}}</ion-label>
         <br>
         <span >{{apellido}}</span>
+        <div class="position">
+          <ion-fab style="margin-left: 45%;" [routerLink]="['/detalleconductor',nombre ,apellido]">
+            <ion-fab-button class="fab" >
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
       </div>
+      
 </ion-card>

@@ -58,13 +58,18 @@ const routes: Routes = [
   {
     path: 'encontrado',
     loadChildren: () => import('./encontrado/encontrado.module').then( m => m.EncontradoPageModule)
-  },  {
+  },
+  {
     path: 'olvido',
     loadChildren: () => import('./olvido/olvido.module').then( m => m.OlvidoPageModule)
   },
   {
     path: 'restablecer',
     loadChildren: () => import('./restablecer/restablecer.module').then( m => m.RestablecerPageModule)
+  },
+  {
+    path: 'detalleconductor/:nombre/:apellido',
+    loadChildren: () => import('./detalleconductor/detalleconductor.module').then( m => m.DetalleconductorPageModule)
   },
 
 

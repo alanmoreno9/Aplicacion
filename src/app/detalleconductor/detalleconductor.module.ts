@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ConductorPageRoutingModule } from './conductor-routing.module';
+import { DetalleconductorPageRoutingModule } from './detalleconductor-routing.module';
 
-import { ConductorPage } from './conductor.page';
-
-
+import { DetalleconductorPage } from './detalleconductor.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ConductorPageRoutingModule
+    DetalleconductorPageRoutingModule
   ],
-  declarations: [ConductorPage]
+  declarations: [DetalleconductorPage]
 })
-export class ConductorPageModule {}
+export class DetalleconductorPageModule {}

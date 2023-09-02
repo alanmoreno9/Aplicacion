@@ -60,7 +60,8 @@ export class RegisterPage implements OnInit {
         correo: f.correo,
         contraseña: f.contraseña
       };
-      localStorage.clear()
+      localStorage.removeItem('usuario');
+      
       localStorage.setItem('usuario',JSON.stringify(usuario));
       setTimeout(() =>{
         this.router.navigate(['login']);

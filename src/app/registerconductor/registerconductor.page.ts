@@ -66,8 +66,9 @@ export class RegisterconductorPage implements OnInit {
         rut : f.rut
       }
       localStorage.setItem("conductor", JSON.stringify(conductor))
+      console.log(localStorage.getItem('conductor'));
       setTimeout(() =>{
-        this.router.navigate(['login']);
+        this.router.navigate(['ingresaconductor']);
       }, 2000);
     }
   }

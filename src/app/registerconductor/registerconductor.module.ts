@@ -7,8 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { RegisterconductorPageRoutingModule } from './registerconductor-routing.module';
 
 import { RegisterconductorPage } from './registerconductor.page';
-import { BrowserModule } from '@angular/platform-browser';
-
 
 @NgModule({
   imports: [
@@ -16,8 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    RegisterconductorPageRoutingModule,
-    BrowserModule
+    RegisterconductorPageRoutingModule
   ],
   declarations: [RegisterconductorPage]
 })
