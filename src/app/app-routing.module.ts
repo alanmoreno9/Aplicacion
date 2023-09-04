@@ -71,6 +71,20 @@ const routes: Routes = [
     path: 'detalleconductor/:nombre/:apellido',
     loadChildren: () => import('./detalleconductor/detalleconductor.module').then( m => m.DetalleconductorPageModule)
   },
+  {
+    path: 'esperando',
+    loadChildren: () => import('./esperando/esperando.module').then( m => m.EsperandoPageModule),
+    data: { noCache: true },
+  },  {
+    path: 'encamino',
+    loadChildren: () => import('./encamino/encamino.module').then( m => m.EncaminoPageModule)
+  },
+  {
+    path: 'qr',
+    loadChildren: () => import('./qr/qr.module').then( m => m.QrPageModule)
+  },
+
+
 
 
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IonRouterOutlet, MenuController } from '@ionic/angular';
+import { IonRouterOutlet, MenuController, NavController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { CompartidoService } from '../services/compartido.service';
 
 @Component({
   selector: 'app-conductor',
@@ -10,15 +12,43 @@ export class ConductorPage implements OnInit {
 
   isModalOpen = false;
 
-  constructor(private menu: MenuController,private routerOutlet: IonRouterOutlet) { }
+  constructor(
+    private menu: MenuController,
+    private routerOutlet: IonRouterOutlet,
+    private modalController: ModalController,
+    private sharedService: CompartidoService,
+    private NavController: NavController,
+    private navCtrl: NavController
+    ) { }
 
 
   ngOnInit() {
     this.menu.enable(true);
-    this.routerOutlet.swipeGesture = false;
+    this.sharedService.closeModal$.subscribe(()=>{
+      this.closeAndNavigateToEsperado();
+    });
   }
 
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
+  async closeAndNavigateToEsperado(){
+    const modal = await this.modalController.getTop();
+    if (modal) {
+      await modal.dismiss();
+    }
+
+    this.navCtrl.navigateForward(['/esperando'])
+  }
+
+  
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  ionViewWillEnter() {
+    this.isModalOpen = false;
   }
 }

@@ -1,0 +1,27 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/conductor"></ion-back-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content class="background">
+  <div class="abajo">
+    <div class="login">
+      <ion-card class="card">     
+        <ion-card-content>
+          
+          <div>
+            <ion-progress-bar type="indeterminate" color="success"></ion-progress-bar>
+          </div>
+          <br>
+          <div class="login">
+            Esperando Pasajeros
+          </div>
+          <div>
+            <ion-button expand="block" [routerLink]="['/encamino']">Iniciar Viaje</ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

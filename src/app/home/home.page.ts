@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.menu.enable(true);
     this.routerOutlet.swipeGesture = false;
-    this.usuario = JSON.parse(localStorage.getItem("usuario") || "")
+    this.usuario = JSON.parse(localStorage.getItem("usuario")!)
   }
   ionViewWillLoad(){
     
