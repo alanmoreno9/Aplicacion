@@ -1,0 +1,15 @@
+ion-content.background{
+    --background:   url(img/fondo.jpeg) 0 0/100% 100% no-repeat;
+}
+.qrsize{
+    width: 200px;
+    height: 200px;
+}
+.boton{
+    margin-top: -35%;
+}
+ion-button{
+    --background:   #85e6c0;
+    --background-hover: #087060 ;
+    --background-activated: #049c7c;
+}
