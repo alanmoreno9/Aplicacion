@@ -1,3 +1,17 @@
 .abajo{
-    margin-top: 95%;
+    margin-top: 45%;
 }
+
+
+.centered-image {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 50%; 
+  }
+  
+  .centered-image img {
+    max-width: 100%; 
+    max-height: 100%; 
+  }
+  
