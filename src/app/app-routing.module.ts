@@ -83,6 +83,22 @@ const routes: Routes = [
     path: 'qr',
     loadChildren: () => import('./qr/qr.module').then( m => m.QrPageModule)
   },
+  {
+    path: 'esperarconductor',
+    loadChildren: () => import('./esperarconductor/esperarconductor.module').then( m => m.EsperarconductorPageModule)
+  },
+  {
+    path: 'lector',
+    loadChildren: () => import('./lector/lector.module').then( m => m.LectorPageModule)
+  },
+  {
+    path: 'userencamino',
+    loadChildren: () => import('./userencamino/userencamino.module').then( m => m.UserencaminoPageModule)
+  },
+  {
+    path: 'valorizaciones',
+    loadChildren: () => import('./valorizaciones/valorizaciones.module').then( m => m.ValorizacionesPageModule)
+  },
 
 
 
