@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="true"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>reseñas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let aux of usuarios">
+      <ion-card>
+        <img class="img" src="{{aux.picture.large}}" alt="">
+        <ion-card-header>
+          <ion-card-title>{{aux.name.first}} {{aux.name.last}}</ion-card-title>
+          <ion-card-subtitle>({{aux.phone}}) {{aux.location.country}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Muy buen servicio, bastante comodo y agradable.
+        </ion-card-content>
+      </ion-card>
+  </ion-list>
+</ion-content>

@@ -75,7 +75,8 @@ const routes: Routes = [
     path: 'esperando',
     loadChildren: () => import('./esperando/esperando.module').then( m => m.EsperandoPageModule),
     data: { noCache: true },
-  },  {
+  },
+  {
     path: 'encamino',
     loadChildren: () => import('./encamino/encamino.module').then( m => m.EncaminoPageModule)
   },
@@ -98,11 +99,10 @@ const routes: Routes = [
   {
     path: 'valorizaciones',
     loadChildren: () => import('./valorizaciones/valorizaciones.module').then( m => m.ValorizacionesPageModule)
-  },
-
-
-
-
+  },  {
+    path: 'usuarios',
+    loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
+  }
 
 ];
 

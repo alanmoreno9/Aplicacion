@@ -8,6 +8,7 @@ export class AppComponent {
   public appPages = [
     { title: 'Inicio', url: 'home', icon: 'home' },
     { title: 'Modo Conductor', url: 'ingresaconductor', icon: 'car' },
+    { title: 'reseñas', url: 'usuarios', icon: 'star' },
     { title: 'Cerrar Sesión', url: 'loadingoff', icon: 'power' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
