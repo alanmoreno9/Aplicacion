@@ -6,6 +6,7 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms'
+import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
 
@@ -27,5 +28,6 @@ export class MapaPage implements OnInit {
   
   ngOnInit() {
   }
+
 
 }

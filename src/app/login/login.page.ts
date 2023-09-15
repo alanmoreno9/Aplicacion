@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
     const toast = await this.toastController.create({
       message: mensaje,
       duration: 2000,
-      position: 'bottom'
+      position: 'top'
     });
     toast.present()
   }

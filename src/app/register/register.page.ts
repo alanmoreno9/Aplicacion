@@ -38,11 +38,15 @@ export class RegisterPage implements OnInit {
   }
   //Mensaje en pantalla
 
+  login(){
+    this.router.navigate(['login'])
+  }
+
   async mensajerrorregister(mensaje: string){
     const toast = await this.toastController.create({
       message: mensaje,
       duration: 2000,
-      position: 'bottom'
+      position: 'top'
     });
     toast.present()
   }

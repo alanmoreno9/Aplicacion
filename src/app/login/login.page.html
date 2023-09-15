@@ -3,12 +3,11 @@
   <div class="centrado">
     <ion-card class="card">
       <ion-card-header>
-        <h2 class="login">Ingreso</h2>
+        <h3 class="login">Ingreso</h3>
       </ion-card-header>
     
       <ion-card-content>
-        
-          <form [formGroup]="formularioLogin">
+          <form [formGroup]="formularioLogin" >
             <ion-input formControlName="nombre" label="Email" type="email" label-placement="floating" errorText="Email Inválido" email></ion-input>
     
             <ion-input formControlName="password" label="Contraseña" type="password" label-placement="floating" errorText="Invalid Password"></ion-input>
@@ -18,13 +17,18 @@
           </div>
           </form>
           <div class="olvide">
-            <ion-button fill="clear" class="olvidebtn" (click)="olvido()"><span>Olvidé mi contraseña</span></ion-button>
+            <ion-button fill="clear" class="colorboton" (click)="olvido()"><span>Olvidé mi contraseña</span></ion-button>
           </div>
       </ion-card-content>
-      
+
       <div class="nouser">
-        <ion-button fill="clear" class="colorboton" (click)="register()"><span>¿No eres usuario?</span></ion-button>
-        
+        <h6>¿No eres usuario?</h6>
+      </div>
+      <div class="nouser">
+        <h6>↓</h6>
+      </div>
+      <div class="nouser">
+        <ion-button fill="clear" class="colorboton" (click)="register()"><span>Registrate</span></ion-button>
       </div>
       
       <br>
