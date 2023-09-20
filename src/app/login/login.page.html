@@ -8,10 +8,16 @@
     
       <ion-card-content>
           <form [formGroup]="formularioLogin" >
-            <ion-input formControlName="nombre" label="Email" type="email" label-placement="floating" errorText="Email Inválido" email></ion-input>
-    
-            <ion-input formControlName="password" label="Contraseña" type="password" label-placement="floating" errorText="Invalid Password"></ion-input>
-          
+            <p>
+              <ion-input formControlName="nombre" label="Email" type="email" label-placement="floating" errorText="Email Inválido" email></ion-input>
+            </p>
+            <p>
+              <ion-input formControlName="password" label="Contraseña" type="password" label-placement="floating" errorText=" "></ion-input>
+              <span *ngIf="this.formularioLogin.get('password')?.errors?.['minlength']" style="color: red;">
+                (Debe tener como mínimo 6 caracteres)
+              </span>
+            </p>
+
           <div class="login">
             <ion-button (click)="login()" class="boton">Ingresar</ion-button>
           </div>

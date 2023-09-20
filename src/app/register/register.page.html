@@ -10,16 +10,21 @@
       <ion-card-content>
         
           <form [formGroup]="formularioRegistro">
-
-            <ion-input formControlName="nombre" label="Nombre" type="text" label-placement="floating" errorText="Nombre Inválido" ></ion-input>
-    
-            <ion-input formControlName="apellido" label="Apellido" type="text" label-placement="floating" errorText="Apellido Inválido" ></ion-input>
-            
-            <ion-input formControlName="correo" label="Correo" type="email" label-placement="floating" errorText="Email Inválido"  email></ion-input>
-
-            <ion-input formControlName="contraseña" label="Contraseña" type="password" label-placement="floating" errorText="Contraseña Inválido" ></ion-input>
-          
-          
+            <p>
+              <ion-input formControlName="nombre" label="Nombre" type="text" label-placement="floating" errorText="Nombre Inválido" ></ion-input>
+            </p>
+            <p>
+              <ion-input formControlName="apellido" label="Apellido" type="text" label-placement="floating" errorText="Apellido Inválido" ></ion-input>
+            </p>
+            <p>
+              <ion-input formControlName="correo" label="Correo" type="email" label-placement="floating" errorText="Email Inválido"  email></ion-input>
+            </p>
+            <p>
+              <ion-input formControlName="contraseña" label="Contraseña" type="password" label-placement="floating" errorText=" "></ion-input>
+              <span *ngIf="this.formularioRegistro.get('contraseña')?.errors?.['minlength']" style="color: red;">
+                (Debe tener como mínimo 6 caracteres)
+              </span>
+            </p>
             <div class="login">
               <ion-button class="boton" (click)="guardar()">Registrarse</ion-button>
             </div>
