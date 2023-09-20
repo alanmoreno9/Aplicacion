@@ -11,8 +11,6 @@ export class UsuariosService {
       
     }
   ]
-
-
   constructor() { }
   //metodo que devuelve todos los usuarios
   getAll(){

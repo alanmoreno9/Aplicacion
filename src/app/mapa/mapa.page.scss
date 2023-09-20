@@ -27,11 +27,3 @@ ion-button{
 }
 
 
-ion-content {
-    // ocultar scroll lateral
-    --overflow: hidden;
-    overflow: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
