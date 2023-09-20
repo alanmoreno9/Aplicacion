@@ -1,7 +1,12 @@
 
 <ion-content class="background">
-  
-  <div class="centrado">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="cen">
+  <div class="login">
     <ion-card class="card">
       <ion-card-header>
         <h3 class="login">Registro</h3>
@@ -23,9 +28,6 @@
             <div class="login">
               <ion-button class="boton" (click)="guardar()">Registrarse</ion-button>
             </div>
-            <div class="login">
-              <ion-button class="boton" (click)="login()">Regresa al login</ion-button>
-            </div>
 
           </form>
    
@@ -33,5 +35,6 @@
     </ion-card>
     
   </div>
+</div>
   
 </ion-content>
