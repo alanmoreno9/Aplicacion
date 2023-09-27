@@ -102,6 +102,42 @@ const routes: Routes = [
   },  {
     path: 'usuarios',
     loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
+  },
+  {
+    path: 'iusuario',
+    loadChildren: () => import('./interfaces/iusuario/iusuario.module').then( m => m.IusuarioPageModule)
+  },
+  {
+    path: 'api',
+    loadChildren: () => import('./app/api/api.module').then( m => m.ApiPageModule)
+  },
+  {
+    path: 'api',
+    loadChildren: () => import('./api/api.module').then( m => m.ApiPageModule)
+  },
+  {
+    path: 'add',
+    loadChildren: () => import('./api/add/add.module').then( m => m.AddPageModule)
+  },
+  {
+    path: 'delete',
+    loadChildren: () => import('./api/delete/delete.module').then( m => m.DeletePageModule)
+  },
+  {
+    path: 'detail',
+    loadChildren: () => import('./api/detail/detail.module').then( m => m.DetailPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./api/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'list',
+    loadChildren: () => import('./api/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'update',
+    loadChildren: () => import('./api/update/update.module').then( m => m.UpdatePageModule)
   }
 
 ];

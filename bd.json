@@ -1,0 +1,22 @@
+{
+    "usuarios" : [
+        {   
+            "id" : 1 ,
+            "nombre" : "Alan",
+            "correo" : "a@a", 
+            "contraseña" : "alanmoreno332" 
+        },
+        {
+            "id" : 2 ,
+            "nombre" : "Alex",
+            "correo" : "a@123", 
+            "contraseña" : "alexputo123" 
+        },
+        {
+            "id" : 3 ,
+            "nombre" : "Muriel",
+            "correo" : "a@1234", 
+            "contraseña" : "cagachica123" 
+        }
+    ]
+}
