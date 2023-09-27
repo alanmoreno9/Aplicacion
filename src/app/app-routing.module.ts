@@ -99,21 +99,10 @@ const routes: Routes = [
   {
     path: 'valorizaciones',
     loadChildren: () => import('./valorizaciones/valorizaciones.module').then( m => m.ValorizacionesPageModule)
-  },  {
+  },
+  {
     path: 'usuarios',
     loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
-  },
-  {
-    path: 'iusuario',
-    loadChildren: () => import('./interfaces/iusuario/iusuario.module').then( m => m.IusuarioPageModule)
-  },
-  {
-    path: 'api',
-    loadChildren: () => import('./app/api/api.module').then( m => m.ApiPageModule)
-  },
-  {
-    path: 'api',
-    loadChildren: () => import('./api/api.module').then( m => m.ApiPageModule)
   },
   {
     path: 'add',

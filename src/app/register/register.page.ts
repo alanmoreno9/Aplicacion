@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuariosService } from '../services/usuarios.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
@@ -21,7 +20,6 @@ export class RegisterPage implements OnInit {
   formularioRegistro: FormGroup;
 
   constructor(
-    private UsuariosService: UsuariosService,
     private router: Router,
     private toastController: ToastController,
     public fb: FormBuilder

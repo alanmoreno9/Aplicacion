@@ -26,4 +26,12 @@ ion-button{
     width: 100%;
 }
 
+ion-content {
+    // overwrite inline styles
+    --overflow: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
 
