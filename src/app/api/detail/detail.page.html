@@ -5,9 +5,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">detail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-header>
+      <ion-card-title> {{ usuario.nombre }} </ion-card-title>
+    </ion-header>
+
+    <ion-card-content>
+      {{ usuario.correo }}
+    </ion-card-content>
+  </ion-card>
+  <ion-button class="colorboton" [routerLink]="['/apiupdate', usuario.id]">Actualizar</ion-button>
+  <ion-button class="colorboton" (click)="deleteUsuario()">Eliminar</ion-button>
+
+  
 </ion-content>

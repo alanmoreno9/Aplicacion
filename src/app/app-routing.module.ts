@@ -105,27 +105,27 @@ const routes: Routes = [
     loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
   },
   {
-    path: 'add',
+    path: 'apiadd',
     loadChildren: () => import('./api/add/add.module').then( m => m.AddPageModule)
   },
   {
-    path: 'delete',
+    path: 'apidelete/:id',
     loadChildren: () => import('./api/delete/delete.module').then( m => m.DeletePageModule)
   },
   {
-    path: 'detail',
+    path: 'apidetail/:id',
     loadChildren: () => import('./api/detail/detail.module').then( m => m.DetailPageModule)
   },
   {
-    path: 'home',
+    path: 'apihome',
     loadChildren: () => import('./api/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'list',
+    path: 'apilist',
     loadChildren: () => import('./api/list/list.module').then( m => m.ListPageModule)
   },
   {
-    path: 'update',
+    path: 'apiupdate/:id',
     loadChildren: () => import('./api/update/update.module').then( m => m.UpdatePageModule)
   }
 

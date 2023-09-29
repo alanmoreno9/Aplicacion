@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { MenuController, ToastController } from '@ionic/angular';
 import {
   FormGroup,
@@ -23,7 +24,8 @@ export class LoginPage implements OnInit {
     private router: Router, 
     private menu: MenuController, 
     public fb: FormBuilder,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private httpClient : HttpClient
     ) { 
     
       this.formularioLogin = this.fb.group({

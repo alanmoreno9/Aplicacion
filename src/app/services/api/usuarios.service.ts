@@ -12,8 +12,8 @@ export class UsuariosService {
 
   constructor(private httpClient: HttpClient) { }
 
-  ListaUsuarios(): Observable<IUsuarios>{
-    return this.httpClient.get<IUsuarios>(`${environment.apiURL}/usuarios`)
+  listaUsuarios(): Observable<IUsuarios>{
+    return this.httpClient.get<IUsuarios>(`${environment.apiURL}/usuarios`);
   }
 
   addUsuario(usuario: IUsuario): Observable<IUsuario> {
