@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -9,10 +11,22 @@ export class AppComponent {
     { title: 'Inicio', url: 'home', icon: 'home' },
     { title: 'Modo Conductor', url: 'ingresaconductor', icon: 'car' },
     { title: 'reseñas', url: 'usuarios', icon: 'star' },
+    { title: 'API', url: 'apihome', icon: 'people' },
     { title: 'Cerrar Sesión', url: 'loadingoff', icon: 'power' },
+    
   ];
+
+  public apiMenu = [
+    { title: 'Home', url: 'apihome', icon: 'home' },
+    { title: 'List', url: 'apilist', icon: 'people-circle' },
+    { title: 'Salir', url: 'home', icon: 'log-out' },
+  ];
+  
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  constructor(
+    private router: Router,
+    private menuController: MenuController
+  ) {}
 
   usuario:any;
 
@@ -23,5 +37,14 @@ export class AppComponent {
     
   }
 
+  mostrarMenu() {
+    return this.router.url !== '/login'; // NO SE VA A MOSTRAR EN EL LOGIN
+  }
+
+  mostrarMenuApi() {
+    const aux = ['apihome','apiadd','apilist','apidelete','apiupdate','apidetail']
+    return aux.includes(this.router.url.substring(1)); // ELIMINAMOS EL "/"
+    //return this.router.url == '/apihome';
+  }
   
 } 

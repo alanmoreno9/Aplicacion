@@ -1,0 +1,5 @@
+npm install -g @ionic/cli
+npm install ionic
+npm install sweetalert2
+npm install json-server
+npm install @capacitor/geolocation
