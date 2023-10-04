@@ -9,26 +9,27 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UsuariosService {
+  apiURL = "https://jsonserver-x5h4.onrender.com";
 
   constructor(private httpClient: HttpClient) { }
 
   listaUsuarios(): Observable<IUsuarios>{
-    return this.httpClient.get<IUsuarios>(`${environment.apiURL}/usuarios`);
+    return this.httpClient.get<IUsuarios>(`${this.apiURL}/usuarios`);
   }
 
   addUsuario(usuario: IUsuario): Observable<IUsuario> {
-    return this.httpClient.post<IUsuario>(`${environment.apiURL}/usuario`, usuario);
+    return this.httpClient.post<IUsuario>(`${this.apiURL}/usuarios`, usuario);
   }
 
   getUsuario(id: Number): Observable<IUsuarios> {
-    return this.httpClient.get<IUsuarios>(`${environment.apiURL}/usuarios/?id=${id}`);
+    return this.httpClient.get<IUsuarios>(`${this.apiURL}/usuarios/?id=${id}`);
   }
 
   updateUsuario(usuario: any): Observable<IUsuarios> {
-    return this.httpClient.put<IUsuarios>(`${environment.apiURL}/usuarios/${usuario.id}`, usuario);
+    return this.httpClient.put<IUsuarios>(`${this.apiURL}/usuarios/${usuario.id}`, usuario);
   }
 
   deleteUsuario(usuario: any): Observable<IUsuarios> {
-    return this.httpClient.delete<IUsuarios>(`${environment.apiURL}/usuarios/${usuario.id}`);
+    return this.httpClient.delete<IUsuarios>(`${this.apiURL}/usuarios/${usuario.id}`);
   }
 }
