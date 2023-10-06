@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/mapa"></ion-back-button>
+    </ion-buttons>
+    <ion-title>metodo de pago</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <div class="centrado">
+    <ion-card class="card">
+
+      <ion-card-header>
+        <h2 class="login">Seleccione metodo de pago</h2>
+      </ion-card-header>
+
+      <ion-card-content class="text">
+        Este proceso es para guardar el metodo de pago, asi usted lo podra utilizar cuantas veces quiera
+      </ion-card-content>
+
+      <ion-card-content>
+        <div class="login">
+          <ion-button fill="clear" class="colorboton" (click)="debito()"><span>Debito</span></ion-button>
+        </div>
+        <div class="login">
+          <ion-button fill="clear" class="colorboton" (click)="credito()"><span>Credito</span></ion-button>
+        </div>
+        <div class="login">
+          <ion-button fill="clear" class="colorboton" (click)="otro()"><span>Otro</span></ion-button>
+        </div>
+      </ion-card-content>
+     
+    </ion-card>
+  </div>
+</ion-content>

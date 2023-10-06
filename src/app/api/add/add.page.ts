@@ -12,7 +12,8 @@ export class AddPage implements OnInit {
 
   usuario: IUsuario = {
     nombre: 'Julio',
-    correo: 'julio@gmail.com'
+    correo: 'julio@gmail.com',
+    contraseña: 'xxxx'
   }
 
   usuarios:any[] = [];

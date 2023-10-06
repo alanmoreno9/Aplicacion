@@ -1,3 +1,36 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-tabs>
+            <ion-tab-bar slot="bottom">
+
+              <ion-tab-button tab="home" (click)="home()"> 
+                <ion-icon name="arrow-back-circle"></ion-icon>
+              </ion-tab-button>
+
+              <ion-tab-button tab="star" (click)="resenas()">
+                <ion-icon name="star"></ion-icon>
+              </ion-tab-button>
+              
+              <ion-tab-button tab="car">
+                <ion-icon name="car"></ion-icon>
+              </ion-tab-button>
+
+              <ion-tab-button tab="card" (click)="pago()">
+                <ion-icon name="card"></ion-icon>
+              </ion-tab-button>
+
+            </ion-tab-bar>
+          </ion-tabs>
+    </ion-toolbar>
+  </ion-header>
+
 <ion-content id="mapId" style="height: 100%;width: 100%;">
+    
  
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar slot="end">
+      <ion-button class="centrado" [routerLink]="['/buscando']" shape="round">Navegar</ion-button>
+    </ion-toolbar>
+  </ion-footer>

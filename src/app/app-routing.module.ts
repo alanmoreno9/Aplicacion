@@ -127,7 +127,12 @@ const routes: Routes = [
   {
     path: 'apiupdate/:id',
     loadChildren: () => import('./api/update/update.module').then( m => m.UpdatePageModule)
-  }
+  },
+  {
+    path: 'metodopago',
+    loadChildren: () => import('./metodopago/metodopago.module').then( m => m.MetodopagoPageModule)
+  },
+
 
 ];
 
