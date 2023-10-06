@@ -9,6 +9,9 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms'
+import { IUsuario } from '../interfaces/Iusuario';
+import { UsuariosService } from 'src/app/services/api/usuarios.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -17,12 +20,16 @@ import {
 })
 export class RegisterPage implements OnInit {
 
+  datosApi: any[] = [];
+  
   formularioRegistro: FormGroup;
 
   constructor(
     private router: Router,
     private toastController: ToastController,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private apiService: UsuariosService,
+    private httpClient : HttpClient,
   ) { 
     this.formularioRegistro = this.fb.group({
       'nombre': new FormControl("", Validators.required),
@@ -33,6 +40,10 @@ export class RegisterPage implements OnInit {
   }
 
   ngOnInit() {
+    this.httpClient.get<any>("https://jsonserver-x5h4.onrender.com/usuarios").subscribe(resultado => {
+    this.datosApi = resultado
+    console.log(this.datosApi);
+    });
   }
   //Mensaje en pantalla
 
@@ -49,31 +60,53 @@ export class RegisterPage implements OnInit {
     toast.present()
   }
 
+
+
+
   guardar(){
-    var f = this.formularioRegistro.value;
+    const f = this.formularioRegistro.value;
+    
 
     if(this.formularioRegistro.invalid){
+
       this.mensajerrorregister('Debes llenar todos los campos')
-    }else{
-      this.mensajerrorregister('Registro exitoso, en unos momentos te redirigimos')
-      var usuario = {
-        nombre: f.nombre,
+
+    }else{  
+      var usuario: IUsuario= {
+        nombre: f.nombre ,
         apellido: f.apellido,
         correo: f.correo,
         contraseña: f.contraseña
       };
-      localStorage.removeItem('usuario');
       
-      localStorage.setItem('usuario',JSON.stringify(usuario));
-      setTimeout(() =>{
-        this.router.navigate(['login']);
-      }, 2000);
+      if (this.datosApi && this.datosApi.length > 0) {
+        const correoEnUso = this.datosApi.some((dato: any) => dato.correo === usuario.correo);
+        if (correoEnUso) {
+          this.mensajerrorregister('El correo ya está en uso');
+        }else{
+          this.mensajerrorregister('Registro exitoso, en unos momentos te redirigimos')
+          this.apiService.addUsuario(usuario).subscribe()
+            setTimeout(() =>{
+          this.router.navigate(['login']);
+          }, 2000);
+        }
+      }
+      
+      
+
+      
+      
+        
+      
+     
+      
+
     };
 
     
-
     
   }
+  
 
   //Mensaje en pantalla 
   

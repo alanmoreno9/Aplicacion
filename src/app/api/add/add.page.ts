@@ -12,10 +12,10 @@ export class AddPage implements OnInit {
 
   usuario: IUsuario = {
     nombre: 'Julio',
-    correo: 'julio@gmail.com'
+    apellido: 'Tapia',
+    correo: 'julio@gmail.com',
+    contraseña: '*******'
   }
-
-  usuarios:any[] = [];
 
   constructor(private apiServices: UsuariosService,
     private router: Router ) { }

@@ -17,13 +17,6 @@ export class UsuariosPage implements OnInit {
     console.log(resultado);
     this.usuarios = resultado.results
     });
-
-    this.httpClient.get<any>("").subscribe(resultado => {
-    console.log(resultado);
-    this.usuarios = resultado.results
-    });
-
-
   }
 
 }
