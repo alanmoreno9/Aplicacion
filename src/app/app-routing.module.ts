@@ -131,7 +131,11 @@ const routes: Routes = [
   {
     path: 'metodopago',
     loadChildren: () => import('./metodopago/metodopago.module').then( m => m.MetodopagoPageModule)
+  },  {
+    path: 'mistarjetas',
+    loadChildren: () => import('./mistarjetas/mistarjetas.module').then( m => m.MistarjetasPageModule)
   },
+
 
 
 ];

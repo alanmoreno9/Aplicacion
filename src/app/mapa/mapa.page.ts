@@ -56,4 +56,8 @@ export class MapaPage implements OnInit {
     this.router.navigate(['/metodopago'])
   }
 
+  tarjetas(){
+    this.router.navigate(['/mistarjetas'])
+  }
+
 }
