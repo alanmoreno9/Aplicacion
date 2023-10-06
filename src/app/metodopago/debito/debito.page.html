@@ -10,17 +10,27 @@
 <ion-content>
   <ion-card>
     <ion-header>
-      <ion-card-title>Agregar Usuario</ion-card-title>
+      <ion-card-title>Añadir tarjeta</ion-card-title>
     </ion-header>
     <ion-card-content>
       <ion-item>
-        <ion-input #numero [(ngModel)]="metodo.numero" type="text" lablel="nombre" labelPlacement="floating"></ion-input>
+        <ion-input #tipotarjeta [(ngModel)]="tarjeta.tipotarjeta" type="text" lablel="nombre" labelPlacement="floating"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input #fechavencimiento [(ngModel)]="usuario.correo" type="text" lablel="correo" labelPlacement="floating"></ion-input>
+        <ion-input #numero [(ngModel)]="tarjeta.numero" type="text" lablel="correo" labelPlacement="floating"></ion-input>
       </ion-item>
-      <ion-button (click)="addUsuario()" shape="round">Añadir usuario</ion-button>
+
+      <ion-item>
+        <ion-input #fechavencimiento [(ngModel)]="tarjeta.fechavencimiento" type="text" lablel="correo" labelPlacement="floating"></ion-input>
+      </ion-item>
+      
+
+      <ion-item>
+        <ion-input #cvv [(ngModel)]="tarjeta.cvv" type="text" lablel="correo" labelPlacement="floating"></ion-input>
+      </ion-item>
+
+      <ion-button (click)="addMetodo()" shape="round">Añadir Tarjeta</ion-button>
 
     </ion-card-content>
 
