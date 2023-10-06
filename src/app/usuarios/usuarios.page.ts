@@ -10,6 +10,7 @@ export class UsuariosPage implements OnInit {
 
   usuarios: any[]=[];
   reseñas: any[]=[];
+  
   constructor(private httpClient : HttpClient) { }
 
   ngOnInit() {

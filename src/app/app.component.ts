@@ -38,7 +38,9 @@ export class AppComponent {
   }
 
   mostrarMenu() {
-    return this.router.url !== '/login'; // NO SE VA A MOSTRAR EN EL LOGIN
+    return this.router.url !== '/login'; 
+    return this.router.url == '/home';
+    // NO SE VA A MOSTRAR EN EL LOGIN
   }
 
   mostrarMenuApi() {

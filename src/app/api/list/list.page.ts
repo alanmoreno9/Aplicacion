@@ -37,4 +37,11 @@ export class ListPage implements OnInit {
     this.router.navigate(['/apiadd'])
   }
 
+  handleRefresh(event: any){
+    setTimeout(() => {
+      this.listar();
+      event.target.complete();
+    }, 1000);
+  }
+
 }

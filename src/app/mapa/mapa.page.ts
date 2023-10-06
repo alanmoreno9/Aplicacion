@@ -44,4 +44,20 @@ export class MapaPage implements OnInit {
     }).addTo(this.map);
   }
 
+  home(){
+    this.router.navigate(['/home']);
+  }
+
+  resenas(){
+    this.router.navigate(['/usuarios'])
+  }
+
+  pago(){
+    this.router.navigate(['/metodopago'])
+  }
+
+  tarjetas(){
+    this.router.navigate(['/mistarjetas'])
+  }
+
 }
