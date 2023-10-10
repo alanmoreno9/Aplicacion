@@ -17,6 +17,7 @@ import {
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  usuarios: any[] = [];
 
   formularioLogin: FormGroup;
 
@@ -36,6 +37,10 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.menu.enable(false);
+    this.httpClient.get<any>("https://jsonserver-x5h4.onrender.com/usuarios").subscribe(resultado => {
+    this.usuarios = resultado
+    console.log(this.usuarios);
+    });
   }
 
   async message(mensaje: string){
@@ -48,23 +53,32 @@ export class LoginPage implements OnInit {
   }
 
   login(){
-    var f = this.formularioLogin.value;
 
-    var usuario = JSON.parse(localStorage.getItem('usuario')!);
+    
 
-    if(usuario.correo == f.nombre && usuario.contraseña == f.password){
-      console.log('si está')
-      this.message('En un momento te redireccionaremos')
-      setTimeout(() =>{
-        this.router.navigate(['home']);
-      }, 2000);
-      console.log(localStorage.getItem('usuario'));
+    if (this.formularioLogin.valid) {
+    const f = this.formularioLogin.value;
+
+    this.httpClient.get<any[]>("https://jsonserver-x5h4.onrender.com/usuarios").subscribe((usuarios: any[]) => {
+      const usuarioEncontrado = usuarios.find((usuario) => usuario.correo === f.nombre && usuario.contraseña === f.password);
+
+      if (usuarioEncontrado) {
+        this.message("Hola " + usuarioEncontrado.nombre + " " + usuarioEncontrado.apellido + " En un momento te redirigiremos")
+        localStorage.clear()
+        localStorage.setItem('usuario',JSON.stringify(usuarioEncontrado));
+        setTimeout(() =>{
+          this.router.navigate(['home']);
+        }, 2000);
+      } else {
+        this.message("El correo o la contraseña no coinciden")
+      }
+    });
+
     }else{
-      console.log('no está')
-      this.message('Credenciales Inválidas')
+      this.message("Formulario inválido")
     }
-  }
-
+  };
+  
   register(){
     this.router.navigate(['register']);
   }
