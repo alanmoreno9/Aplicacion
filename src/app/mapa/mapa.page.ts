@@ -52,10 +52,8 @@ export class MapaPage implements OnInit {
     
 
     this.obtenerCoordenadas().then(() => {
-      this.map = L.map('mapId').setView([this.latitud, this.longitud], 2);
+      this.map = L.map('mapId').setView([this.latitud, this.longitud], 15);
       L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(this.map);
 
       var marker = L.marker([this.latitud, this.longitud]).addTo(this.map);
