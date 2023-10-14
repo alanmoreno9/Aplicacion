@@ -15,6 +15,8 @@ import * as L from "leaflet";
 
 import { Geolocation } from '@capacitor/geolocation'
 
+declare var google: any;
+
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.page.html',
@@ -24,6 +26,11 @@ export class MapaPage implements OnInit {
 
   latitud!: number;
   longitud!: number;
+  private googleAutocomplete = new google.maps.places.AutocompleteService();
+  public searchResults = new Array<any>();
+
+
+  public search: string = '';
 
   map!: L.Map;
 
@@ -34,6 +41,7 @@ export class MapaPage implements OnInit {
     private toastController: ToastController
   ) { 
   
+    
 
   }
 
@@ -52,9 +60,13 @@ export class MapaPage implements OnInit {
     
 
     this.obtenerCoordenadas().then(() => {
-      this.map = L.map('mapId').setView([this.latitud, this.longitud], 15);
+      this.map = L.map('mapId',{
+        zoomControl: false,
+      }).setView([this.latitud, this.longitud], 15);
       L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
       }).addTo(this.map);
+      
+
 
       var marker = L.marker([this.latitud, this.longitud]).addTo(this.map);
     });
@@ -76,5 +88,18 @@ export class MapaPage implements OnInit {
   tarjetas(){
     this.router.navigate(['/mistarjetas'])
   }
+
+  searchChanged(){
+    if (!this.search.trim().length) return;
+
+    this.googleAutocomplete.getPlacePredictions({input: this.search}, (predictions: any) =>{
+      this.searchResults = predictions;
+    });
+  }
+
+  calcRoute(item: any){
+    console.log(item)
+  }
+
 
 }
