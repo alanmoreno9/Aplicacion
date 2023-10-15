@@ -10,6 +10,7 @@ import { BuscandoPage } from './buscando.page';
 
 import { CardComponent } from '../components/card/card.component';
 
+
 @NgModule({
   imports: [
     CommonModule,

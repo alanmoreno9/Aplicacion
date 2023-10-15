@@ -4,9 +4,19 @@
   </ion-buttons>
   
 </ion-toolbar>
-<ion-content class="background">
+
+<ion-content>
+  <div id="mapId" style="height: 100%; width: 100%;">
+      <ion-list class="ion-margin-horizontal" *ngIf="search.length > 0">
+        <ion-item (click)="calcRoute(result)" *ngFor=" let result of searchResults">
+          {{ result.description }}
+        </ion-item>
+      </ion-list>
+  
+</div>
   
 </ion-content>
+
 <ion-content class="background2">
     <div>
       <app-card nombre="Roberto" apellido="Pinto"></app-card>

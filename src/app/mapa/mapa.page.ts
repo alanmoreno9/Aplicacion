@@ -39,11 +39,7 @@ export class MapaPage implements OnInit {
     private menu: MenuController, 
     public fb: FormBuilder,
     private toastController: ToastController
-  ) { 
-  
-    
-
-  }
+  ) {}
 
   async obtenerCoordenadas(){
     const obtenerCoordenadas = await Geolocation.getCurrentPosition()
@@ -57,8 +53,6 @@ export class MapaPage implements OnInit {
     
   }
   ionViewDidEnter(){
-    
-
     this.obtenerCoordenadas().then(() => {
       this.map = L.map('mapId',{
         zoomControl: false,
