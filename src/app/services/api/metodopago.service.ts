@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IMetodopago } from 'src/app/interfaces/Imetodopago';
 import { IMetodopagos } from 'src/app/interfaces/Imetodopagos';
-import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -15,18 +14,18 @@ export class MetodopagoService {
   constructor(private httpClient: HttpClient) { }
 
   listaMetodo(): Observable<IMetodopagos>{
-    return this.httpClient.get<IMetodopagos>(`${this.apiURL}/metodopagos`);
+    return this.httpClient.get<IMetodopagos>(`${this.apiURL}/metodopago`);
   }
 
   addMetodo(metodopago: IMetodopago): Observable<IMetodopago> {
-    return this.httpClient.post<IMetodopago>(`${this.apiURL}/metodopagos`, metodopago);
+    return this.httpClient.post<IMetodopago>(`${this.apiURL}/metodopago`, metodopago);
   }
 
-  getMetodo(id: Number): Observable<IMetodopagos> {
-    return this.httpClient.get<IMetodopagos>(`${this.apiURL}/metodopagos/?id=${id}`);
+  getTarjeta(id: Number): Observable<IMetodopagos> {
+    return this.httpClient.get<IMetodopagos>(`${this.apiURL}/metodopago/?id=${id}`);
   }
 
   deleteMetodo(metodopago: any): Observable<IMetodopagos> {
-    return this.httpClient.delete<IMetodopagos>(`${this.apiURL}/metodopagos/${metodopago.id}`);
+    return this.httpClient.delete<IMetodopagos>(`${this.apiURL}/metodopago/${metodopago.id}`);
   }
 }
