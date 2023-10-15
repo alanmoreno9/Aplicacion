@@ -22,11 +22,24 @@
             </ion-tab-bar>
           </ion-tabs>
     </ion-toolbar>
+    
+      
+    
   </ion-header>
 
-<ion-content id="mapId" style="height: 100%;width: 100%;">
+<ion-content>
+
+  <div id="mapId" style="height: 100%; width: 100%;">
     
- 
+      <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Para donde?" style="background-color: white;color: black;margin-left: 10px; z-index: 2;"></ion-searchbar>
+        <ion-list class="ion-margin-horizontal" *ngIf="search.length > 0">
+          <ion-item (click)="calcRoute(result)" *ngFor=" let result of searchResults">
+            {{ result.description }}
+          </ion-item>
+        </ion-list>
+    
+  </div>
+
 </ion-content>
 
 <ion-footer>
