@@ -80,8 +80,8 @@ export class MapaPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  resenas(){
-    this.router.navigate(['/usuarios'])
+  valorizaciones(){
+    this.router.navigate(['/valorizacionconductor'])
   }
 
   pago(){

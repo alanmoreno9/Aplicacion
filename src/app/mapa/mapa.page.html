@@ -1,13 +1,12 @@
 <ion-header>
     <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
         <ion-tabs>
-            <ion-tab-bar slot="bottom">
+            <ion-tab-bar slot="bottom" style="margin-left: 17%;">
 
-              <ion-tab-button tab="home" > 
-                <ion-icon name="invert-mode"></ion-icon>
-              </ion-tab-button>
-
-              <ion-tab-button tab="star" (click)="resenas()">
+              <ion-tab-button tab="star" (click)="valorizaciones()">
                 <ion-icon name="star"></ion-icon>
               </ion-tab-button>
               
