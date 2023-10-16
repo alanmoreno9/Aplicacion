@@ -135,6 +135,10 @@ const routes: Routes = [
     path: 'mistarjetas',
     loadChildren: () => import('./mistarjetas/mistarjetas.module').then( m => m.MistarjetasPageModule)
   },
+  {
+    path: 'conductoresactivos',
+    loadChildren: () => import('./conductoresactivos/conductoresactivos.module').then( m => m.ConductoresactivosPageModule)
+  },
 
 
 

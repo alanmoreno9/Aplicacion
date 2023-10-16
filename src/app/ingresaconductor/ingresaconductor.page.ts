@@ -52,7 +52,7 @@ export class IngresaconductorPage implements OnInit {
     if (conductor.correo == f.correo && conductor.contraseña == f.contraseña) {
       this.mensajerrorregister('En un momento te redireccionaremos')
       setTimeout(() =>{
-        this.router.navigate(['conductor']);
+        this.router.navigate(['mapa']);
       }, 2000);
       console.log(localStorage.getItem('conductor'));
       console.log(localStorage.getItem('usuario'));
@@ -62,7 +62,7 @@ export class IngresaconductorPage implements OnInit {
   }
 
   conductor(){
-    this.router.navigate(['conductor'])
+    this.router.navigate(['mapa'])
   }
   registerconductor(){
     this.router.navigate(['registerconductor'])

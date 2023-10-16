@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnInit } from '@angular/core';
 
 import {
   FormGroup,
@@ -14,6 +14,7 @@ import { MenuController, ToastController } from '@ionic/angular';
 import * as L from "leaflet";
 
 import { Geolocation } from '@capacitor/geolocation'
+import { Marker } from 'leaflet';
 
 declare var google: any;
 
@@ -28,6 +29,9 @@ export class MapaPage implements OnInit {
   longitud!: number;
   private googleAutocomplete = new google.maps.places.AutocompleteService();
   public searchResults = new Array<any>();
+  public destination: any;
+  private destino: L.Marker | null = null;
+  private locationMe!: L.Marker;
 
 
   public search: string = '';
@@ -38,7 +42,8 @@ export class MapaPage implements OnInit {
     private router: Router, 
     private menu: MenuController, 
     public fb: FormBuilder,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private ngZone:  NgZone
   ) { 
   
     
@@ -68,7 +73,7 @@ export class MapaPage implements OnInit {
       
 
 
-      var marker = L.marker([this.latitud, this.longitud]).addTo(this.map);
+      this.locationMe = L.marker([this.latitud, this.longitud]).addTo(this.map);
     });
     
   }
@@ -93,13 +98,31 @@ export class MapaPage implements OnInit {
     if (!this.search.trim().length) return;
 
     this.googleAutocomplete.getPlacePredictions({input: this.search}, (predictions: any) =>{
-      this.searchResults = predictions;
+      this.ngZone.run(() => {
+        this.searchResults = predictions;
+      })
+      
     });
   }
 
-  calcRoute(item: any){
-    console.log(item)
+  async calcRoute(item: any){
+    
+
+    let geocoder = new google.maps.Geocoder()
+    this.search = "";
+    this.destination = item;
+
+    const info: any = await geocoder.geocode({address: this.destination.description})
+
+    console.log(info.results)
+
+    if (this.destino !== null) {
+      this.map.removeLayer(this.destino);
+    }
+
+    this.destino = L.marker([info.results[0].geometry.location.lat(), info.results[0].geometry.location.lng()]).addTo(this.map);
   }
+
 
 
 }

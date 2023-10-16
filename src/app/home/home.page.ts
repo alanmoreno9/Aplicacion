@@ -29,7 +29,7 @@ export class HomePage implements OnInit {
   
   async message(timerInterval: any){
     Swal.fire({
-      title: 'Iniciando Mapa',
+      title: 'Cargando Conductores Activos',
       html: 'Esto tomara un par de segundos.',
       timer: 2000,
       heightAuto: false,
