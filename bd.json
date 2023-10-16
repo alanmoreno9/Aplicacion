@@ -35,6 +35,43 @@
       "fechavencimiento": "01/25",
       "cvv": "478"
     }
+  ],
+
+  "conductores":[
+    {
+    "id": 1,
+    "nombre": "Manuel Soto",
+    "rut": "21457223-k",
+    "telefono": 997774412,
+    "marcaVehiculo": "suzuki",
+    "modeloVehiculo": "swift",
+    "añoVehiculo": 2023,
+    "placaVehiculo": "SK-RK-78"
+    },
+    {
+    "id": 2,
+    "nombre": "Bryan Pinto",
+    "rut": "21555000-2",
+    "telefono": 997127843,
+    "marcaVehiculo": "kia",
+    "modeloVehiculo": "morning",
+    "añoVehiculo": 2021,
+    "placaVehiculo": "GZ-TH-57"
+    }
+  ],
+
+  "conductoresActivos":[
+    {
+    "id": 1,
+    "nombre": "Alan Moreno",
+    "rut": "21450089-2",
+    "telefono": 972675498,
+    "marcaVehiculo": "chevrolet",
+    "modeloVehiculo": "spark",
+    "añoVehiculo": 2022,
+    "placaVehiculo": "BB-CL-34",
+    "estado": "Activo"
+    }
   ]
 }
 

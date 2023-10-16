@@ -62,8 +62,6 @@ export class MapaPage implements OnInit {
     
   }
   ionViewDidEnter(){
-    
-
     this.obtenerCoordenadas().then(() => {
       this.map = L.map('mapId',{
         zoomControl: false,

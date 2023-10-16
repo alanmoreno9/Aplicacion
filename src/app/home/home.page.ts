@@ -21,6 +21,7 @@ export class HomePage implements OnInit {
     this.routerOutlet.swipeGesture = false;
     this.usuario = JSON.parse(localStorage.getItem("usuario")!)
   }
+  
   ionViewWillLoad(){
     
     

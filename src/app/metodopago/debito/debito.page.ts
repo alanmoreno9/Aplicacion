@@ -26,7 +26,7 @@ export class DebitoPage implements OnInit {
 
   addMetodo(){
     this.apiServices.addMetodo(this.tarjeta).subscribe()
-    this.router.navigate(['/metodopago'])
+    this.router.navigate(['/mistarjetas'])
   }
 
 }
