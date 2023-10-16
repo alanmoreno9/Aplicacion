@@ -14,22 +14,22 @@ export class ConductoresService {
   
 
   listConductores():Observable<IConductores>{
-    return this.httpClient.get<IConductores>(`${this.apiURL}/conductor`)
+    return this.httpClient.get<IConductores>(`${this.apiURL}/conductores`)
   }
 
   addConductor(conductor:IConductor):Observable<IConductor>{
-    return this.httpClient.post<IConductor>(`${this.apiURL}/conductor`, conductor)
+    return this.httpClient.post<IConductor>(`${this.apiURL}/conductores`, conductor)
   } 
 
   getConductor(id:Number): Observable<IConductores>{
-    return this.httpClient.get<IConductores>(`${this.apiURL}/conductor/?id=${id}`)
+    return this.httpClient.get<IConductores>(`${this.apiURL}/conductores/?id=${id}`)
   }
 
   updateConductor(conductor:any):Observable<IConductores>{
-    return this.httpClient.put<IConductores>(`${this.apiURL}/conductor/${conductor.id}`, conductor)
+    return this.httpClient.put<IConductores>(`${this.apiURL}/conductores/${conductor.id}`, conductor)
   }
 
   deleteConductor(conductor:any):Observable<IConductores>{
-    return this.httpClient.delete<IConductores>(`${this.apiURL}/conductor/${conductor.id}`)
+    return this.httpClient.delete<IConductores>(`${this.apiURL}/conductores/${conductor.id}`)
   }
 }

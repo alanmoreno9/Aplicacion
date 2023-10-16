@@ -1,9 +1,13 @@
 export interface IConductor{
     nombre: String,
-    rut: String,
+    apellido: String,
+    correo: String,
+    contraseña: String,
     telefono: Number,
-    marcaVehiculo: String,
-    modeloVehiculo: String,
-    añoVehiculo: String,
-    placaVehiculo: String
+    marca: String,
+    modelo: String,
+    año: String,
+    placa: String
+    rut: String,
+    estado: boolean
 }

@@ -41,10 +41,7 @@ export class RegisterPage implements OnInit {
   }
 
   ngOnInit() {
-    this.httpClient.get<any>("https://jsonserver-x5h4.onrender.com/usuarios").subscribe(resultado => {
-    this.datosApi = resultado
-    console.log(this.datosApi);
-    });
+   
   }
   //Mensaje en pantalla
 

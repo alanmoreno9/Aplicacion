@@ -58,7 +58,7 @@ export class HomePage implements OnInit {
 
   iniciar(){
     this.message('')
-    this.router.navigate(['mapa'])
+    this.router.navigate(['conductoresactivos'])
   }
 
 }
