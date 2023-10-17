@@ -7,15 +7,15 @@
                 <ion-icon name="invert-mode"></ion-icon>
               </ion-tab-button>
 
-              <ion-tab-button tab="star" (click)="resenas()">
+              <ion-tab-button tab="star">
                 <ion-icon name="star"></ion-icon>
               </ion-tab-button>
               
-              <ion-tab-button tab="wallet" (click)="tarjetas()">
+              <ion-tab-button tab="wallet">
                 <ion-icon name="wallet"></ion-icon>
               </ion-tab-button>
 
-              <ion-tab-button tab="card" (click)="pago()">
+              <ion-tab-button tab="card">
                 <ion-icon name="card"></ion-icon>
               </ion-tab-button>
 
@@ -42,11 +42,11 @@
       
     
   </div>
-
+  
 </ion-content>
 
 <ion-footer>
     <ion-toolbar slot="end">
-      <ion-button class="centrado" [routerLink]="['/buscando']" shape="round">Navegar</ion-button>
+      <ion-button class="centrado" (click)="esperando()" shape="round">Navegar</ion-button>
     </ion-toolbar>
   </ion-footer>

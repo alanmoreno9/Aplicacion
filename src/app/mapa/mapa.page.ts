@@ -14,7 +14,8 @@ import { MenuController, ToastController } from '@ionic/angular';
 import * as L from "leaflet";
 
 import { Geolocation } from '@capacitor/geolocation'
-import { Marker } from 'leaflet';
+import Swal from 'sweetalert2'
+import 'leaflet-routing-machine';
 
 declare var google: any;
 
@@ -32,11 +33,15 @@ export class MapaPage implements OnInit {
   public destination: any;
   private destino: L.Marker | null = null;
   private locationMe!: L.Marker;
+  private control: any | null = null;
 
 
   public search: string = '';
 
   map!: L.Map;
+
+  startPoint: any;
+  endPoint: any;
 
   constructor(
     private router: Router, 
@@ -44,11 +49,7 @@ export class MapaPage implements OnInit {
     public fb: FormBuilder,
     private toastController: ToastController,
     private ngZone:  NgZone
-  ) { 
-  
-    
-
-  }
+  ) { }
 
   async obtenerCoordenadas(){
     const obtenerCoordenadas = await Geolocation.getCurrentPosition()
@@ -59,7 +60,7 @@ export class MapaPage implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.message("","Cargando Mapa","Esto tardará un poco");
   }
   ionViewDidEnter(){
     this.obtenerCoordenadas().then(() => {
@@ -70,28 +71,13 @@ export class MapaPage implements OnInit {
       }).addTo(this.map);
       
 
+      this.startPoint = L.latLng(this.latitud, this.longitud)
 
       this.locationMe = L.marker([this.latitud, this.longitud]).addTo(this.map);
+      
+
     });
-    
   }
-
-  home(){
-    this.router.navigate(['/home']);
-  }
-
-  resenas(){
-    this.router.navigate(['/usuarios'])
-  }
-
-  pago(){
-    this.router.navigate(['/metodopago'])
-  }
-
-  tarjetas(){
-    this.router.navigate(['/mistarjetas'])
-  }
-
   searchChanged(){
     if (!this.search.trim().length) return;
 
@@ -117,10 +103,57 @@ export class MapaPage implements OnInit {
     if (this.destino !== null) {
       this.map.removeLayer(this.destino);
     }
+    if (this.control !== null) {
+      this.map.removeControl(this.control);
+    };
+
+    this.endPoint = L.latLng(info.results[0].geometry.location.lat(), info.results[0].geometry.location.lng())
 
     this.destino = L.marker([info.results[0].geometry.location.lat(), info.results[0].geometry.location.lng()]).addTo(this.map);
+
+    this.control = L.Routing.control({
+      waypoints: [this.startPoint, this.endPoint],
+      show: false   
+    }).addTo(this.map);
+
+    this.control.hide()
+    
   }
 
+  esperando(){
+    if (this.destino != null) {
+      console.log("Iniciar")
+    }else{
+      this.message('',"Alerta","Debes seleccionar un destino");
+    }
+  }
 
+  async message(timerInterval: any, title: String, html: String){
+    Swal.fire({
+      title: title,
+      html: html,
+      timer: 2000,
+      heightAuto: false,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer()!.querySelector('b');
+        timerInterval = setInterval(() => {
+          const timerLeft = Swal.getTimerLeft();
+          if (typeof timerLeft === 'number') {
+            b!.textContent = timerLeft.toString();
+          }
+        }, 2000)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
+    }
+  }
 
-}

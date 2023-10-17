@@ -6,3 +6,5 @@ npm install @capacitor/geolocation
 npm install leaflet --save
 npm install ngx-google-places-autocomplete
 npm install -g @angular/cli
+npm install leaflet leaflet-routing-machine
+npm install --save @types/leaflet @types/leaflet-routing-machine

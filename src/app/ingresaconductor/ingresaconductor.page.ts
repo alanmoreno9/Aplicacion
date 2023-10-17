@@ -48,33 +48,7 @@ export class IngresaconductorPage implements OnInit {
     toast.present()
   }
 
-  async message(timerInterval: any){
-    Swal.fire({
-      title: 'Cargando Mapa',
-      html: 'Esto tomara un par de segundos.',
-      timer: 3000,
-      heightAuto: false,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading()
-        const b = Swal.getHtmlContainer()!.querySelector('b');
-        timerInterval = setInterval(() => {
-          const timerLeft = Swal.getTimerLeft();
-          if (typeof timerLeft === 'number') {
-            b!.textContent = timerLeft.toString();
-          }
-        }, 3000)
-      },
-      willClose: () => {
-        clearInterval(timerInterval)
-      }
-    }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        console.log('I was closed by the timer')
-      }
-    })
-  }
+  
 
   login(){
 
@@ -87,7 +61,6 @@ export class IngresaconductorPage implements OnInit {
 
       if (usuarioEncontrado) {
         this.mensajerrorregister("Hola " + usuarioEncontrado.nombre + " " + usuarioEncontrado.apellido + " Gracias por llevar a nuestros compañeros")
-        this.message('')
         setTimeout(() =>{
           this.router.navigate(['mapa']);
         }, 2000);

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConductoresactivosPage implements OnInit {
 
-  constructor() { }
+  conductores: any[] = [];
+  conductoresActivos: any[] = [];
+
+  constructor(
+    private httpClient : HttpClient
+  ) { }
 
   ngOnInit() {
+    this.httpClient.get<any>("https://jsonserver-x5h4.onrender.com/conductores").subscribe(resultado => {
+    this.conductores = resultado
+    console.log(this.conductores);
+    });
   }
 
 }
