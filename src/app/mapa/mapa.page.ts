@@ -84,12 +84,12 @@ export class MapaPage implements OnInit {
     this.router.navigate(['/valorizacionconductor'])
   }
 
-  pago(){
-    this.router.navigate(['/metodopago'])
+  pagoqr(){
+    this.router.navigate(['/pagoqr'])
   }
 
-  tarjetas(){
-    this.router.navigate(['/mistarjetas'])
+  solicitudes(){
+    this.router.navigate(['/solicitudesconductor'])
   }
 
   searchChanged(){

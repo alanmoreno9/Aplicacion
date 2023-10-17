@@ -143,6 +143,14 @@ const routes: Routes = [
     path: 'valorizacionconductor',
     loadChildren: () => import('./valorizacionconductor/valorizacionconductor.module').then( m => m.ValorizacionconductorPageModule)
   },
+  {
+    path: 'solicitudesconductor',
+    loadChildren: () => import('./solicitudesconductor/solicitudesconductor.module').then( m => m.SolicitudesconductorPageModule)
+  },
+  {
+    path: 'pagoqr',
+    loadChildren: () => import('./pagoqr/pagoqr.module').then( m => m.PagoqrPageModule)
+  },
 
 
 
