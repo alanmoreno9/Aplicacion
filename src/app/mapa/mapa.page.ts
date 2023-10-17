@@ -78,6 +78,23 @@ export class MapaPage implements OnInit {
 
     });
   }
+
+  home(){
+    this.router.navigate(['/home']);
+  }
+
+  valorizaciones(){
+    this.router.navigate(['/valorizacionconductor'])
+  }
+
+  pagoqr(){
+    this.router.navigate(['/pagoqr'])
+  }
+
+  solicitudes(){
+    this.router.navigate(['/solicitudesconductor'])
+  }
+
   searchChanged(){
     if (!this.search.trim().length) return;
 

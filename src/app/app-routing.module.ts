@@ -139,7 +139,19 @@ const routes: Routes = [
   {
     path: 'conductoresactivos',
     loadChildren: () => import('./conductoresactivos/conductoresactivos.module').then( m => m.ConductoresactivosPageModule)
+  },  {
+    path: 'valorizacionconductor',
+    loadChildren: () => import('./valorizacionconductor/valorizacionconductor.module').then( m => m.ValorizacionconductorPageModule)
   },
+  {
+    path: 'solicitudesconductor',
+    loadChildren: () => import('./solicitudesconductor/solicitudesconductor.module').then( m => m.SolicitudesconductorPageModule)
+  },
+  {
+    path: 'pagoqr',
+    loadChildren: () => import('./pagoqr/pagoqr.module').then( m => m.PagoqrPageModule)
+  },
+
 
 
 

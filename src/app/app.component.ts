@@ -21,6 +21,10 @@ export class AppComponent {
     { title: 'List', url: 'apilist', icon: 'people-circle' },
     { title: 'Salir', url: 'home', icon: 'log-out' },
   ];
+
+  public menuMapa = [
+    { title: 'Cerrar Sesion', url: 'ingresaconductor', icon: 'log-out' },
+  ];
   
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(
@@ -47,6 +51,12 @@ export class AppComponent {
     const aux = ['apihome','apiadd','apilist','apidelete','apiupdate','apidetail']
     return aux.includes(this.router.url.substring(1)); // ELIMINAMOS EL "/"
     //return this.router.url == '/apihome';
+  }
+
+  mostrarMenuMapa(){
+    const aux = ['mapa']
+    return aux.includes(this.router.url.substring(1));
+    return this.router.url !== '/login';
   }
   
 } 
