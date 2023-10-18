@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, NgZone, OnInit } from '@angular/core';
 
 import {
   FormGroup,
@@ -47,13 +47,16 @@ export class MapaPage implements OnInit {
   startPoint: any;
   endPoint: any;
 
+  private routeInstructionsDiv: any;
+
   constructor(
     private router: Router, 
     private menu: MenuController, 
     public fb: FormBuilder,
     private toastController: ToastController,
     private ngZone:  NgZone,
-    private conductoresService: ConductoresService
+    private conductoresService: ConductoresService,
+    private el: ElementRef
   ) { }
 
   async obtenerCoordenadas(){
@@ -83,8 +86,9 @@ export class MapaPage implements OnInit {
 
       this.locationMe = L.marker([this.latitud, this.longitud]).addTo(this.map);
       
-
+      this.routeInstructionsDiv = this.el.nativeElement.querySelector('#route-instructions');
     });
+    
   }
   searchChanged(){
     if (!this.search.trim().length) return;
@@ -121,11 +125,23 @@ export class MapaPage implements OnInit {
 
     this.control = L.Routing.control({
       waypoints: [this.startPoint, this.endPoint],
-      show: false   
+      show: false,
     }).addTo(this.map);
 
-    this.control.hide()
-    
+    this.control.hide();
+
+    this.control.on('routeselected', (e: any) => {
+      const instructionsDiv = document.getElementById('route-instructions');
+      if (instructionsDiv) {
+        instructionsDiv.innerHTML = '';
+        e.route.instructions.forEach((instruction: L.Routing.IInstruction) => {
+          const instructionElement = document.createElement('div');
+          instructionElement.textContent = instruction.text!;
+          instructionsDiv.appendChild(instructionElement);
+        });
+      }
+    });
+        
   }
 
   esperando(){
