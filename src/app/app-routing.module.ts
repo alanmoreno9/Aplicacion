@@ -148,6 +148,11 @@ const routes: Routes = [
     path: 'loadinguser',
     loadChildren: () => import('./loadinguser/loadinguser.module').then( m => m.LoadinguserPageModule)
   },
+  {
+    path: 'terms-modal',
+    loadChildren: () => import('./terms-modal/terms-modal.module').then( m => m.TermsModalPageModule)
+  },
+
 ];
 
 @NgModule({

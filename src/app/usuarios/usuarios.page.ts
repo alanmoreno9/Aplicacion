@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.page.html',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class UsuariosPage implements OnInit {
 
   usuarios: any[]=[];
-  reseñas: any[]=[];
+  resenas: any[]=[];
   
   constructor(private httpClient : HttpClient) { }
 
@@ -17,6 +18,11 @@ export class UsuariosPage implements OnInit {
     this.httpClient.get<any>("https://randomuser.me/api/?results=20").subscribe(resultado => {
     console.log(resultado);
     this.usuarios = resultado.results
+    });
+
+    this.httpClient.get<any>("https://api.app.outscraper.com/maps/reviews").subscribe(resultado => {
+    console.log(resultado);
+    this.resenas = resultado.reviews
     });
   }
 

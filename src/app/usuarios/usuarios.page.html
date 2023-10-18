@@ -13,10 +13,16 @@
         <ion-card-header>
           <ion-card-title>{{aux.name.first}} {{aux.name.last}}</ion-card-title>
           <ion-card-subtitle>({{aux.phone}}) {{aux.location.country}}</ion-card-subtitle>
+          <ion-card-subtitle>{{aux.email}}</ion-card-subtitle>
         </ion-card-header>
-        <ion-card-content>
-          Muy buen servicio, bastante comodo y agradable.
-        </ion-card-content>
       </ion-card>
   </ion-list>
+
+  <ion-list *ngFor="let aux of resenas" class="background">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{aux.review_text}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+</ion-list>
 </ion-content>
