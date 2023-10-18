@@ -129,17 +129,10 @@ const routes: Routes = [
     loadChildren: () => import('./api/update/update.module').then( m => m.UpdatePageModule)
   },
   {
-    path: 'metodopago',
-    loadChildren: () => import('./metodopago/metodopago.module').then( m => m.MetodopagoPageModule)
-  },
-  {
-    path: 'mistarjetas',
-    loadChildren: () => import('./mistarjetas/mistarjetas.module').then( m => m.MistarjetasPageModule)
-  },
-  {
     path: 'conductoresactivos',
     loadChildren: () => import('./conductoresactivos/conductoresactivos.module').then( m => m.ConductoresactivosPageModule)
-  },  {
+  },
+  {
     path: 'valorizacionconductor',
     loadChildren: () => import('./valorizacionconductor/valorizacionconductor.module').then( m => m.ValorizacionconductorPageModule)
   },
@@ -155,6 +148,11 @@ const routes: Routes = [
     path: 'solicitudes',
     loadChildren: () => import('./solicitudes/solicitudes.module').then( m => m.SolicitudesPageModule)
   },
+  {
+    path: 'detallemapconductor/:id',
+    loadChildren: () => import('./detallemapconductor/detallemapconductor.module').then( m => m.DetallemapconductorPageModule)
+  },
+
 
 
 

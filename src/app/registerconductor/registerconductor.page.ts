@@ -77,7 +77,9 @@ export class RegisterconductorPage implements OnInit {
                     año : f.año,
                     placa : f.placa,
                     rut : f.rut,
-                    estado: false
+                    estado: false,
+                    meUbi: null,
+                    desUbi: null
                   };
 
                   this.mensajerrorregister("Registro exitoso, en un momento te redirigiremos")

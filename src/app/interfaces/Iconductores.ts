@@ -11,6 +11,12 @@ export interface IConductores{
     placa: String
     rut: String,
     estado: boolean,
-    meUbi: any[] | null
-    desUbi: any[] | null
+    meUbi: {
+        lat: number,
+        lng: number
+    },
+    desUbi: {
+        lat: number,
+        lng: number
+    }
 }

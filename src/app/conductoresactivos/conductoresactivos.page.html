@@ -5,9 +5,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">conductoresactivos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list *ngIf="conductoresActivos.length > 0">
+    <ion-item *ngFor="let conductor of conductoresActivos">
+      <ion-label>
+        {{conductor.nombre}}
+      </ion-label>
+      <ion-button [routerLink]="['/detallemapconductor', conductor.id]">Solicitar</ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-text *ngIf="conductoresActivos.length === 0">
+    No hay conductores activos
+  </ion-text>
 </ion-content>

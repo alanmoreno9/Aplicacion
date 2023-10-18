@@ -9,5 +9,13 @@ export interface IConductor{
     año: String,
     placa: String
     rut: String,
-    estado: boolean
+    estado: boolean,
+    meUbi: {
+        lat: number,
+        lng: number
+    } | null,
+    desUbi: {
+        lat: number,
+        lng: number
+    } | null
 }
