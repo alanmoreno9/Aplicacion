@@ -59,7 +59,7 @@ export class LoadingPage implements OnInit {
     this.generateAndUploadUserData();
 
     setTimeout(() =>{
-      this.router.navigate(['login']);
+      this.router.navigate(['terms-modal']);
     }, 3000);
   }
   

@@ -1,0 +1,32 @@
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Terminos y Condiciones</ion-title>
+        <ion-buttons slot="end">
+          <ion-button [disabled]="!termsAccepted" (click)="close()">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-card>  
+        <p class="ion-padding-horizontal">Mediante su acceso y uso de los Servicios usted acuerda vincularse jurídicamente por estas Condiciones,
+          que establecen una relación contractual entre usted y nuestra aplicacion. Si usted no acepta estas Condiciones, no podrá acceder o usar los Servicios.
+          Estas Condiciones sustituyen expresamente los acuerdos o compromisos previos con usted. Nuestra aplicacion podrá poner fin de inmediato a estas Condiciones o cualquiera de los Servicios
+          respecto de usted o, en general,
+          dejar de ofrecer o denegar el acceso a los Servicios o cualquier parte de ellos, en cualquier momento y por cualquier motivo.
+          Se podrán aplicar condiciones suplementarias a determinados Servicios,
+          como políticas para un evento, una actividad o una promoción particular,
+          y dichas condiciones suplementarias se le comunicarán en relación con los Servicios aplicables.
+        </ion-card>
+      <ion-card>
+        <p class="ion-padding-horizontal">Con el fin de usar la mayor parte de los aspectos de los Servicios,
+        a usted se le proporcionara una cuenta activa como personal de usuario de los Servicios (“Cuenta”).
+        Para obtener una Cuenta debe tener como mínimo 18 años, o tener la mayoría de edad legal en su jurisdicción.
+      </ion-card>
+      <ion-item>
+        <ion-checkbox (ionChange)="onTermsChanged($event)" [checked]="termsAccepted">
+          <div class="ion-text-wrap">Aceptas nuestros Terminos y Condiciones?</div>
+        </ion-checkbox>
+      </ion-item>
+    </ion-content>
+ 
