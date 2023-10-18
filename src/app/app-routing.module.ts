@@ -40,10 +40,6 @@ const routes: Routes = [
     loadChildren: () => import('./registerconductor/registerconductor.module').then( m => m.RegisterconductorPageModule)
   },
   {
-    path: 'config',
-    loadChildren: () => import('./config/config.module').then( m => m.ConfigPageModule)
-  },
-  {
     path: 'mapa',
     loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
   },
@@ -152,11 +148,10 @@ const routes: Routes = [
     path: 'detallemapconductor/:id',
     loadChildren: () => import('./detallemapconductor/detallemapconductor.module').then( m => m.DetallemapconductorPageModule)
   },
-
-
-
-
-
+  {
+    path: 'loadinguser',
+    loadChildren: () => import('./loadinguser/loadinguser.module').then( m => m.LoadinguserPageModule)
+  },
 ];
 
 @NgModule({

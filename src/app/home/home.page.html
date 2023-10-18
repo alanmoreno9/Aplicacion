@@ -11,7 +11,9 @@
               <ion-label style="color: white;margin-left: 3%;">{{usuario.nombre}}</ion-label>
               <br>
               <span style="margin-left: 3%;">{{usuario.apellido}}</span>
-              <ion-img class="configsize" [routerLink]="['/config']" src="https://icon-library.com/images/white-settings-icon/white-settings-icon-0.jpg"></ion-img>
+              <ion-buttons slot="start" style="margin-top: -18%;margin-left: 80%;">
+                <ion-menu-button></ion-menu-button>
+              </ion-buttons>
           </div>
         
     </ion-card>
