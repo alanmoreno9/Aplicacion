@@ -152,11 +152,10 @@ const routes: Routes = [
     path: 'detallemapconductor/:id',
     loadChildren: () => import('./detallemapconductor/detallemapconductor.module').then( m => m.DetallemapconductorPageModule)
   },
-
-
-
-
-
+  {
+    path: 'loadinguser',
+    loadChildren: () => import('./loadinguser/loadinguser.module').then( m => m.LoadinguserPageModule)
+  },
 ];
 
 @NgModule({

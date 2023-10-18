@@ -6,20 +6,16 @@
         <ion-tabs>
             <ion-tab-bar slot="bottom" style="margin-left: 17%;">
 
-              <ion-tab-button tab="home" > 
-                <ion-icon name="invert-mode"></ion-icon>
-              </ion-tab-button>
-
-              <ion-tab-button tab="star">
+              <ion-tab-button tab="valorizaciones" [routerLink]="['/valorizacionconductor']">
                 <ion-icon name="star"></ion-icon>
               </ion-tab-button>
               
-              <ion-tab-button tab="wallet">
-                <ion-icon name="wallet"></ion-icon>
+              <ion-tab-button tab="soli" [routerLink]="['/solicitudesconductor']">
+                <ion-icon name="mail-unread"></ion-icon>
               </ion-tab-button>
 
-              <ion-tab-button tab="card">
-                <ion-icon name="card"></ion-icon>
+              <ion-tab-button tab="pagoqr" [routerLink]="['/pagoqr']">
+                <ion-icon name="qr-code"></ion-icon>
               </ion-tab-button>
 
             </ion-tab-bar>

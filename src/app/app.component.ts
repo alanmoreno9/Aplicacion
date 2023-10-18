@@ -23,7 +23,7 @@ export class AppComponent {
   ];
 
   public menuMapa = [
-    { title: 'Cerrar Sesion', url: 'ingresaconductor', icon: 'log-out' },
+    { title: 'Modo usuario', url: 'loadinguser', icon: 'log-out' },
   ];
   
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
