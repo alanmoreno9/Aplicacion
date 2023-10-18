@@ -1,27 +1,19 @@
 <ion-toolbar>
   <ion-buttons slot="start">
-    <ion-back-button defaultHref="/conductor"></ion-back-button>
+    <ion-back-button defaultHref="/mapa"></ion-back-button>
   </ion-buttons>
 </ion-toolbar>
 
-<ion-content class="background">
-  <div class="abajo">
-    <div class="login">
-      <ion-card class="card">     
-        <ion-card-content>
-          
-          <div>
-            <ion-progress-bar type="indeterminate" color="success"></ion-progress-bar>
-          </div>
-          <br>
-          <div class="login">
-            Esperando Pasajeros
-          </div>
-          <div>
-            <ion-button expand="block" [routerLink]="['/encamino']">Iniciar Viaje</ion-button>
-          </div>
-        </ion-card-content>
-      </ion-card>
-    </div>
-  </div>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list *ngIf="peticiones !== null">
+    <ion-item *ngFor="let peticion of peticiones">
+      <ion-label>
+        {{peticion.IdUsuario}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <h3 *ngIf="peticiones === null || peticiones.length === 0">No hay peticiones activas</h3>
 </ion-content>

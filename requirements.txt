@@ -1,13 +1,12 @@
 npm install -g @ionic/cli
 npm install ionic
 npm install sweetalert2
-npm install json-server
 npm install @capacitor/geolocation
 npm install leaflet --save
 npm install ngx-google-places-autocomplete
 npm install -g @angular/cli
-npm install leaflet leaflet-routing-machine
 npm install --save @types/leaflet @types/leaflet-routing-machine
+npm install leaflet leaflet-routing-machine
 
 npm i -g @ionic/cli
 npm  @capacitor/core @capacitor/cli

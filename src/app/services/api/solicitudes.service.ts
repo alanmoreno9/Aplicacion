@@ -25,6 +25,10 @@ export class SolicitudesService {
     return this.httpClient.get<Isolicitudes>(`${this.apiURL}/solicitudes/?id=${id}`)
   }
 
+  getSolicitudPorConductor(idConductor:Number): Observable<Isolicitudes>{
+    return this.httpClient.get<Isolicitudes>(`${this.apiURL}/solicitudes/?idConductor=${idConductor}`)
+  }
+
   updateSolicitud(solicitud:any):Observable<Isolicitudes>{
     return this.httpClient.put<Isolicitudes>(`${this.apiURL}/solicitudes/${solicitud.id}`, solicitud)
   }

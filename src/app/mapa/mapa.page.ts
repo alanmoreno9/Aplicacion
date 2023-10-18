@@ -56,7 +56,7 @@ export class MapaPage implements OnInit {
     private toastController: ToastController,
     private ngZone:  NgZone,
     private conductoresService: ConductoresService,
-    private el: ElementRef
+    private el: ElementRef,
   ) { }
 
   async obtenerCoordenadas(){
@@ -68,12 +68,13 @@ export class MapaPage implements OnInit {
   }
 
   ngOnInit() {
-    this.message("","Cargando Mapa","Esto tardará un poco");
-    console.log(localStorage)
+    
     this.conductor = JSON.parse(localStorage.getItem('conductor')!);
     console.log(this.conductor)
   }
+
   ionViewDidEnter(){
+    this.message("","Cargando Mapa","Esto tardará un poco");
     this.obtenerCoordenadas().then(() => {
       this.map = L.map('mapId',{
         zoomControl: false,
@@ -89,7 +90,15 @@ export class MapaPage implements OnInit {
       this.routeInstructionsDiv = this.el.nativeElement.querySelector('#route-instructions');
     });
     
-  }
+  };
+
+  ionViewWillLeave(){
+    if (this.map) {
+      this.map.off();
+      this.map.remove();
+    }
+  };
+
   searchChanged(){
     if (!this.search.trim().length) return;
 
@@ -145,12 +154,16 @@ export class MapaPage implements OnInit {
   }
 
   esperando(){
+    
     if (this.destino != null) {
       this.updateConductor();
+      this.router.navigate(['esperando'])
     }else{
       this.message('',"Alerta","Debes seleccionar un destino");
     }
   }
+
+
   updateConductor() {
     this.conductorUpdate = {
       id: this.conductor.id,

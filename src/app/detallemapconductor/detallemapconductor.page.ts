@@ -76,7 +76,7 @@ export class DetallemapconductorPage implements OnInit {
   calcularRuta(){
     L.Routing.control({
       waypoints: [this.ubicacion, this.destino],
-      show: false   
+      show: false, 
     }).addTo(this.map);
 
   }

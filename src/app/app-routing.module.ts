@@ -64,10 +64,6 @@ const routes: Routes = [
     loadChildren: () => import('./restablecer/restablecer.module').then( m => m.RestablecerPageModule)
   },
   {
-    path: 'detalleconductor/:nombre/:apellido',
-    loadChildren: () => import('./detalleconductor/detalleconductor.module').then( m => m.DetalleconductorPageModule)
-  },
-  {
     path: 'esperando',
     loadChildren: () => import('./esperando/esperando.module').then( m => m.EsperandoPageModule),
     data: { noCache: true },
