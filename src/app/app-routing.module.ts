@@ -151,6 +151,10 @@ const routes: Routes = [
     path: 'pagoqr',
     loadChildren: () => import('./pagoqr/pagoqr.module').then( m => m.PagoqrPageModule)
   },
+  {
+    path: 'solicitudes',
+    loadChildren: () => import('./solicitudes/solicitudes.module').then( m => m.SolicitudesPageModule)
+  },
 
 
 

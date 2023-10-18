@@ -37,6 +37,7 @@ export class IngresaconductorPage implements OnInit {
   ngOnInit() {
     this.menu.enable(false);
     this.routerOutlet.swipeGesture = false;
+    console.log(localStorage)
   }
 
   async mensajerrorregister(mensaje: string){
@@ -64,6 +65,12 @@ export class IngresaconductorPage implements OnInit {
         setTimeout(() =>{
           this.router.navigate(['mapa']);
         }, 2000);
+
+        if (localStorage.getItem('conductor')) {
+          localStorage.removeItem('conductor');
+        }
+        
+        localStorage.setItem('conductor',JSON.stringify(usuarioEncontrado));
       } else {
         this.mensajerrorregister("El correo o la contraseña no coinciden")
       }
@@ -74,9 +81,6 @@ export class IngresaconductorPage implements OnInit {
     }
   };
 
-  conductor(){
-    this.router.navigate(['mapa'])
-  }
   registerconductor(){
     this.router.navigate(['registerconductor'])
   }

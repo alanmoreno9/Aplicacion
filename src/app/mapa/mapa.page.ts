@@ -17,6 +17,8 @@ import { Geolocation } from '@capacitor/geolocation'
 import Swal from 'sweetalert2'
 import 'leaflet-routing-machine';
 
+import { ConductoresService } from '../services/api/conductores.service';
+
 declare var google: any;
 
 @Component({
@@ -35,6 +37,8 @@ export class MapaPage implements OnInit {
   private locationMe!: L.Marker;
   private control: any | null = null;
 
+  conductor: any;
+  conductorUpdate: any;
 
   public search: string = '';
 
@@ -48,7 +52,8 @@ export class MapaPage implements OnInit {
     private menu: MenuController, 
     public fb: FormBuilder,
     private toastController: ToastController,
-    private ngZone:  NgZone
+    private ngZone:  NgZone,
+    private conductoresService: ConductoresService
   ) { }
 
   async obtenerCoordenadas(){
@@ -61,6 +66,9 @@ export class MapaPage implements OnInit {
 
   ngOnInit() {
     this.message("","Cargando Mapa","Esto tardará un poco");
+    console.log(localStorage)
+    this.conductor = JSON.parse(localStorage.getItem('conductor')!);
+    console.log(this.conductor)
   }
   ionViewDidEnter(){
     this.obtenerCoordenadas().then(() => {
@@ -78,23 +86,6 @@ export class MapaPage implements OnInit {
 
     });
   }
-
-  home(){
-    this.router.navigate(['/home']);
-  }
-
-  valorizaciones(){
-    this.router.navigate(['/valorizacionconductor'])
-  }
-
-  pagoqr(){
-    this.router.navigate(['/pagoqr'])
-  }
-
-  solicitudes(){
-    this.router.navigate(['/solicitudesconductor'])
-  }
-
   searchChanged(){
     if (!this.search.trim().length) return;
 
@@ -139,10 +130,37 @@ export class MapaPage implements OnInit {
 
   esperando(){
     if (this.destino != null) {
-      console.log("Iniciar")
+      this.updateConductor();
     }else{
       this.message('',"Alerta","Debes seleccionar un destino");
     }
+  }
+  updateConductor() {
+    this.conductorUpdate = {
+      id: this.conductor.id,
+      nombre: this.conductor.nombre,
+      apellido: this.conductor.apellido,
+      correo: this.conductor.correo,
+      contraseña: this.conductor.contraseña,
+      telefono: this.conductor.telefono,
+      marca: this.conductor.marca,
+      modelo: this.conductor.modelo,
+      año: this.conductor.año,
+      placa: this.conductor.placa,
+      rut: this.conductor.rut,
+      estado: true,
+      meUbi: this.startPoint,
+      desUbi: this.endPoint
+    }
+
+    this.conductoresService.updateConductor(this.conductorUpdate).subscribe(
+      response => {
+        console.log('Conductor actualizado con éxito', response);
+      },
+      error => {
+        console.error('Error al actualizar el conductor', error);
+      }
+    )
   }
 
   async message(timerInterval: any, title: String, html: String){

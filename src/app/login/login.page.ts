@@ -64,11 +64,16 @@ export class LoginPage implements OnInit {
 
       if (usuarioEncontrado) {
         this.message("Hola " + usuarioEncontrado.nombre + " " + usuarioEncontrado.apellido + " En un momento te redirigiremos")
-        localStorage.clear()
-        localStorage.setItem('usuario',JSON.stringify(usuarioEncontrado));
+        
         setTimeout(() =>{
           this.router.navigate(['home']);
         }, 2000);
+
+        if (localStorage.getItem('usuario')) {
+          localStorage.removeItem('usuario');
+        }
+
+        localStorage.setItem('usuario',JSON.stringify(usuarioEncontrado));
       } else {
         this.message("El correo o la contraseña no coinciden")
       }

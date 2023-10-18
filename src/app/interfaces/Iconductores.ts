@@ -10,5 +10,7 @@ export interface IConductores{
     año: String,
     placa: String
     rut: String,
-    estado: boolean
+    estado: boolean,
+    meUbi: any[] | null
+    desUbi: any[] | null
 }
