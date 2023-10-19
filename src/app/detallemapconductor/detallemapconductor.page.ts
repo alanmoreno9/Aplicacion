@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConductoresService } from '../services/api/conductores.service';
 import * as L from "leaflet";
 import 'leaflet-routing-machine';
@@ -36,7 +36,8 @@ export class DetallemapconductorPage implements OnInit {
   constructor(
     private conductoresService: ConductoresService,
     private activatedRoute: ActivatedRoute,
-    private solicitudesService: SolicitudesService
+    private solicitudesService: SolicitudesService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -98,5 +99,6 @@ export class DetallemapconductorPage implements OnInit {
 
     this.solicitudesService.addSolicitud(solicitud).subscribe();
 
+    this.router.navigate(['/encontrado'])
   }
 }

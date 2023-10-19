@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: EsperandoPage
+  },
+  {
+    path: 'peticiondetalle/:id',
+    loadChildren: () => import('./peticiondetalle/peticiondetalle.module').then( m => m.PeticiondetallePageModule)
   }
+
 ];
 
 @NgModule({

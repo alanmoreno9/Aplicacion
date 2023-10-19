@@ -9,11 +9,13 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list *ngIf="peticiones !== null">
-    <ion-item *ngFor="let peticion of peticiones">
+    <ion-item *ngFor="let peticion of peticiones" [routerLink]="['/esperando/peticiondetalle/', peticion.id]">
       <ion-label>
         {{peticion.IdUsuario}}
       </ion-label>
     </ion-item>
   </ion-list>
-  <h3 *ngIf="peticiones === null || peticiones.length === 0">No hay peticiones activas</h3>
+  <ion-item style="text-align: center;">
+    <ion-label *ngIf="peticiones === null || peticiones.length === 0">No hay peticiones activas</ion-label>
+  </ion-item>
 </ion-content>
