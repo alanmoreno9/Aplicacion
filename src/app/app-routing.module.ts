@@ -52,7 +52,7 @@ const routes: Routes = [
     loadChildren: () => import('./buscando/buscando.module').then( m => m.BuscandoPageModule)
   },
   {
-    path: 'encontrado',
+    path: 'encontrado/:id/:idpeticion',
     loadChildren: () => import('./encontrado/encontrado.module').then( m => m.EncontradoPageModule)
   },
   {
