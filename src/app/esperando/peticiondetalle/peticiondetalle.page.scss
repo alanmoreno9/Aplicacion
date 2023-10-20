@@ -3,3 +3,11 @@
     border-radius: 50px;
     background-color: #1C1C1D;
 }
+
+ion-content {
+    // overwrite inline styles
+    --overflow: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }

@@ -19,6 +19,10 @@ import 'leaflet-routing-machine';
 
 import { ConductoresService } from '../services/api/conductores.service';
 
+
+
+
+
 declare var google: any;
 
 @Component({
@@ -47,7 +51,8 @@ export class MapaPage implements OnInit {
   startPoint: any;
   endPoint: any;
 
-  private routeInstructionsDiv: any;
+
+
 
   constructor(
     private router: Router, 
@@ -57,6 +62,7 @@ export class MapaPage implements OnInit {
     private ngZone:  NgZone,
     private conductoresService: ConductoresService,
     private el: ElementRef,
+
   ) { }
 
   async obtenerCoordenadas(){
@@ -71,6 +77,7 @@ export class MapaPage implements OnInit {
     
     this.conductor = JSON.parse(localStorage.getItem('conductor')!);
     console.log(this.conductor)
+
   }
 
   ionViewDidEnter(){
@@ -87,7 +94,7 @@ export class MapaPage implements OnInit {
 
       this.locationMe = L.marker([this.latitud, this.longitud]).addTo(this.map);
       
-      this.routeInstructionsDiv = this.el.nativeElement.querySelector('#route-instructions');
+     
     });
     
   };
@@ -100,12 +107,14 @@ export class MapaPage implements OnInit {
   };
 
   searchChanged(){
-    if (!this.search.trim().length) return;
+    if (!this.search.trim().length) {
+      return;
+    };
 
     this.googleAutocomplete.getPlacePredictions({input: this.search}, (predictions: any) =>{
       this.ngZone.run(() => {
-        this.searchResults = predictions;
-      })
+        this.searchResults = predictions
+      });
       
     });
   }
@@ -116,7 +125,11 @@ export class MapaPage implements OnInit {
     let geocoder = new google.maps.Geocoder()
     this.search = "";
     this.destination = item;
+    
 
+    document.getElementById('route-instructions')!.style.display = 'none';
+
+    
     const info: any = await geocoder.geocode({address: this.destination.description})
 
     console.log(info.results)
@@ -147,6 +160,7 @@ export class MapaPage implements OnInit {
           const instructionElement = document.createElement('div');
           instructionElement.textContent = instruction.text!;
           instructionsDiv.appendChild(instructionElement);
+          
         });
       }
     });

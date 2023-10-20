@@ -30,6 +30,7 @@
     "@capacitor/status-bar": "5.0.6",
     "@ionic/angular": "^7.0.0",
     "@types/leaflet-routing-machine": "^3.2.6",
+    "axios": "^1.5.1",
     "ionic": "^5.4.16",
     "ionicons": "^7.0.0",
     "json-server": "^0.17.4",

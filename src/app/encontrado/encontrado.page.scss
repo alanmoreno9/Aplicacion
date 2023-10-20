@@ -29,3 +29,11 @@ ion-content.background{
     align-items: center;
     text-align: center;
 }
+
+ion-content {
+    // overwrite inline styles
+    --overflow: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
