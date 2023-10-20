@@ -37,3 +37,11 @@ ion-button{
     --background-activated: #049c7c 
   }
   
+
+ion-content {
+    // overwrite inline styles
+    --overflow: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }

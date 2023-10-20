@@ -10,7 +10,7 @@
                 <ion-icon name="star"></ion-icon>
               </ion-tab-button>
               
-              <ion-tab-button tab="soli" [routerLink]="['/esperando']">
+              <ion-tab-button tab="soli" (click)="esperando()">
                 <ion-icon name="mail-unread"></ion-icon>
               </ion-tab-button>
 
@@ -32,22 +32,18 @@
   </ion-header>
 
 <ion-content>
-  
-    
-  
+
 
   <div id="mapId" style="height: 100%; width: 100%;">
     
-      
-    
   </div>
-  
-  
 
-  
-  
-</ion-content>
+</ion-content> 
+<div id="route-instructions">
+  <!-- Instrucciones de ruta -->
+</div>
 <ion-footer>
+  
     <ion-toolbar slot="end">
       <ion-button class="centrado" (click)="esperando()" shape="round">Conectarme</ion-button>
     </ion-toolbar>
