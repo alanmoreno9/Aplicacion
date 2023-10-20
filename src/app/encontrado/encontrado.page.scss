@@ -1,6 +1,8 @@
 ion-content.background{
-    --background:   url(img/encamino.png)
+    --background: url(img/register.jpeg) 0 0/100% 100% no-repeat;
 }
+
+
 .abajo{
     margin-top: 145%;
 }
@@ -29,3 +31,9 @@ ion-content.background{
     align-items: center;
     text-align: center;
 }
+ion-button{
+    --background:  #049c7c;
+    --background-hover: #087060 ;
+    --background-activated: #049c7c 
+  }
+  

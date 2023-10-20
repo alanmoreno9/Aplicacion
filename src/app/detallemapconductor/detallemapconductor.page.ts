@@ -97,7 +97,8 @@ export class DetallemapconductorPage implements OnInit {
     var solicitud: Isolicitud ={
       idConductor: this.idConductor,
       IdUsuario: this.userActivo.id,
-      ubicacionUser: this.UbicacionUser
+      ubicacionUser: this.UbicacionUser,
+      estado: false
     }
 
     this.solicitudesService.addSolicitud(solicitud).subscribe((response)=>{

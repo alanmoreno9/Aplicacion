@@ -1,5 +1,6 @@
 export interface Isolicitud {
     idConductor: Number,
     IdUsuario: Number,
-    ubicacionUser: []
+    ubicacionUser: [],
+    estado: boolean
 }

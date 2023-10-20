@@ -179,7 +179,8 @@ export class MapaPage implements OnInit {
       rut: this.conductor.rut,
       estado: true,
       meUbi: this.startPoint,
-      desUbi: this.endPoint
+      desUbi: this.endPoint,
+      asientosDisponibles: 4
     }
 
     this.conductoresService.updateConductor(this.conductorUpdate).subscribe(

@@ -18,5 +18,6 @@ export interface IConductores{
     desUbi: {
         lat: number,
         lng: number
-    }
+    },
+    asientosDisponibles: number
 }

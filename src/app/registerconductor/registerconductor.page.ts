@@ -79,10 +79,11 @@ export class RegisterconductorPage implements OnInit {
                     rut : f.rut,
                     estado: false,
                     meUbi: null,
-                    desUbi: null
+                    desUbi: null,
+                    asientosDisponibles: 4
                   };
 
-                  this.mensajerrorregister("Registro exitoso, en un momento te redirigiremos")
+                  this.mensajerrorregister("Registro exitoso, en un momento te redirigiremos. Para iniciar sesión como conductor, debes usar tus credenciales")
                   
                   setTimeout(() =>{
                     this.router.navigate(['ingresaconductor']);

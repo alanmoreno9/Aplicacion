@@ -1,11 +1,5 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-label></ion-label>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content class="background">
+<br>
   <ion-card style="border-radius: 15px;">
     <br>
     <ion-img src = "https://cdn-icons-png.flaticon.com/512/3135/3135768.png" style="height: 50%;width: 30%;margin-left: 35%;"></ion-img>
@@ -16,7 +10,7 @@
 
   <ion-card style="border-radius: 15px;">
     <ion-item style="text-align: center;">
-      <ion-label>+56 9 {{telefonoConductor}}</ion-label>
+      <ion-label>+56 {{telefonoConductor}}</ion-label>
     </ion-item>
     <ion-item style="text-align: center;">
       <ion-label>Patente: {{patenteConductor}}</ion-label>
@@ -25,14 +19,9 @@
       <ion-label>{{marcaYModelo}}</ion-label>
     </ion-item>
   </ion-card>
-  <ion-toolbar style="border-radius: 15px;">
-    <ion-chip class="centrado">
-      <ion-label>Llegada</ion-label>
-    </ion-chip>
-  </ion-toolbar>
   <ion-card style="margin-top: 10;border-radius: 15px;">
-    <ion-item style="text-align: center;color: yellow;">
-      <ion-label>de 5 a 10 minutos</ion-label>
+    <ion-item style="text-align: center;color: #049c7c;">
+      <ion-label>Estimado: de 5 a 10 minutos</ion-label>
     </ion-item>
   </ion-card>
     
@@ -43,11 +32,12 @@
         <div>
             <ion-img class="fotosize" src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt=""></ion-img>
             <br>
-            <ion-label style="color: white;margin-left: 3%;">Nombre</ion-label>
+            <ion-label style="color: white;margin-left: 3%;">{{nombreUser}}</ion-label>
             <br>
-            <span style="margin-left: 3%;">Apellido</span>
+            <span style="margin-left: 3%;">{{apellidoUser}}</span>
             <ion-img class="configsize" [routerLink]="['/config']"></ion-img>
-            <ion-button class="centrado" shape="round" [routerLink]="['/conductoresactivos']">Cancelar solicitud</ion-button>
+            <ion-button class="centrado" shape="round">Llegó</ion-button>
+            <ion-button class="centrado" shape="round" (click)="cancelarSolicitud()">Cancelar solicitud</ion-button>
         </div> 
   
   </ion-toolbar>
