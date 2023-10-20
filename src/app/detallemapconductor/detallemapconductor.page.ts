@@ -6,6 +6,7 @@ import 'leaflet-routing-machine';
 import { Geolocation } from '@capacitor/geolocation'
 import { Isolicitud } from '../interfaces/isolicitud';
 import { SolicitudesService } from '../services/api/solicitudes.service';
+import { Isolicitudes } from '../interfaces/isolicitudes';
 
 
 @Component({
@@ -32,6 +33,8 @@ export class DetallemapconductorPage implements OnInit {
   userActivo: any;
 
   idUser: any;
+
+  idPeticion: any;
 
   constructor(
     private conductoresService: ConductoresService,
@@ -97,8 +100,12 @@ export class DetallemapconductorPage implements OnInit {
       ubicacionUser: this.UbicacionUser
     }
 
-    this.solicitudesService.addSolicitud(solicitud).subscribe();
+    this.solicitudesService.addSolicitud(solicitud).subscribe((response)=>{
+      this.idPeticion = response
+      console.log(this.idPeticion.id)
+      this.router.navigate(['/encontrado',this.idConductor,this.idPeticion.id])
+    });
 
-    this.router.navigate(['/encontrado'])
+    
   }
 }
