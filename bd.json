@@ -20,23 +20,6 @@
     }
   ],
 
-  "metodopago":[
-    {
-      "id": 1,
-      "tipotarjeta":"vista",
-      "numero": "1234 1234 1234 1234",
-      "fechavencimiento": "06/27",
-      "cvv": "449"
-    },
-    {
-      "id": 2,
-      "tipotarjeta":"visa",
-      "numero": "4321 4321 4321 4321",
-      "fechavencimiento": "01/25",
-      "cvv": "478"
-    }
-  ],
-
   "conductores":[
     {
     "id": 1,
@@ -47,31 +30,7 @@
     "modeloVehiculo": "swift",
     "añoVehiculo": 2023,
     "placaVehiculo": "SK-RK-78"
-    },
-    {
-    "id": 2,
-    "nombre": "Bryan Pinto",
-    "rut": "21555000-2",
-    "telefono": 997127843,
-    "marcaVehiculo": "kia",
-    "modeloVehiculo": "morning",
-    "añoVehiculo": 2021,
-    "placaVehiculo": "GZ-TH-57"
-    }
-  ],
-
-  "conductoresActivos":[
-    {
-    "id": 1,
-    "nombre": "Alan Moreno",
-    "rut": "21450089-2",
-    "telefono": 972675498,
-    "marcaVehiculo": "chevrolet",
-    "modeloVehiculo": "spark",
-    "añoVehiculo": 2022,
-    "placaVehiculo": "BB-CL-34",
-    "estado": "Activo"
     }
   ]
+  
 }
-
