@@ -3,29 +3,31 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>conductoresactivos</ion-title>
   </ion-toolbar>
   
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <ion-list *ngIf="conductoresActivos.length > 0">
-    <ion-item *ngFor="let conductor of conductoresActivos">
-      <ion-label>
-        {{conductor.nombre}}
-      </ion-label>
-      <ion-button [routerLink]="['/detallemapconductor', conductor.id]">Solicitar</ion-button>
-    </ion-item>
-  </ion-list>
-  <div class="centrado" *ngIf="conductoresActivos.length === 0"> 
-    <ion-text style="display: flex; flex-direction: column;">
-      <ion-label class="login">No hay conductores activos</ion-label>
-      <br>
-      <ion-label class="login">Desliza hacia abajo para actualizar</ion-label>
-    </ion-text>
+<ion-content class="background">
 
-  </div>
+  <ion-card style="border-radius: 20px;">
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-list *ngIf="conductoresActivos.length > 0">
+      <ion-item *ngFor="let conductor of conductoresActivos">
+        <ion-label>
+          {{conductor.nombre}}
+        </ion-label>
+        <ion-button class="boton" [routerLink]="['/detallemapconductor', conductor.id]">Detalle</ion-button>
+      </ion-item>
+    </ion-list>
+    <div class="centrado" *ngIf="conductoresActivos.length === 0"> 
+      <ion-text style="display: flex; flex-direction: column;">
+        <ion-label class="login">No hay conductores activos</ion-label>
+        <br>
+        <ion-label class="login">Desliza hacia abajo para actualizar</ion-label>
+      </ion-text>
+    </div>
+  </ion-card>
+
 </ion-content>

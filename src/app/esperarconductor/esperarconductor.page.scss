@@ -1,17 +1,31 @@
 ion-content.background{
-    --background:   url(img/dirigete.png) 0 0/100% 100% no-repeat;
+    --background: url(img/register.jpeg) 0 0/100% 100% no-repeat;
 }
 
-.abajo{
-    margin-top: 150%;
-    display: flex;     
-    justify-content: center;     
-    align-items: center;
-}
 
-ion-button{
+ion-button.boton{
     --background:   #85e6c0;
     --background-hover: #087060 ;
     --background-activated: #049c7c 
     
 }
+
+ion-card{
+    border-radius: 20px;
+    background-color: #1C1C1D;
+    box-shadow: 0px 0px 12px #1C1C1D;
+}
+
+ion-progress-bar {
+    --background: #85e6c0;
+    --progress-background: #087060;
+  }
+
+  ion-content {
+    // overwrite inline styles
+    --overflow: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
