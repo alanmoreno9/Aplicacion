@@ -153,6 +153,7 @@ const routes: Routes = [
     loadChildren: () => import('./terms-modal/terms-modal.module').then( m => m.TermsModalPageModule)
   },
 
+
 ];
 
 @NgModule({
