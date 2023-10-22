@@ -16,10 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
-  },
-  {
     path: 'loading',
     loadChildren: () => import('./loading/loading.module').then( m => m.LoadingPageModule)
   },
@@ -40,10 +36,6 @@ const routes: Routes = [
     loadChildren: () => import('./registerconductor/registerconductor.module').then( m => m.RegisterconductorPageModule)
   },
   {
-    path: 'config',
-    loadChildren: () => import('./config/config.module').then( m => m.ConfigPageModule)
-  },
-  {
     path: 'mapa',
     loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
   },
@@ -56,9 +48,10 @@ const routes: Routes = [
     loadChildren: () => import('./buscando/buscando.module').then( m => m.BuscandoPageModule)
   },
   {
-    path: 'encontrado',
+    path: 'encontrado/:id/:idpeticion',
     loadChildren: () => import('./encontrado/encontrado.module').then( m => m.EncontradoPageModule)
-  },  {
+  },
+  {
     path: 'olvido',
     loadChildren: () => import('./olvido/olvido.module').then( m => m.OlvidoPageModule)
   },
@@ -66,7 +59,99 @@ const routes: Routes = [
     path: 'restablecer',
     loadChildren: () => import('./restablecer/restablecer.module').then( m => m.RestablecerPageModule)
   },
-
+  {
+    path: 'esperando',
+    loadChildren: () => import('./esperando/esperando.module').then( m => m.EsperandoPageModule),
+    data: { noCache: true },
+  },
+  {
+    path: 'encamino',
+    loadChildren: () => import('./encamino/encamino.module').then( m => m.EncaminoPageModule)
+  },
+  {
+    path: 'qr',
+    loadChildren: () => import('./qr/qr.module').then( m => m.QrPageModule)
+  },
+  {
+    path: 'esperarconductor',
+    loadChildren: () => import('./esperarconductor/esperarconductor.module').then( m => m.EsperarconductorPageModule)
+  },
+  {
+    path: 'lector',
+    loadChildren: () => import('./lector/lector.module').then( m => m.LectorPageModule)
+  },
+  {
+    path: 'userencamino',
+    loadChildren: () => import('./userencamino/userencamino.module').then( m => m.UserencaminoPageModule)
+  },
+  {
+    path: 'valorizaciones',
+    loadChildren: () => import('./valorizaciones/valorizaciones.module').then( m => m.ValorizacionesPageModule)
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
+  },
+  {
+    path: 'apiadd',
+    loadChildren: () => import('./api/add/add.module').then( m => m.AddPageModule)
+  },
+  {
+    path: 'apidelete/:id',
+    loadChildren: () => import('./api/delete/delete.module').then( m => m.DeletePageModule)
+  },
+  {
+    path: 'apidetail/:id',
+    loadChildren: () => import('./api/detail/detail.module').then( m => m.DetailPageModule)
+  },
+  {
+    path: 'apihome',
+    loadChildren: () => import('./api/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'apilist',
+    loadChildren: () => import('./api/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'apiupdate/:id',
+    loadChildren: () => import('./api/update/update.module').then( m => m.UpdatePageModule)
+  },
+  {
+    path: 'conductoresactivos',
+    loadChildren: () => import('./conductoresactivos/conductoresactivos.module').then( m => m.ConductoresactivosPageModule)
+  },
+  {
+    path: 'valorizacionconductor',
+    loadChildren: () => import('./valorizacionconductor/valorizacionconductor.module').then( m => m.ValorizacionconductorPageModule)
+  },
+  {
+    path: 'solicitudesconductor',
+    loadChildren: () => import('./solicitudesconductor/solicitudesconductor.module').then( m => m.SolicitudesconductorPageModule)
+  },
+  {
+    path: 'pagoqr',
+    loadChildren: () => import('./pagoqr/pagoqr.module').then( m => m.PagoqrPageModule)
+  },
+  {
+    path: 'solicitudes',
+    loadChildren: () => import('./solicitudes/solicitudes.module').then( m => m.SolicitudesPageModule)
+  },
+  {
+    path: 'detallemapconductor/:id',
+    loadChildren: () => import('./detallemapconductor/detallemapconductor.module').then( m => m.DetallemapconductorPageModule)
+  },
+  {
+    path: 'loadinguser',
+    loadChildren: () => import('./loadinguser/loadinguser.module').then( m => m.LoadinguserPageModule)
+  },
+  {
+    path: 'terms-modal',
+    loadChildren: () => import('./terms-modal/terms-modal.module').then( m => m.TermsModalPageModule)
+  },
+  {
+    path: 'rutaresumen',
+    loadChildren: () => import('./rutaresumen/rutaresumen.module').then( m => m.RutaresumenPageModule)
+  },
 
 
 ];

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <div id="mapId" style="height: 100%; width: 100%;"></div>
+  
+
+</ion-content>
+
+<ion-footer>
+  <div class="centrado">
+    <ion-card class="card2">
+        <div>
+          <ion-button (click)="updateConductor()" shape="round" color="success" style="width: 5%;">✓</ion-button>
+
+          <ion-button (click)="rechazarSolicitud()" shape="round" color="danger" style="width: 5%; margin-left: 50%;" >X</ion-button>
+        </div>
+    </ion-card>
+  </div>
+</ion-footer>

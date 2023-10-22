@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">apptellevo</string>
+    <string name="title_activity_main">apptellevo</string>
+    <string name="package_name">com.tellevo.app</string>
+    <string name="custom_url_scheme">com.tellevo.app</string>
+</resources>

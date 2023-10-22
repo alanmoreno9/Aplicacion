@@ -1,0 +1,22 @@
+ion-content.background{
+    --background:   url(img/aqui.png) 0 0/100% 100% no-repeat;
+}
+.abajo{
+    margin-top: 160%;
+}
+ion-button.boton{
+    --background:  #049c7c;
+    --background-hover: #087060 ;
+    --background-activated: #049c7c 
+}
+ion-input.styleboton{
+    background-color: white;
+    border-radius: 25px;
+    --placeholder-color: #292929;
+    --padding-start: 20px;
+    --color: #000000;
+    border-style: groove;
+    width: 280px;
+    height: 5px;
+    margin: 5px;   
+}

@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'App',
+  appId: 'com.tellevo.app',
+  appName: 'apptellevo',
   webDir: 'www',
   server: {
     androidScheme: 'https'

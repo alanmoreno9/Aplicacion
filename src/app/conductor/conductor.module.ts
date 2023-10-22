@@ -8,6 +8,9 @@ import { ConductorPageRoutingModule } from './conductor-routing.module';
 
 import { ConductorPage } from './conductor.page';
 
+import { PeticionesComponent } from '../components/peticiones/peticiones.component';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +18,6 @@ import { ConductorPage } from './conductor.page';
     IonicModule,
     ConductorPageRoutingModule
   ],
-  declarations: [ConductorPage]
+  declarations: [ConductorPage, PeticionesComponent]
 })
 export class ConductorPageModule {}

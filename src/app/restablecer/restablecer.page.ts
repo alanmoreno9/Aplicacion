@@ -61,6 +61,10 @@ export class RestablecerPage implements OnInit {
         localStorage.setItem("usuario", JSON.stringify(usuario));
         console.log('cambio')
         console.log(localStorage.getItem('usuario'));
+        this.mensajeToast('Redireccionando')
+        setTimeout(() =>{
+          this.router.navigate(['login']);
+        }, 2000);
       }else{
         console.log(localStorage.getItem('usuario'));
         this.mensajeToast('Contraseñas no coinciden');

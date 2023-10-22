@@ -1,0 +1,16 @@
+npm install -g @ionic/cli
+npm install sweetalert2
+npm install @capacitor/geolocation
+npm install leaflet --save
+npm install ngx-google-places-autocomplete
+npm install -g @angular/cli
+npm install --save @types/leaflet @types/leaflet-routing-machine
+npm install leaflet leaflet-routing-machine
+
+npm i -g @ionic/cli
+npm  @capacitor/core @capacitor/cli
+ionic build
+npx cap init
+npm install @capacitor/android
+npx cap add android
+npx cap open android (opcional)

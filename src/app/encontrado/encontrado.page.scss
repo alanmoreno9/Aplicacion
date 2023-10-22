@@ -1,6 +1,8 @@
 ion-content.background{
-    --background:   url(img/encamino.png)
+    --background: url(img/register.jpeg) 0 0/100% 100% no-repeat;
 }
+
+
 .abajo{
     margin-top: 145%;
 }
@@ -21,4 +23,31 @@ ion-content.background{
 .starsize{
     width: 10%;
     height: 10%;
+}
+
+.nouser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+ion-button{
+    --background:  #049c7c;
+    --background-hover: #087060 ;
+    --background-activated: #049c7c 
+  }
+  
+
+ion-content {
+    // overwrite inline styles
+    --overflow: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  ion-card{
+    border-radius: 20px;
+    background-color: #1C1C1D;
+    box-shadow: 0px 0px 12px #1C1C1D;
 }

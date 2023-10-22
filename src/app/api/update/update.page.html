@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/apilist"></ion-back-button>
+    </ion-buttons>
+    <ion-title>update</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-header>
+      <ion-card-title>Actualizar usuario</ion-card-title>
+    </ion-header>
+  </ion-card>
+  <ion-card-content>
+    <ion-item>
+      <ion-input #nombre [(ngModel)]="usuario.nombre" type="text" label="Nombre" labelPlacement="floating"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input #correo [(ngModel)]="usuario.correo" type="text" label="Correo" labelPlacement="floating"></ion-input>
+    </ion-item>
+    <ion-button (click)="updateUsuario()">Actualizar usuario</ion-button>
+  </ion-card-content>
+</ion-content>

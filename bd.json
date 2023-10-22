@@ -1,0 +1,36 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Alan",
+      "correo": "a@a",
+      "contraseña": "alanmoreno332"
+    },
+    {
+      "id": 2,
+      "nombre": "Alex",
+      "correo": "a@123",
+      "contraseña": "alexputo123"
+    },
+    {
+      "id": 3,
+      "nombre": "Muriel",
+      "correo": "a@1234",
+      "contraseña": "cagachica123"
+    }
+  ],
+
+  "conductores":[
+    {
+    "id": 1,
+    "nombre": "Manuel Soto",
+    "rut": "21457223-k",
+    "telefono": 997774412,
+    "marcaVehiculo": "suzuki",
+    "modeloVehiculo": "swift",
+    "añoVehiculo": 2023,
+    "placaVehiculo": "SK-RK-78"
+    }
+  ]
+  
+}

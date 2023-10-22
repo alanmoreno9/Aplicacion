@@ -3,29 +3,26 @@
   <div class="centrado">
     <ion-card class="card">
       <ion-card-header>
-        <h2 class="login">Ingreso</h2>
+        <h3 class="login">Ingreso</h3>
       </ion-card-header>
     
       <ion-card-content>
-        
-          <form [formGroup]="formularioLogin">
-            <ion-input formControlName="nombre" label="Email" type="email" label-placement="floating" errorText="Email Inválido" email></ion-input>
-    
-            <ion-input formControlName="password" label="Contraseña" type="password" label-placement="floating" errorText="Invalid Password"></ion-input>
-          
+          <form [formGroup]="formularioLogin" >
+            <p>
+              <ion-input formControlName="nombre" label="Email" type="email" label-placement="floating" errorText="Email Inválido" email></ion-input>
+            </p>
+            <p>
+              <ion-input formControlName="password" label="Contraseña" type="password" label-placement="floating" errorText=" "></ion-input>
+              <span *ngIf="this.formularioLogin.get('password')?.errors?.['minlength']" style="color: red;">
+                (Debe tener como mínimo 6 caracteres)
+              </span>
+            </p>
+
           <div class="login">
             <ion-button (click)="login()" class="boton">Ingresar</ion-button>
           </div>
           </form>
-          <div class="olvide">
-            <ion-button fill="clear" class="olvidebtn" (click)="olvido()"><span>Olvidé mi contraseña</span></ion-button>
-          </div>
       </ion-card-content>
-      
-      <div class="nouser">
-        <ion-button fill="clear" class="colorboton" (click)="register()"><span>¿No eres usuario?</span></ion-button>
-        
-      </div>
       
       <br>
     </ion-card>
@@ -34,4 +31,5 @@
   
   
 </ion-content>
+
  

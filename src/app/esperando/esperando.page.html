@@ -1,0 +1,38 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/mapa"></ion-back-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <ion-card>
+    <div>
+      <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      <ion-list *ngIf="peticiones !== null">
+        <ion-item *ngFor="let peticion of peticiones" [routerLink]="['/esperando/peticiondetalle/', peticion.id]">
+          <ion-label>
+            {{peticion.IdUsuario}}
+            <ion-label style="float: right;">► Solicitud</ion-label>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <div class="login" *ngIf="peticiones === null || peticiones.length === 0"> 
+        <ion-text style="flex-direction: column;">
+          <br>
+          <ion-label class="login">No hay peticiones activas</ion-label>
+          <br>
+          <ion-label class="login">Desliza hacia abajo para actualizar</ion-label>
+          <br>
+        </ion-text>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button class="centrado" shape="round" (click)="iniciarViaje()">Iniciar Viaje</ion-button>
+  </ion-toolbar>
+</ion-footer>

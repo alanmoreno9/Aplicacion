@@ -1,0 +1,7 @@
+ion-content {
+    // overwrite inline styles
+    --overflow: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }

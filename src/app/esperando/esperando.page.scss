@@ -1,0 +1,18 @@
+.abajo{
+    margin-top: 128%;
+}
+ion-content.background{
+    --background:   url(img/aqui.png) 0 0/100% 100% no-repeat;
+}
+
+ion-button{
+    --background:  #049c7c;
+    --background-hover: #087060 ;
+    --background-activated: #049c7c 
+  }
+
+ion-card{
+    border-radius: 20px;
+    background-color: #1C1C1D;
+    box-shadow: 0px 0px 12px #1C1C1D;
+}

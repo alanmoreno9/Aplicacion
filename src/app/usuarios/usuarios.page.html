@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <ion-list *ngFor="let aux of usuarios" class="background">
+      <ion-card>
+        <img class="img" src="{{aux.picture.large}}" alt="">
+        <ion-card-header>
+          <ion-card-title>{{aux.name.first}} {{aux.name.last}}</ion-card-title>
+          <ion-card-subtitle>({{aux.phone}}) {{aux.location.country}}</ion-card-subtitle>
+          <ion-card-subtitle>{{aux.email}}</ion-card-subtitle>
+          <ion-list>
+            {{ textoRandom }}
+          </ion-list>
+        </ion-card-header>
+      </ion-card>
+  </ion-list>
+</ion-content>

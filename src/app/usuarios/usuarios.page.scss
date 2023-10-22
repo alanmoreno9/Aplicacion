@@ -1,0 +1,42 @@
+.img{
+    justify-content: center;
+    align-items: center;
+    width: 20em;
+    padding: 20px;
+}
+
+ion-content.background{
+    --background: url(img/fondo.jpeg) 0 0/100% 100% no-repeat;
+}
+
+
+ion-button.boton{
+    --background:  #049c7c;
+    --background-hover: #087060 ;
+    --background-activated: #049c7c 
+}
+.olvide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -25px;
+}
+.nouser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -25px;
+}
+
+ion-button.olvidebtn{
+    --background:  dark;
+    --background-hover: dark ;
+    --background-activated: dark-tint;
+    --color: dark;
+}
+
+.text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

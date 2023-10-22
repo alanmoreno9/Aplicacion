@@ -1,15 +1,50 @@
-<ion-content class="background">
-  <div>
+<ion-header>
     <ion-toolbar>
-      <ion-buttons slot="start" style="margin-top: 3%;">
-        <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
       </ion-buttons>
+        <ion-tabs>
+            <ion-tab-bar slot="bottom" style="margin-left: 17%;">
+
+              <ion-tab-button tab="valorizaciones" [routerLink]="['/valorizacionconductor']">
+                <ion-icon name="star"></ion-icon>
+              </ion-tab-button>
+              
+              <ion-tab-button tab="soli" (click)="esperando()">
+                <ion-icon name="mail-unread"></ion-icon>
+              </ion-tab-button>
+
+              <ion-tab-button tab="pagoqr" [routerLink]="['/pagoqr']">
+                <ion-icon name="qr-code"></ion-icon>
+              </ion-tab-button>
+
+            </ion-tab-bar>
+          </ion-tabs>
     </ion-toolbar>
+    <ion-searchbar [(ngModel)]="search" (ionChange)="searchChanged()" placeholder="Para donde?"></ion-searchbar>
+        <ion-list class="ion-margin-horizontal" *ngIf="search.length > 0">
+          <ion-item (click)="calcRoute(result)" *ngFor=" let result of searchResults">
+            {{ result.description }}
+          </ion-item>
+        </ion-list>
+      
+    
+  </ion-header>
+
+<ion-content>
+
+
+  <div id="mapId" style="height: 100%; width: 100%;">
+    
   </div>
-  <div class="login">
-    <ion-input  placeholder="¿A dónde vas?" class="styleboton"></ion-input>
-  </div>
-  <div class="abajo">
-    <ion-button class="login" [routerLink]="['/buscando']">Pedir</ion-button>
-  </div>
-</ion-content>
+
+</ion-content> 
+<div id="route-instructions">
+  <!-- Instrucciones de ruta -->
+</div>
+<ion-footer>
+  
+    <ion-toolbar slot="end">
+      <ion-button class="centrado" (click)="esperando()" shape="round">Conectarme</ion-button>
+    </ion-toolbar>
+  </ion-footer>
