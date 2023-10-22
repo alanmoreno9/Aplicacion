@@ -11,19 +11,12 @@ export class AppComponent {
     { title: 'Inicio', url: 'home', icon: 'home' },
     { title: 'Modo Conductor', url: 'ingresaconductor', icon: 'car' },
     { title: 'reseñas', url: 'usuarios', icon: 'star' },
-    { title: 'API', url: 'apihome', icon: 'people' },
     { title: 'Cerrar Sesión', url: 'loadingoff', icon: 'power' },
     
   ];
 
-  public apiMenu = [
-    { title: 'Home', url: 'apihome', icon: 'home' },
-    { title: 'List', url: 'apilist', icon: 'people-circle' },
-    { title: 'Salir', url: 'home', icon: 'log-out' },
-  ];
-
   public menuMapa = [
-    { title: 'Modo usuario', url: 'loadinguser', icon: 'log-out' },
+    { title: 'Modo usuario', url: 'loadinguser', icon: 'people' },
   ];
   
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
@@ -46,13 +39,6 @@ export class AppComponent {
     return this.router.url == '/home';
     // NO SE VA A MOSTRAR EN EL LOGIN
   }
-
-  mostrarMenuApi() {
-    const aux = ['apihome','apiadd','apilist','apidelete','apiupdate','apidetail']
-    return aux.includes(this.router.url.substring(1)); // ELIMINAMOS EL "/"
-    //return this.router.url == '/apihome';
-  }
-
   mostrarMenuMapa(){
     const aux = ['mapa']
     return aux.includes(this.router.url.substring(1));

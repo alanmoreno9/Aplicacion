@@ -147,7 +147,8 @@ const routes: Routes = [
   {
     path: 'terms-modal',
     loadChildren: () => import('./terms-modal/terms-modal.module').then( m => m.TermsModalPageModule)
-  },  {
+  },
+  {
     path: 'rutaresumen',
     loadChildren: () => import('./rutaresumen/rutaresumen.module').then( m => m.RutaresumenPageModule)
   },

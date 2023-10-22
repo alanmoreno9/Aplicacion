@@ -2,7 +2,7 @@
 <ion-content class="background">
   
   <div >
-    <ion-card class="cardsize">
+    <ion-card class="cardsize" style="margin-top: 10%;">
         <div>
             <ion-img class="fotosize" src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt=""></ion-img>
           <br>
@@ -12,10 +12,11 @@
           <ion-buttons slot="start" style="margin-top: -15%;margin-left: 80%;">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
-          
       </div>
     </ion-card>
+    <ion-button shape="round" (click)="getWeather()" slot="start" style="margin-bottom: -20%;margin-left: 80%; width: 5%; border-radius: 50%; color: black;">C°</ion-button>
   </div>
+
   <div class="login">
     <ion-img class="fotoabajo" src="https://static.vecteezy.com/system/resources/previews/016/017/119/original/current-location-logo-world-map-location-logo-sign-map-graphic-free-png.png" alt=""></ion-img>
   </div>
