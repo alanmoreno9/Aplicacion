@@ -25,7 +25,8 @@ export class EncontradoPage implements OnInit {
   nombreUser: any;
   apellidoUser: any;
   cancelacionPeticions: any;
-  soli: any
+  soli: any; 
+  llego: any; 
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -54,37 +55,66 @@ export class EncontradoPage implements OnInit {
         this.marcaYModelo = this.datosConductor[0].marca + " " + this.datosConductor[0].modelo
       });
 
-      this.solicitudesService.getSolicitud(Number(this.idPeticion)).subscribe(data =>{
+      this.solicitudesService.getSolicitud(Number(this.idPeticion)).subscribe(
+        data =>{
         this.datosPeticion = data;
-        console.log(this.datosPeticion);
-        this.usuariosService.getUsuario(Number(this.datosPeticion[0].IdUsuario)).subscribe(data =>{
-          this.datosUsuario = data;
-          console.log(this.datosUsuario);
-          this.nombreUser = this.datosUsuario[0].nombre;
-          this.apellidoUser = this.datosUsuario[0].apellido;
-
-        });
+        if (this.datosPeticion) {
+          this.usuariosService.getUsuario(Number(this.datosPeticion[0].IdUsuario)).subscribe(data =>{
+            this.datosUsuario = data;
+            console.log(this.datosUsuario);
+            this.nombreUser = this.datosUsuario[0].nombre;
+            this.apellidoUser = this.datosUsuario[0].apellido;
+  
+          });
+        }else{
+          console.log("la solicitud no existe")
+        }
+        
       });
   }
 
   cancelarSolicitud(){
-    this.solicitudesService.getSolicitud(Number(this.idPeticion)).subscribe(data =>{
-      this.soli = data
-      if (this.soli[0].estado === false) {
-        this.solicitudesService.deleteSolicitud(this.datosPeticion[0]).subscribe(data =>{
-          console.log("eliminado")
-          this.router.navigate(['/conductoresactivos'])
-        })
-      
+    this.solicitudesService.getSolicitud(Number(this.idPeticion)).subscribe(
+      response =>{
+      this.soli = response
+      console.log(this.soli)
+      if (this.soli.length > 0) {
+        if (this.soli[0].estado === false) {
+          this.solicitudesService.deleteSolicitud(this.datosPeticion[0]).subscribe(data =>{
+            console.log("eliminado")
+            this.router.navigate(['/conductoresactivos'])
+          })
+        
+        }else{
+          this.message("","No puedes cancelar","El conductor ya aceptó tu peticion")
+        }
       }else{
-        this.message("","No puedes cancelar","El conductor ya aceptó tu peticion")
+        this.message("", "No puedes cancelar", "tu solicitud fue rechazada por el conductor, te redirigiremos");
+        this.router.navigate(['/conductoresactivos'])
       }
-    })
+      
+      },
+      error => {
+        console.error("error al recuperar dato: ",error)
+      })
 
   }
 
-  llegó(){
-    
+  llegoAccion(){
+    this.solicitudesService.getSolicitud(Number(this.idPeticion)).subscribe(
+      response => {
+        this.llego = response
+        if (this.llego.length > 0) {
+          this.router.navigate(['/esperarconductor'])
+        }else{
+          this.message("", "El conductor no ha llegado", "tu solicitud fue rechazada por el conductor, te redirigiremos");
+          this.router.navigate(['/conductoresactivos'])
+        }
+      },
+      error => {
+        console.error("error al recuperar dato: ",error)
+      }
+    )
   }
 
   async message(timerInterval: any, title: String, html: String){

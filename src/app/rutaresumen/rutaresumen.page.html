@@ -1,13 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>rutaresumen</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">rutaresumen</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <div class="background">
+    <div>
+  
+      <ion-card style="margin-top: 10%; height: 300px; border-radius: 50%;">
+  
+          <div id="mapId" style="height: 100%; width: 100%;">
+      
+          </div>
+      </ion-card>
+  
+    </div>
+  </div>
+    
+  
+    <div>
+      <ion-card style="height: 250px; border-radius: 30px;margin-top: 15%;">
+        <ion-list>
+          
+        </ion-list>
+  
+        
+        <ion-card-content>
+          <ion-card>
+            <ion-progress-bar value=".25" buffer=".5"></ion-progress-bar>
+          </ion-card>
+        </ion-card-content>
+        <div class="login" >
+          <ion-button class="boton" style="margin-top: 20%;" (click)="finalizarViaje()">Finalizar Viaje</ion-button>
+        </div>
+      </ion-card>
+    </div>
+  
+  </ion-content>

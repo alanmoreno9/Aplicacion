@@ -23,6 +23,8 @@ export class PeticiondetallePage implements OnInit {
   updateSolicitud: any;
   datosRuta : any; 
   actualizarRuta: any; 
+  crearRuta: any;
+  aceptarSoli: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,16 +35,23 @@ export class PeticiondetallePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.idPeticion = this.activatedRoute.snapshot.paramMap.get("id");
-    console.log(this.idPeticion);
+    
   }
   ionViewDidEnter(){
+    this.idPeticion = this.activatedRoute.snapshot.paramMap.get("id");
     this.solicitudService.getSolicitud(Number(this.idPeticion)).subscribe(data =>{
       this.datosSolicitud = data
-      this.coords = L.latLng(this.datosSolicitud[0].ubicacionUser[0], this.datosSolicitud[0].ubicacionUser[1]);
-      this.idConductor = this.datosSolicitud[0].idConductor;
-      console.log(this.coords)
-      this.generarMapa()
+      if (this.datosSolicitud.length > 0) {
+        this.coords = L.latLng(this.datosSolicitud[0].ubicacionUser[0], this.datosSolicitud[0].ubicacionUser[1]);
+        this.idConductor = this.datosSolicitud[0].idConductor;
+        console.log(this.coords)
+        if (this.coords) {
+          this.generarMapa()
+      }
+      }else{
+        this.message("","Error","Error al generar mapa")
+        this.router.navigate(["/esperando"])
+      }
     })
   }
   ionViewWillLeave(){
@@ -53,7 +62,6 @@ export class PeticiondetallePage implements OnInit {
   };
 
   generarMapa(){
-    if (this.coords){
       this.map = L.map('mapId',{
         zoomControl: false,
       }).setView([this.coords.lat, this.coords.lng], 15);
@@ -61,82 +69,93 @@ export class PeticiondetallePage implements OnInit {
       }).addTo(this.map);
       L.marker([this.coords.lat, this.coords.lng]).addTo(this.map).bindPopup('El usuario se encuentra aqui')
       .openPopup();;
-      }else{
-        console.log('Las coordenadas no están definidas.')
-      }
   }
 
   updateConductor() {
-    this.conductoresService.getConductor(Number(this.idConductor)).subscribe(data =>{
-      this.conductor = data
-      if (this.conductor[0].estado === true) {
-        if (this.conductor[0].asientosDisponibles > 0 ) {
-          this.conductorUpdate = {
-            id: this.conductor[0].id,
-            nombre: this.conductor[0].nombre,
-            apellido: this.conductor[0].apellido,
-            correo: this.conductor[0].correo,
-            contraseña: this.conductor[0].contraseña,
-            telefono: this.conductor[0].telefono,
-            marca: this.conductor[0].marca,
-            modelo: this.conductor[0].modelo,
-            año: this.conductor[0].año,
-            placa: this.conductor[0].placa,
-            rut: this.conductor[0].rut,
-            estado: true,
-            meUbi: this.conductor[0].meUbi,
-            desUbi: this.conductor[0].desUbi,
-            asientosDisponibles: this.conductor[0].asientosDisponibles - 1
-          }
-          this.conductoresService.updateConductor(this.conductorUpdate).subscribe(
-            response => {
-              console.log('Conductor actualizado con éxito', response);
-
-              this.updateSolicitud = {
-                idConductor : this.datosSolicitud[0].idConductor,
-                IdUsuario : this.datosSolicitud[0].IdUsuario,
-                ubicacionUser : this.datosSolicitud[0].ubicacionUser,
-                estado : true,
-                id : this.datosSolicitud[0].id
-              }
-              this.solicitudService.updateSolicitud(this.updateSolicitud).subscribe(
-                response => {
-                  console.log("Solicitud actualizada ", response);
-                  this.rutaSolicitudesService.getSolicitudPorConductor(Number(this.datosSolicitud[0].idConductor)).subscribe(
-                    data => {
-                      this.datosRuta = data
-                      console.log("actualizar ruta")
-                      this.actualizarRuta = {
-                        idConductor : Number(this.datosSolicitud[0].idConductor),
-                        ubi1: [this.datosRuta[0].ubi1]
-                      }
-                      this.rutaSolicitudesService.updateSolicitud
-                      this.router.navigate(['/esperando'])
-                    },
-                    error => {
-                      console.log("generar ruta")
-                      this.router.navigate(['/esperando'])
-                    }
-                  )
-                  
-                },
-                error => {
-                  console.error("error al actualizar solicitud ", error)
+    this.solicitudService.getSolicitud(Number(this.idPeticion)).subscribe(
+      response => {
+        this.aceptarSoli = response
+        if (this.aceptarSoli.length > 0) {
+          this.conductoresService.getConductor(Number(this.idConductor)).subscribe(data =>{
+            this.conductor = data
+            if (this.conductor[0].estado === true) {
+              if (this.conductor[0].asientosDisponibles > 0 ) {
+                this.conductorUpdate = {
+                  id: this.conductor[0].id,
+                  nombre: this.conductor[0].nombre,
+                  apellido: this.conductor[0].apellido,
+                  correo: this.conductor[0].correo,
+                  contraseña: this.conductor[0].contraseña,
+                  telefono: this.conductor[0].telefono,
+                  marca: this.conductor[0].marca,
+                  modelo: this.conductor[0].modelo,
+                  año: this.conductor[0].año,
+                  placa: this.conductor[0].placa,
+                  rut: this.conductor[0].rut,
+                  estado: true,
+                  meUbi: this.conductor[0].meUbi,
+                  desUbi: this.conductor[0].desUbi,
+                  asientosDisponibles: this.conductor[0].asientosDisponibles - 1
                 }
-              )
-            },
-            error => {
-              console.error('Error al actualizar el conductor', error);
+                this.conductoresService.updateConductor(this.conductorUpdate).subscribe(
+                  response => {
+                    this.updateSolicitud = {
+                      idConductor : this.datosSolicitud[0].idConductor,
+                      IdUsuario : this.datosSolicitud[0].IdUsuario,
+                      ubicacionUser : this.datosSolicitud[0].ubicacionUser,
+                      estado : true,
+                      id : this.datosSolicitud[0].id
+                    }
+                    this.solicitudService.updateSolicitud(this.updateSolicitud).subscribe(
+                      response => {
+                        console.log("Solicitud actualizada ", response);
+                        this.router.navigate(['/esperando'])
+                        
+                      },
+                      error => {
+                        console.error("error al actualizar solicitud ", error)
+                      }
+                    )
+                  },
+                  error => {
+                    console.error('Error al actualizar el conductor', error);
+                  }
+                )
+              }else{
+                this.message("","Espacio insuficiente","Ya no queda espacio en tu vehiculo")
+              }
+            }else{
+              this.message("","Estás desconectado","Debes conectarte para aceptar solicitudes")
             }
-          )
+            
+          })
+          
         }else{
-          this.message("","Espacio insuficiente","Ya no queda espacio en tu vehiculo")
+
         }
-      }else{
-        this.message("","Estás desconectado","Debes conectarte para aceptar solicitudes")
-      }
-      
-    })
+      });
+              
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     
 
 }
