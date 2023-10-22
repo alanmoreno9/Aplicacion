@@ -4,6 +4,7 @@ import { SolicitudesService } from 'src/app/services/api/solicitudes.service';
 import * as L from "leaflet";
 import { ConductoresService } from 'src/app/services/api/conductores.service';
 import Swal from 'sweetalert2'
+import { RutaSolicitudesService } from 'src/app/services/api/ruta-solicitudes.service';
 
 @Component({
   selector: 'app-peticiondetalle',
@@ -20,12 +21,15 @@ export class PeticiondetallePage implements OnInit {
   conductorUpdate: any;
   conductor: any;
   updateSolicitud: any;
+  datosRuta : any; 
+  actualizarRuta: any; 
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private solicitudService: SolicitudesService,
     private conductoresService: ConductoresService,
     private router: Router, 
+    private rutaSolicitudesService: RutaSolicitudesService
   ) { }
 
   ngOnInit() {
@@ -33,7 +37,13 @@ export class PeticiondetallePage implements OnInit {
     console.log(this.idPeticion);
   }
   ionViewDidEnter(){
-    this.obtenerCoordenadas();
+    this.solicitudService.getSolicitud(Number(this.idPeticion)).subscribe(data =>{
+      this.datosSolicitud = data
+      this.coords = L.latLng(this.datosSolicitud[0].ubicacionUser[0], this.datosSolicitud[0].ubicacionUser[1]);
+      this.idConductor = this.datosSolicitud[0].idConductor;
+      console.log(this.coords)
+      this.generarMapa()
+    })
   }
   ionViewWillLeave(){
     if (this.map) {
@@ -42,24 +52,18 @@ export class PeticiondetallePage implements OnInit {
     }
   };
 
-  obtenerCoordenadas(){
-    this.solicitudService.getSolicitud(Number(this.idPeticion)).subscribe(data =>{
-      this.datosSolicitud = data
-      this.coords = L.latLng(this.datosSolicitud[0].ubicacionUser[0], this.datosSolicitud[0].ubicacionUser[1]);
-      this.idConductor = this.datosSolicitud[0].idConductor;
-      console.log(this.coords)
-      if (this.coords){
-        this.map = L.map('mapId',{
-          zoomControl: false,
-        }).setView([this.coords.lat, this.coords.lng], 15);
-        L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
-        }).addTo(this.map);
-        L.marker([this.coords.lat, this.coords.lng]).addTo(this.map).bindPopup('El usuario se encuentra aqui')
-        .openPopup();;
-        }else{
-          console.log('Las coordenadas no están definidas.')
-        }
-    })
+  generarMapa(){
+    if (this.coords){
+      this.map = L.map('mapId',{
+        zoomControl: false,
+      }).setView([this.coords.lat, this.coords.lng], 15);
+      L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
+      }).addTo(this.map);
+      L.marker([this.coords.lat, this.coords.lng]).addTo(this.map).bindPopup('El usuario se encuentra aqui')
+      .openPopup();;
+      }else{
+        console.log('Las coordenadas no están definidas.')
+      }
   }
 
   updateConductor() {
@@ -98,7 +102,23 @@ export class PeticiondetallePage implements OnInit {
               this.solicitudService.updateSolicitud(this.updateSolicitud).subscribe(
                 response => {
                   console.log("Solicitud actualizada ", response);
-                  this.router.navigate(['/esperando'])
+                  this.rutaSolicitudesService.getSolicitudPorConductor(Number(this.datosSolicitud[0].idConductor)).subscribe(
+                    data => {
+                      this.datosRuta = data
+                      console.log("actualizar ruta")
+                      this.actualizarRuta = {
+                        idConductor : Number(this.datosSolicitud[0].idConductor),
+                        ubi1: [this.datosRuta[0].ubi1]
+                      }
+                      this.rutaSolicitudesService.updateSolicitud
+                      this.router.navigate(['/esperando'])
+                    },
+                    error => {
+                      console.log("generar ruta")
+                      this.router.navigate(['/esperando'])
+                    }
+                  )
+                  
                 },
                 error => {
                   console.error("error al actualizar solicitud ", error)

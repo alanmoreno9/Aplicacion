@@ -16,10 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
-  },
-  {
     path: 'loading',
     loadChildren: () => import('./loading/loading.module').then( m => m.LoadingPageModule)
   },
@@ -151,7 +147,11 @@ const routes: Routes = [
   {
     path: 'terms-modal',
     loadChildren: () => import('./terms-modal/terms-modal.module').then( m => m.TermsModalPageModule)
+  },  {
+    path: 'rutaresumen',
+    loadChildren: () => import('./rutaresumen/rutaresumen.module').then( m => m.RutaresumenPageModule)
   },
+
 
 ];
 

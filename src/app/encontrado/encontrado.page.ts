@@ -25,6 +25,7 @@ export class EncontradoPage implements OnInit {
   nombreUser: any;
   apellidoUser: any;
   cancelacionPeticions: any;
+  soli: any
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -35,44 +36,50 @@ export class EncontradoPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.idConductor = this.activatedRoute.snapshot.paramMap.get("id");
-    this.idPeticion = this.activatedRoute.snapshot.paramMap.get("idpeticion");
-    console.log(this.idConductor)
-
-    this.conductoresService.getConductor(Number(this.idConductor)).subscribe(data =>{
-      
-      this.datosConductor = data
-      
-      this.nombreCompleto = this.datosConductor[0].nombre + " " + this.datosConductor[0].apellido;
-      this.telefonoConductor = this.datosConductor[0].telefono;
-      this.patenteConductor = this.datosConductor[0].placa;
-      this.marcaYModelo = this.datosConductor[0].marca + " " + this.datosConductor[0].modelo
-    });
-
-    this.solicitudesService.getSolicitud(Number(this.idPeticion)).subscribe(data =>{
-      this.datosPeticion = data;
-      console.log(this.datosPeticion);
-      this.usuariosService.getUsuario(Number(this.datosPeticion[0].IdUsuario)).subscribe(data =>{
-        this.datosUsuario = data;
-        console.log(this.datosUsuario);
-        this.nombreUser = this.datosUsuario[0].nombre;
-        this.apellidoUser = this.datosUsuario[0].apellido;
-
-      });
-    });
     
+    
+  }
+  ionViewDidEnter(){
+    this.idConductor = this.activatedRoute.snapshot.paramMap.get("id");
+      this.idPeticion = this.activatedRoute.snapshot.paramMap.get("idpeticion");
+      console.log(this.idConductor)
+
+      this.conductoresService.getConductor(Number(this.idConductor)).subscribe(data =>{
+        
+        this.datosConductor = data
+        
+        this.nombreCompleto = this.datosConductor[0].nombre + " " + this.datosConductor[0].apellido;
+        this.telefonoConductor = this.datosConductor[0].telefono;
+        this.patenteConductor = this.datosConductor[0].placa;
+        this.marcaYModelo = this.datosConductor[0].marca + " " + this.datosConductor[0].modelo
+      });
+
+      this.solicitudesService.getSolicitud(Number(this.idPeticion)).subscribe(data =>{
+        this.datosPeticion = data;
+        console.log(this.datosPeticion);
+        this.usuariosService.getUsuario(Number(this.datosPeticion[0].IdUsuario)).subscribe(data =>{
+          this.datosUsuario = data;
+          console.log(this.datosUsuario);
+          this.nombreUser = this.datosUsuario[0].nombre;
+          this.apellidoUser = this.datosUsuario[0].apellido;
+
+        });
+      });
   }
 
   cancelarSolicitud(){
-    if (this.datosPeticion[0].estado === false) {
-      this.solicitudesService.deleteSolicitud(this.datosPeticion[0]).subscribe(data =>{
-        console.log("eliminado")
-        this.router.navigate(['/conductoresactivos'])
-      })
+    this.solicitudesService.getSolicitud(Number(this.idPeticion)).subscribe(data =>{
+      this.soli = data
+      if (this.soli[0].estado === false) {
+        this.solicitudesService.deleteSolicitud(this.datosPeticion[0]).subscribe(data =>{
+          console.log("eliminado")
+          this.router.navigate(['/conductoresactivos'])
+        })
       
-    }else{
-      this.message("","No puedes cancelar","El conductor ya aceptó tu peticion")
-    }
+      }else{
+        this.message("","No puedes cancelar","El conductor ya aceptó tu peticion")
+      }
+    })
 
   }
 

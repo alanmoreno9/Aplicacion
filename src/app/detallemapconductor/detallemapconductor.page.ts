@@ -46,6 +46,9 @@ export class DetallemapconductorPage implements OnInit {
   ngOnInit() {
     
 
+    
+  }
+  ionViewDidEnter(){
     this.idConductor = this.activatedRoute.snapshot.paramMap.get("id");
     console.log(this.idConductor)
 
