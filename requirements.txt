@@ -6,7 +6,9 @@ npm install ngx-google-places-autocomplete
 npm install -g @angular/cli
 npm install --save @types/leaflet @types/leaflet-routing-machine
 npm install leaflet leaflet-routing-machine
-npm install @angular/fire  --fire
+npm install @angular/fire firebase --save
+npm install @ngx-translate/core --save
+npm install @ngx-translate/http-loader --save
 
 npm i -g @ionic/cli
 npm  @capacitor/core @capacitor/cli

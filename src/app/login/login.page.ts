@@ -9,6 +9,8 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms'
+import { AuthService } from '../services/firebase/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -21,14 +23,21 @@ export class LoginPage implements OnInit {
 
   formularioLogin: FormGroup;
 
+  langs : string[] =[];
+  idioma!: string;
+
   constructor(
     private router: Router, 
     private menu: MenuController, 
     public fb: FormBuilder,
     private toastController: ToastController,
-    private httpClient : HttpClient
+    private httpClient : HttpClient,
+    private authService :AuthService,
+    private transService: TranslateService
     ) { 
-    
+      
+      this.langs = this.transService.getLangs();
+
       this.formularioLogin = this.fb.group({
       'nombre' : new FormControl("", Validators.required),
       'password' : new FormControl("", [Validators.required, Validators.minLength(6)])
@@ -39,9 +48,25 @@ export class LoginPage implements OnInit {
     this.menu.enable(false);
     this.httpClient.get<any>("https://jsonserver-x5h4.onrender.com/usuarios").subscribe(resultado => {
     this.usuarios = resultado
+
+
     console.log(this.usuarios);
     });
+
+    this.authService.checkAuth()
+    .then ((user)=>{
+      if (user) {
+        //redireccionar
+      }
+    })
+    .catch((error)=>{
+      console.error('error en autenticacion', error);
+    });
   }
+
+  changeLang(event:any){
+    this.transService.use(event.detail.value);
+  }  
 
   async message(mensaje: string){
     const toast = await this.toastController.create({
@@ -53,9 +78,6 @@ export class LoginPage implements OnInit {
   }
 
   login(){
-
-    
-
     if (this.formularioLogin.valid) {
     const f = this.formularioLogin.value;
 
@@ -82,6 +104,7 @@ export class LoginPage implements OnInit {
     }else{
       this.message("Formulario inválido")
     }
+
   };
   
   register(){

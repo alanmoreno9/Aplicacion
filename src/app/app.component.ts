@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -22,8 +23,13 @@ export class AppComponent {
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(
     private router: Router,
-    private menuController: MenuController
-  ) {}
+    private menuController: MenuController,
+    private transService: TranslateService
+  
+  ) {
+    this.transService.setDefaultLang('en');
+    this.transService.addLangs(['es', 'en']);
+  }
 
   usuario:any;
 
@@ -44,5 +50,7 @@ export class AppComponent {
     return aux.includes(this.router.url.substring(1));
     return this.router.url !== '/login';
   }
+
+
   
 } 
