@@ -11,6 +11,12 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+        <ion-menu-toggle>
+          <ion-item lines="none" detail="false" (click)="cerrar()">
+            <ion-icon aria-hidden="true" slot="start" [ios]="'power' + '-outline'" [md]="'power' + '-sharp'"></ion-icon>
+            <ion-label>Cerrar Sesión</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
       </ion-content>
     </ion-menu>
 

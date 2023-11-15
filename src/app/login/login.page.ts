@@ -11,6 +11,8 @@ import {
 } from '@angular/forms'
 import { AuthService } from '../services/firebase/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { FirestoreService } from '../services/firebase/firestore.service'; 
+
 
 
 @Component({
@@ -19,11 +21,10 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  usuarios: any[] = [];
 
   formularioLogin: FormGroup;
 
-  langs : string[] =[];
+  langs : string[] = [];
   idioma!: string;
 
   constructor(
@@ -33,7 +34,9 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private httpClient : HttpClient,
     private authService :AuthService,
-    private transService: TranslateService
+    private transService: TranslateService,
+    private http: HttpClient,
+    private fireStore: FirestoreService
     ) { 
       
       this.langs = this.transService.getLangs();
@@ -43,25 +46,63 @@ export class LoginPage implements OnInit {
       'password' : new FormControl("", [Validators.required, Validators.minLength(6)])
     })
   }
+  getRandomUserData() {
+    return this.http.get('https://randomuser.me/api/?results=10');
+  }
+
+  generateAndUploadUserData() {
+    this.getRandomUserData().subscribe((randomUserData: any) => {
+      randomUserData.results.forEach((user: any) => {
+        const transformedUser = this.transformRandomUserData(user);
+        this.fireStore.createDocument('usuarios', transformedUser).then(() => {
+          try {
+            this.authService.register(transformedUser.correo, transformedUser.contraseña);
+          } catch (error) {
+            console.log("Error: ", error)
+          }
+
+        });
+        
+      });
+    });
+  }
+
+  transformRandomUserData(user: any) {
+    const nombre = user.name.first;
+    const apellido = user.name.last;
+    let contraseña = (user.name.first.slice(0,3) + "." + user.name.last.slice(0,3)); // Genera la contraseña
+    contraseña = contraseña.toLowerCase(); // Convierte la contraseña a minúsculas
+  
+    return {
+      id: this.generateUniqueId(),
+      nombre,
+      apellido,
+      correo: user.email,
+      contraseña
+    };
+  }
+
+  generateUniqueId() {
+    return Date.now() + Math.floor(Math.random() * 1000);
+  }
 
   ngOnInit() {
+    
+  }
+
+  
+
+  ionViewDidEnter(){
     this.menu.enable(false);
-    this.httpClient.get<any>("https://jsonserver-x5h4.onrender.com/usuarios").subscribe(resultado => {
-    this.usuarios = resultado
-
-
-    console.log(this.usuarios);
-    });
-
     this.authService.checkAuth()
-    .then ((user)=>{
-      if (user) {
-        //redireccionar
+    .then((user) => {
+      if(user) {
+        this.router.navigate(['home']);
       }
     })
-    .catch((error)=>{
-      console.error('error en autenticacion', error);
-    });
+    .catch((error) => {
+      //console.error('Error en la autenticació:',error);
+    })
   }
 
   changeLang(event:any){
@@ -79,39 +120,11 @@ export class LoginPage implements OnInit {
 
   login(){
     if (this.formularioLogin.valid) {
-    const f = this.formularioLogin.value;
-
-    this.httpClient.get<any[]>("https://jsonserver-x5h4.onrender.com/usuarios").subscribe((usuarios: any[]) => {
-      const usuarioEncontrado = usuarios.find((usuario) => usuario.correo === f.nombre && usuario.contraseña === f.password);
-
-      if (usuarioEncontrado) {
-        this.message("Hola " + usuarioEncontrado.nombre + " " + usuarioEncontrado.apellido + " En un momento te redirigiremos")
-        
-        setTimeout(() =>{
-          this.router.navigate(['home']);
-        }, 2000);
-
-        if (localStorage.getItem('usuario')) {
-          localStorage.removeItem('usuario');
-        }
-
-        localStorage.setItem('usuario',JSON.stringify(usuarioEncontrado));
-      } else {
-        this.message("El correo o la contraseña no coinciden")
-      }
-    });
-
+      const f = this.formularioLogin.value;
+      this.authService.login(f.nombre, f.password);
     }else{
       this.message("Formulario inválido")
     }
 
   };
-  
-  register(){
-    this.router.navigate(['register']);
-  }
-
-  olvido(){
-    this.router.navigate(['olvido'])
-  }
 }

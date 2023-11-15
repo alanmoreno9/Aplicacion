@@ -1,7 +1,5 @@
 export interface IUsuarios{
-    id: Number,
-    nombre: String,
-    apellido: String,
+    id: Number,  
     correo: String,
-    contraseña: String
 }
+    
