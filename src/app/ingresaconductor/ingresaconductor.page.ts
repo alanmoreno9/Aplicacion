@@ -8,8 +8,8 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms'
-import { HttpClient } from '@angular/common/http';
-import Swal from 'sweetalert2'
+import { FirestoreService } from '../services/firebase/firestore.service';
+
 
 @Component({
   selector: 'app-ingresaconductor',
@@ -26,7 +26,7 @@ export class IngresaconductorPage implements OnInit {
     private routerOutlet: IonRouterOutlet,
     private toastController: ToastController,
     public fb: FormBuilder,
-    private httpClient : HttpClient
+    private fireStore: FirestoreService
      ) {
       this.formLoginConductor = this.fb.group({
         'correo' : new FormControl("", Validators.required),
@@ -57,24 +57,26 @@ export class IngresaconductorPage implements OnInit {
     if (this.formLoginConductor.valid) {
     const f = this.formLoginConductor.value;
 
-    this.httpClient.get<any[]>("https://jsonserver-x5h4.onrender.com/conductores").subscribe((conductores: any[]) => {
-      const usuarioEncontrado = conductores.find((conductor) => conductor.correo === f.correo && conductor.contraseña === f.contraseña);
+    this.fireStore.getByEmailConductor('conductores', f.correo).subscribe(
+      (querySnapshot) => {
 
-      if (usuarioEncontrado) {
-        this.mensajerrorregister("Hola " + usuarioEncontrado.nombre + " " + usuarioEncontrado.apellido + " Gracias por llevar a nuestros compañeros")
-        setTimeout(() =>{
-          this.router.navigate(['mapa']);
-        }, 2000);
+        const documentos = querySnapshot.docs;
 
-        if (localStorage.getItem('conductor')) {
-          localStorage.removeItem('conductor');
+        if (documentos.length === 1) {
+          const datosUser = documentos[0].data()
+          if (f.contraseña === datosUser.contraseña) {
+            this.mensajerrorregister("Registro Exitoso")
+            setTimeout(() =>{
+              this.router.navigate(['mapa']);
+            }, 2000);
+          }else{
+            this.mensajerrorregister("Contraseña incorrecta")
+          }
+        }else{
+          this.mensajerrorregister("El correo no está registrado como conductor")
         }
-        
-        localStorage.setItem('conductor',JSON.stringify(usuarioEncontrado));
-      } else {
-        this.mensajerrorregister("El correo o la contraseña no coinciden")
       }
-    });
+    );
 
     }else{
       this.mensajerrorregister("Formulario inválido")

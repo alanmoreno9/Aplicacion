@@ -8,7 +8,6 @@ import { ToastController } from '@ionic/angular';
 import { AuthService } from '../services/firebase/auth.service';
 import { FirestoreService } from '../services/firebase/firestore.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -21,12 +20,9 @@ export class HomePage implements OnInit {
   city: string = 'Santiago';
   weatherData: any;
 
-  user: any;
+  usuario: any;
 
   textContent: any;
-
-  idUserFireBase: any;
-  correoUserFireBase: any;
 
   constructor(
     private router: Router,
@@ -37,27 +33,23 @@ export class HomePage implements OnInit {
     private authService: AuthService,
     private fireStore: FirestoreService,
     private route: ActivatedRoute,
-    private auth: AngularFireAuth,
-    
+    private auth: AngularFireAuth
     ) { 
 
      }
 
-
-    
   
   ngOnInit() {
     this.menu.enable(true);
     this.routerOutlet.swipeGesture = false;
-
-    
+    this.usuario = JSON.parse(localStorage.getItem('usuario')!)
   }
 
-
-  ionViewWillLoad(){
+  ionViewWillEnter(){
     this.menu.enable(true);
-    
+    this.ngOnInit()
   }
+  
 
   cerrar(){
     console.log("cerró")

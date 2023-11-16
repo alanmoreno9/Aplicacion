@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { FirestoreService } from './firestore.service';
+import { IUsuario } from 'src/app/interfaces/Iusuario';
 
 
 
@@ -34,10 +35,15 @@ export class AuthService {
         
         this.fireStore.getByEmail('usuarios', email).subscribe(
           (querySnapshot) => {
+
             const documentos = querySnapshot.docs;
             const datosUser = documentos[0].data()
-            console.log("logeado: ", datosUser)
-            this.router.navigate(['/home'])
+
+            
+            this.guardarLocal(datosUser.nombre, datosUser.apellido, datosUser.correo, datosUser.contraseña).then(() => {
+              this.router.navigate(['/home'])  
+            });
+
           }
         );
        
@@ -67,6 +73,26 @@ export class AuthService {
     } catch (error) {
       console.error("error al cerrar sesion", error);
     }
+  }
+
+  async guardarLocal(nombre: String, apellido: String, correo: String, contraseña: String){
+    try {
+      const userLocal: IUsuario = {
+        nombre: nombre,
+        apellido: apellido,
+        correo: correo,
+        contraseña: contraseña
+      }
+      if (localStorage.getItem('usuario')) {
+        localStorage.removeItem('usuario');
+      }
+      localStorage.setItem('usuario',JSON.stringify(userLocal));
+
+    } catch (error) {
+      console.error(error)
+    }
+    
+
   }
 
   cerrar(){

@@ -29,6 +29,10 @@
 
           <div class="login">
             <ion-button (click)="login()" class="boton">{{ "ingresar" | translate }}</ion-button>
+
+          </div>
+          <div class="login">
+            <ion-button class="boton" (click)="generateAndUploadUserData()">Generar Usuarios</ion-button>
           </div>
           </form>
       </ion-card-content>
@@ -38,7 +42,7 @@
     
   </div>
 
-  <ion-button (click)="generateAndUploadUserData()">Generar Usuarios</ion-button>
+  
   
 </ion-content>
 

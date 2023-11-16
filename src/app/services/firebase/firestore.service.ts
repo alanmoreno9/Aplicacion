@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { IUsuario } from 'src/app/interfaces/Iusuario';
 import { Observable } from 'rxjs';
+import { IConductor } from 'src/app/interfaces/Iconductor';
 
 
 @Injectable({
@@ -33,5 +34,12 @@ export class FirestoreService {
   }
   getByEmail(nombreColeccion: string, correo: string){
     return this.firestore.collection<IUsuario>(nombreColeccion, ref => ref.where("correo", "==", correo)).get();
+  }
+  createDocumentConductor(nombreColeccion: string, data: IConductor){
+    return this.firestore.collection<IConductor>(nombreColeccion).add(data);
+  }
+
+  getByEmailConductor(nombreColeccion: string, correo: string){
+    return this.firestore.collection<IConductor>(nombreColeccion, ref => ref.where("correo", "==", correo)).get();
   }
 }
