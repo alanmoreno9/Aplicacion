@@ -66,6 +66,7 @@ export class IngresaconductorPage implements OnInit {
           const datosUser = documentos[0].data()
           if (f.contraseña === datosUser.contraseña) {
             this.mensajerrorregister("Registro Exitoso")
+            localStorage.setItem('conductor',JSON.stringify(datosUser));
             setTimeout(() =>{
               this.router.navigate(['mapa']);
             }, 2000);

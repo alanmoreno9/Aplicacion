@@ -32,14 +32,29 @@ export class FirestoreService {
   getById(nombreColeccion:string, documentId: string){
     return this.firestore.collection<IUsuario>(nombreColeccion).doc(documentId).valueChanges();
   }
+
   getByEmail(nombreColeccion: string, correo: string){
     return this.firestore.collection<IUsuario>(nombreColeccion, ref => ref.where("correo", "==", correo)).get();
   }
+
+
+  //fireStore conductor
+
+
   createDocumentConductor(nombreColeccion: string, data: IConductor){
     return this.firestore.collection<IConductor>(nombreColeccion).add(data);
+  }
+
+  getByIdConductor(nombreColeccion:string, documentId: string){
+    return this.firestore.collection<IConductor>(nombreColeccion).doc(documentId).get();
   }
 
   getByEmailConductor(nombreColeccion: string, correo: string){
     return this.firestore.collection<IConductor>(nombreColeccion, ref => ref.where("correo", "==", correo)).get();
   }
+
+  updateDocumentConductor(nombreColeccion: string, documentId:string, data: IConductor){
+    return this.firestore.collection<IConductor>(nombreColeccion).doc(documentId).update(data);
+  }
+  
 }

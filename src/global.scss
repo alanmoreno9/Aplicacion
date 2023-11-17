@@ -56,4 +56,6 @@
 .button{
     margin: 8%;
 }
-
+.leaflet-routing-container.leaflet-bar.leaflet-routing-container-hide.leaflet-routing-collapsible.leaflet-control {
+    display: none !important;
+}
