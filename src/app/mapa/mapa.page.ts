@@ -189,17 +189,21 @@ export class MapaPage implements OnInit {
                     año: conductor.año,
                     contraseña: conductor.contraseña,
                     correo: conductor.correo,
-                    desUbi: this.endPoint,
+                    desUbi: {lat : this.endPoint.lat, lng : this.endPoint.lng},
                     estado: true,
                     marca: conductor.marca,
-                    meUbi: this.startPoint,
+                    meUbi: {lat : this.startPoint.lat, lng : this.startPoint.lng},
                     modelo: conductor.modelo,
                     nombre: conductor.nombre,
                     placa: conductor.placa,
                     rut: conductor.rut,
                     telefono: conductor.telefono       
                   }
-                  this.firestore.updateDocumentConductor('conductor', documentId, conduAct)
+
+                  console.log(this.endPoint, this.startPoint)
+                  this.firestore.updateDocumentConductor('conductores', documentId, conduAct).then(() => {
+                    this.router.navigate(['esperando'])
+                  })
                 }
                 
               }

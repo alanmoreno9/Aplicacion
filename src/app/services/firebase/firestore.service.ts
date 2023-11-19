@@ -53,7 +53,7 @@ export class FirestoreService {
     return this.firestore.collection<IConductor>(nombreColeccion, ref => ref.where("correo", "==", correo)).get();
   }
 
-  updateDocumentConductor(nombreColeccion: string, documentId:string, data: IConductor){
+  updateDocumentConductor(nombreColeccion: string, documentId:string, data: Partial<IConductor>){
     return this.firestore.collection<IConductor>(nombreColeccion).doc(documentId).update(data);
   }
   

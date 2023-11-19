@@ -65,6 +65,15 @@ export class AuthService {
       console.error("Error al iniciar sesion: ", error);
     }
   }
+  async registro(email:string, pass: string){
+    try {
+      const user = await this.auth.createUserWithEmailAndPassword(email, pass);
+      console.log(user)
+    } catch(error) {
+      console.error("Error al iniciar sesion: ", error);
+    }
+  }
+
 
   logout(){
     try {
@@ -111,6 +120,10 @@ export class AuthService {
         reject(error);
       });
     });
+  }
+
+  resetPassword(email: string): Promise<void>{
+    return this.auth.sendPasswordResetEmail(email)
   }
 
   async message(mensaje: string){
