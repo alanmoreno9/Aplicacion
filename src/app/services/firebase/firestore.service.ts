@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { IUsuario } from 'src/app/interfaces/Iusuario';
-import { IUsuarios } from 'src/app/interfaces/Iusuarios';
+import { Observable } from 'rxjs';
+import { IConductor } from 'src/app/interfaces/Iconductor';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class FirestoreService {
 
 
   getCollection(nombreColeccion: string){
-    return this.firestore.collection(nombreColeccion).valueChanges({ idField: 'id' });
+    return this.firestore.collection(nombreColeccion).valueChanges({ idField: 'id', correo: 'correo'});
   }
 
   createDocument(nombreColeccion:string, data: IUsuario){
@@ -31,4 +33,28 @@ export class FirestoreService {
     return this.firestore.collection<IUsuario>(nombreColeccion).doc(documentId).valueChanges();
   }
 
+  getByEmail(nombreColeccion: string, correo: string){
+    return this.firestore.collection<IUsuario>(nombreColeccion, ref => ref.where("correo", "==", correo)).get();
+  }
+
+
+  //fireStore conductor
+
+
+  createDocumentConductor(nombreColeccion: string, data: IConductor){
+    return this.firestore.collection<IConductor>(nombreColeccion).add(data);
+  }
+
+  getByIdConductor(nombreColeccion:string, documentId: string){
+    return this.firestore.collection<IConductor>(nombreColeccion).doc(documentId).get();
+  }
+
+  getByEmailConductor(nombreColeccion: string, correo: string){
+    return this.firestore.collection<IConductor>(nombreColeccion, ref => ref.where("correo", "==", correo)).get();
+  }
+
+  updateDocumentConductor(nombreColeccion: string, documentId:string, data: Partial<IConductor>){
+    return this.firestore.collection<IConductor>(nombreColeccion).doc(documentId).update(data);
+  }
+  
 }

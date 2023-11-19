@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from './services/firebase/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -11,9 +12,7 @@ export class AppComponent {
   public appPages = [
     { title: 'Inicio', url: 'home', icon: 'home' },
     { title: 'Modo Conductor', url: 'ingresaconductor', icon: 'car' },
-    { title: 'reseñas', url: 'usuarios', icon: 'star' },
-    { title: 'Cerrar Sesión', url: 'loadingoff', icon: 'power' },
-    
+    { title: 'Reseñas', url: 'usuarios', icon: 'star' },
   ];
 
   public menuMapa = [
@@ -24,7 +23,8 @@ export class AppComponent {
   constructor(
     private router: Router,
     private menuController: MenuController,
-    private transService: TranslateService
+    private transService: TranslateService,
+    private authService: AuthService
   
   ) {
     this.transService.setDefaultLang('es');
@@ -38,6 +38,9 @@ export class AppComponent {
   }
   ionViewWillLoad(){
     
+  }
+  cerrar(){
+    this.authService.logout()
   }
 
   mostrarMenu() {

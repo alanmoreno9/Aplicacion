@@ -8,9 +8,10 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms'
-import { ConductoresService } from '../services/api/conductores.service';
 import { HttpClient } from '@angular/common/http';
 import { IConductor } from '../interfaces/Iconductor';
+import { FirestoreService } from '../services/firebase/firestore.service';
+
 @Component({
   selector: 'app-registerconductor',
   templateUrl: './registerconductor.page.html',
@@ -25,8 +26,7 @@ export class RegisterconductorPage implements OnInit {
     private router: Router,
     private toastController: ToastController,
     public fb: FormBuilder,
-    private apiService: ConductoresService,
-    private httpClient: HttpClient,
+    private fireStore: FirestoreService
   ) { 
     this.FormRegisterConductor = this.fb.group({
       'telefono' : new FormControl("", Validators.required),
@@ -39,10 +39,7 @@ export class RegisterconductorPage implements OnInit {
   }
 
   ngOnInit() {
-    this.httpClient.get<any>("https://jsonserver-x5h4.onrender.com/conductores").subscribe(resultado => {
-      this.datosApi = resultado
-      console.log(this.datosApi);
-    });
+  
   }
 
   async mensajerrorregister(mensaje: string){
@@ -83,13 +80,32 @@ export class RegisterconductorPage implements OnInit {
                     asientosDisponibles: 4
                   };
 
-                  this.mensajerrorregister("Registro exitoso, en un momento te redirigiremos. Para iniciar sesión como conductor, debes usar tus credenciales")
-                  
-                  setTimeout(() =>{
-                    this.router.navigate(['ingresaconductor']);
-                  }, 2000);
+                  this.fireStore.getByEmailConductor('conductores', local.correo).subscribe(
+                    (querySnapshot) => {
+          
+                      const documentos = querySnapshot.docs;
 
-                  this.apiService.addConductor(conductor).subscribe();
+                      if (documentos.length === 1) {
+                        this.mensajerrorregister("Conductor ya registrado, inicia sesión para continuar")
+                        setTimeout(() =>{
+                          this.router.navigate(['ingresaconductor']);
+                        }, 2000);
+                      }else{
+                        this.mensajerrorregister("Registro exitoso, en un momento te redirigiremos. Para iniciar sesión como conductor, debes usar tus credenciales")
+                  
+                        setTimeout(() =>{
+                          this.router.navigate(['ingresaconductor']);
+                        }, 2000);
+                        this.fireStore.createDocumentConductor('conductores', conductor);
+                      }
+                    }
+                    
+                      
+                    
+                  );
+
+
+                  
 
                 }else{
                   this.mensajerrorregister("Rut inválido")
