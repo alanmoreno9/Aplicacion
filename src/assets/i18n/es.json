@@ -1,4 +1,33 @@
 {
-    "ingreso": "ingreso",
-    "ingresar": "ingresar"
+    "idioma":"idioma",
+    "Ingreso": "Ingreso",
+    "Ingresar": "Ingresar",
+    "Empecemos" : "Empecemos",
+    "No hay conductores activos": "No hay conductores activos",
+    "Desliza hacia abajo para actualizar" : "Desliza hacia abajo para actualizar",
+    "Esta opcion sirve para que el usuario pueda pagar mediante codigo QR" :"Esta opcion sirve para que el usuario pueda pagar mediante codigo QR",
+    "Generar Código QR":"Generar Código QR",
+    "Solicitar":"Solicitar",
+    "Patente" : "Patente",
+    "Estimado: de 5 a 15 minutos":"Estimado: de 5 a 10 minutos" ,
+    "No hay peticiones activas":"No hay peticiones activas",
+    "10 min":"10 min",
+    "Santiago centro":"Santiago centro",
+    "una vez el conductor finalize el viaje seras redirijido a la pagina de pago":"una vez el conductor finalize el viaje seras redirijido a la pagina de pago",
+    "¿No eres conductor?":"¿No eres conductor?",
+    "Cerrando Sesión":"Cerrando Sesión",
+    "Regresando a usuario":"Regresando a usuario",
+    "Olvidé mi contraseña":"Olvidé mi contraseña",
+    "Ingresa tú correo para verificar tu cuenta":"Ingresa tú correo para verificar tu cuenta",
+    "Recuperar contraseña":"Recuperar contraseña",
+    "Registro":"Registro",
+    "Registrarse":"Registrarse",
+    "Cambiar contraseña" :"Cambiar contraseña" ,
+    "Finalizar Viaje":"Finalizar Viaje",
+    "Terminos y Condiciones":"Terminos y Condiciones",
+    "Cerrar":"Cerrar",
+    "Aceptas nuestros Terminos y Condiciones?":"Aceptas nuestros Terminos y Condiciones?"
+
+    
+
 }

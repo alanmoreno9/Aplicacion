@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BarcodeFormat } from '@zxing/library';
+import { ScannerService } from '../services/scanner.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-qr',
@@ -6,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./qr.page.scss'],
 })
 export class QrPage implements OnInit {
+  allowedFormats: BarcodeFormat[] = [BarcodeFormat.QR_CODE];
 
-  constructor() { }
+  constructor(private scannerService: ScannerService,
+    private router: Router,) { }
 
   ngOnInit() {
   }
 
+  /*onCodeResult(resultString: string) {
+    console.log('Resultado del escaneo:', resultString);
+     this.router.navigate(['/home', { result: resultString }]);
+  }
+  */
 }

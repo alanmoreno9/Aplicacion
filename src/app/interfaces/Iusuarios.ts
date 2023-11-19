@@ -1,5 +1,5 @@
 export interface IUsuarios{
-    id: Number,
+    id?: Number,
     nombre: String,
     apellido: String,
     correo: String,

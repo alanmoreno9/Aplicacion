@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { OlvidoPageRoutingModule } from './olvido-routing.module';
 
 import { OlvidoPage } from './olvido.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { OlvidoPage } from './olvido.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    OlvidoPageRoutingModule
+    OlvidoPageRoutingModule,
+    TranslateModule
   ],
   declarations: [OlvidoPage]
 })

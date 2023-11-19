@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { IngresaconductorPageRoutingModule } from './ingresaconductor-routing.module';
 
 import { IngresaconductorPage } from './ingresaconductor.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { IngresaconductorPage } from './ingresaconductor.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    IngresaconductorPageRoutingModule
+    IngresaconductorPageRoutingModule,
+    TranslateModule
   ],
   declarations: [IngresaconductorPage]
 })

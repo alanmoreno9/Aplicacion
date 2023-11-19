@@ -5,3 +5,8 @@ export interface IUsuario{
     correo: String,
     contraseña: String
 }
+
+export interface pago{
+    pagoId: string;
+    pago: boolean;
+}

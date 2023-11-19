@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DetallemapconductorPageRoutingModule } from './detallemapconductor-routing.module';
 
 import { DetallemapconductorPage } from './detallemapconductor.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DetallemapconductorPageRoutingModule
+    DetallemapconductorPageRoutingModule,
+    TranslateModule
   ],
   declarations: [DetallemapconductorPage]
 })

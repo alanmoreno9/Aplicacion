@@ -5,6 +5,8 @@ import Swal from 'sweetalert2'
 import { WeatherService } from '../services/api/weather.service';
 import { WeatherData } from '../services/api/weather.service';
 import { ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+import { LenguageService } from '../services/lenguage.service';
 
 
 @Component({
@@ -20,9 +22,18 @@ export class HomePage implements OnInit {
   usuario:any;
   textContent: any;
 
+  langs : string[] =[];
+  idioma!: string;
 
-  constructor(private router: Router,private menu: MenuController, private routerOutlet: IonRouterOutlet, private weatherService: WeatherService, private toastController: ToastController) { 
 
+  constructor(private router: Router,
+    private menu: MenuController,
+     private routerOutlet: IonRouterOutlet,
+      private weatherService: WeatherService,
+       private toastController: ToastController,
+       private transService: TranslateService,
+        private languageService: LenguageService) { 
+          this.langs = this.transService.getLangs();
   }
 
   
@@ -33,6 +44,9 @@ export class HomePage implements OnInit {
 
   }
 
+  changeLang(event: any) {
+    this.languageService.setLanguage(event.detail.value);
+  }
 
   ionViewWillLoad(){
     

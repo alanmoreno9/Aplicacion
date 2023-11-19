@@ -3,19 +3,10 @@
   <div class="centrado">
     <ion-card class="card">
       <ion-card-header>
-        <h3 class="login">{{ "ingreso" | translate }}</h3>
+        <h3 class="login">{{ "Ingreso" | translate }}</h3>
       </ion-card-header>
     
       <ion-card-content>
-        <ion-item>
-          <ion-label>
-            {{ "seleccion" | translate }}
-          </ion-label>
-          <ion-select [(ngModel)]="idioma" (ionChange)="changeLang($event)">
-            <ion-select-option  *ngFor="let lang of langs">{{lang}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-
           <form [formGroup]="formularioLogin" >
             <p>
               <ion-input formControlName="nombre" label="Email" type="email" label-placement="floating" errorText="Email Inválido" email></ion-input>
@@ -28,7 +19,7 @@
             </p>
 
           <div class="login">
-            <ion-button (click)="login()" class="boton">{{ "ingresar" | translate }}</ion-button>
+            <ion-button (click)="login()" class="boton">{{ "Ingresar" | translate }}</ion-button>
           </div>
           </form>
       </ion-card-content>

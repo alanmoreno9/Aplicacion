@@ -1,4 +1,30 @@
 {
-    "ingreso": "revenus",
-    "ingresar": "entrer"
-}
+    "idioma":"langue",
+    "Ingreso": "Revenu",
+    "Ingresar": "Se connecter",
+    "Empecemos": "Commençons",
+    "No hay conductores activos": "Pas de chauffeurs actifs",
+    "Desliza hacia abajo para actualizar": "Faites glisser vers le bas pour rafraîchir",
+    "Esta opción sirve para que el usuario pueda pagar mediante código QR": "Cette option permet à l'utilisateur de payer en utilisant un code QR",
+    "Generar Código QR": "Générer un code QR",
+    "Solicitar": "Demander",
+    "Patente": "Plaque d'immatriculation",
+    "Estimado: de 5 a 10 minutos": "Estimé : de 5 à 10 minutes",
+    "No hay peticiones activas": "Pas de demandes actives",
+    "10 min": "10 min",
+    "Santiago centro": "Centre de Santiago",
+    "Una vez el conductor finalice el viaje, serás redirigido a la página de pago": "Une fois que le conducteur aura terminé le voyage, vous serez redirigé vers la page de paiement",
+    "¿No eres conductor?": "Pas conducteur?",
+    "Cerrando Sesión": "Déconnexion",
+    "Regresando a usuario": "Retour à l'utilisateur",
+    "Olvidé mi contraseña": "J'ai oublié mon mot de passe",
+    "Ingresa tu correo para verificar tu cuenta": "Entrez votre email pour vérifier votre compte",
+    "Recuperar contraseña": "Récupérer le mot de passe",
+    "Registro": "Enregistrement",
+    "Registrarse": "S'inscrire",
+    "Cambiar contraseña": "Changer de mot de passe",
+    "Finalizar Viaje": "Terminer le voyage",
+    "Términos y Condiciones": "Termes et conditions",
+    "Cerrar": "Fermer",
+    "Aceptas nuestros Términos y Condiciones?": "Acceptez-vous nos termes et conditions?"
+    }

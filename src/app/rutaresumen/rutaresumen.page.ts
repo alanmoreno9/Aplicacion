@@ -117,7 +117,7 @@ export class RutaresumenPage implements OnInit {
           }
           this.conductoresService.updateConductor(this.conductorUpdate).subscribe(
             response => {
-              this.router.navigate(["/home"])
+              this.router.navigate(["/pagoqr"])
             },
             error => {
               console.error('Error al actualizar el conductor', error);

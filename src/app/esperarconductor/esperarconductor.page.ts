@@ -76,7 +76,7 @@ export class EsperarconductorPage implements OnInit {
     console.log(this.conductor)
 
     setTimeout( ()=>{
-      this.router.navigate(['/home'])
+      this.router.navigate(['/qr'])
     },10000)
 
   }

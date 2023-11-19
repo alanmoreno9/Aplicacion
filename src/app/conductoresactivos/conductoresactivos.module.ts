@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ConductoresactivosPageRoutingModule } from './conductoresactivos-routing.module';
 
 import { ConductoresactivosPage } from './conductoresactivos.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ConductoresactivosPageRoutingModule
+    ConductoresactivosPageRoutingModule,
+    TranslateModule
   ],
   declarations: [ConductoresactivosPage]
 })

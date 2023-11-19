@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RestablecerPageRoutingModule } from './restablecer-routing.module';
 
 import { RestablecerPage } from './restablecer.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -16,7 +17,8 @@ import { RestablecerPage } from './restablecer.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    RestablecerPageRoutingModule
+    RestablecerPageRoutingModule,
+    TranslateModule
   ],
   declarations: [RestablecerPage]
 })

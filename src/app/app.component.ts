@@ -27,8 +27,8 @@ export class AppComponent {
     private transService: TranslateService
   
   ) {
-    this.transService.setDefaultLang('en');
-    this.transService.addLangs(['es', 'en']);
+    this.transService.setDefaultLang('es');
+    this.transService.addLangs(['es', 'en', 'fr', 'ar']);
   }
 
   usuario:any;

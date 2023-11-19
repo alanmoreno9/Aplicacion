@@ -9,7 +9,7 @@
 <ion-content class="background">
   <div class="centrado">
     <ion-card class="card">
-      <h1 class="login">Cambiar contraseña</h1>
+      <h1 class="login">{{"Cambiar contraseña" | translate}}</h1>
     
       <ion-card-content>
 
@@ -17,7 +17,7 @@
           <ion-input formControlName="contraseña" label="Contraseña" type="password" label-placement="floating" errorText="Contraseña Inválido" ></ion-input>
           <ion-input formControlName="confirmcontraseña" label="Confirmar Contraseña" type="password" label-placement="floating" errorText="Contraseña Inválido" ></ion-input>
           <div class="login">
-            <ion-button class="boton" (click)="guardar()">Registrarse</ion-button>
+            <ion-button class="boton" (click)="guardar()">{{"Registrarse" | translate}}</ion-button>
           </div>
         </form>
 
