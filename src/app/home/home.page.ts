@@ -5,14 +5,11 @@ import Swal from 'sweetalert2'
 import { WeatherService } from '../services/api/weather.service';
 import { WeatherData } from '../services/api/weather.service';
 import { ToastController } from '@ionic/angular';
-<<<<<<< HEAD
-import { TranslateService } from '@ngx-translate/core';
-import { LenguageService } from '../services/lenguage.service';
-=======
 import { AuthService } from '../services/firebase/auth.service';
 import { FirestoreService } from '../services/firebase/firestore.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
->>>>>>> 3d11ed83923a8599ebd26d470e183ff2c3a6c435
+import { TranslateService } from '@ngx-translate/core';
+import { LenguageService } from '../services/lenguage.service';
 
 
 @Component({
@@ -22,6 +19,9 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class HomePage implements OnInit {
 
+  langs : string[] =[];
+  idioma!: string;
+
   city: string = 'Santiago';
   weatherData: any;
 
@@ -29,21 +29,6 @@ export class HomePage implements OnInit {
 
   textContent: any;
 
-<<<<<<< HEAD
-  langs : string[] =[];
-  idioma!: string;
-
-
-  constructor(private router: Router,
-    private menu: MenuController,
-     private routerOutlet: IonRouterOutlet,
-      private weatherService: WeatherService,
-       private toastController: ToastController,
-       private transService: TranslateService,
-        private languageService: LenguageService) { 
-          this.langs = this.transService.getLangs();
-  }
-=======
   constructor(
     private router: Router,
     private menu: MenuController, 
@@ -53,34 +38,28 @@ export class HomePage implements OnInit {
     private authService: AuthService,
     private fireStore: FirestoreService,
     private route: ActivatedRoute,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private languageService: LenguageService
     ) { 
-
      }
->>>>>>> 3d11ed83923a8599ebd26d470e183ff2c3a6c435
 
-  
+
   ngOnInit() {
     this.menu.enable(true);
     this.routerOutlet.swipeGesture = false;
     this.usuario = JSON.parse(localStorage.getItem('usuario')!)
+    this.langs = this.languageService.getLangs();
   }
 
-<<<<<<< HEAD
-  changeLang(event: any) {
-    this.languageService.setLanguage(event.detail.value);
-  }
 
-  ionViewWillLoad(){
-    
-    
-=======
   ionViewWillEnter(){
     this.menu.enable(true);
     this.ngOnInit()
->>>>>>> 3d11ed83923a8599ebd26d470e183ff2c3a6c435
   }
   
+  changeLang(event: any) {
+    this.languageService.setLanguage(event.detail.value);
+  }
 
   cerrar(){
     console.log("cerró")

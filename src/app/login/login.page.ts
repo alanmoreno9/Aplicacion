@@ -11,13 +11,8 @@ import {
 } from '@angular/forms'
 import { AuthService } from '../services/firebase/auth.service';
 import { TranslateService } from '@ngx-translate/core';
-<<<<<<< HEAD
-import { LenguageService } from '../services/lenguage.service';
-=======
 import { FirestoreService } from '../services/firebase/firestore.service'; 
-
->>>>>>> 3d11ed83923a8599ebd26d470e183ff2c3a6c435
-
+import { LenguageService } from '../services/lenguage.service';
 
 @Component({
   selector: 'app-login',
@@ -39,12 +34,8 @@ export class LoginPage implements OnInit {
     private httpClient : HttpClient,
     private authService :AuthService,
     private transService: TranslateService,
-<<<<<<< HEAD
-    private languageService: LenguageService
-=======
     private http: HttpClient,
     private fireStore: FirestoreService
->>>>>>> 3d11ed83923a8599ebd26d470e183ff2c3a6c435
     ) { 
       
       this.langs = this.transService.getLangs();
@@ -113,9 +104,6 @@ export class LoginPage implements OnInit {
     })
   }
 
-  changeLang(event: any) {
-    this.languageService.setLanguage(event.detail.value);
-  }
 
   async message(mensaje: string){
     const toast = await this.toastController.create({

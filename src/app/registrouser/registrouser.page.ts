@@ -29,12 +29,11 @@ export class RegistrouserPage implements OnInit {
       'nombre' : new FormControl("", Validators.required),
       'apellido' : new FormControl("",Validators.required),
       'correo': new FormControl("",Validators.required),
-      'contraseña': new FormControl("",Validators.required)
+      'contraseña': new FormControl("", [Validators.required, Validators.minLength(6)])
     })
    }
 
   ngOnInit() {
-    
   }
 
   registrar(){

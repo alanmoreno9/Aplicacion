@@ -26,8 +26,19 @@
     "Finalizar Viaje":"Finalizar Viaje",
     "Terminos y Condiciones":"Terminos y Condiciones",
     "Cerrar":"Cerrar",
-    "Aceptas nuestros Terminos y Condiciones?":"Aceptas nuestros Terminos y Condiciones?"
-
-    
-
+    "Aceptas nuestros Terminos y Condiciones?":"Aceptas nuestros Terminos y Condiciones?",
+    "Conectarme":"Conectarme",
+    "Iniciar Viaje" :"Iniciar Viaje",
+    "(Debe tener como mínimo 6 caracteres)":"(Debe tener como mínimo 6 caracteres)",
+    "Contraseña":"Contraseña",
+    "Recuperar Contraseña":"Recuperar Contraseña",
+    "Se actualizará la contraseña en base al ":"Se actualizará la contraseña en base al ",
+    "email logeado cómo usuario":"email logeado cómo usuario",
+    "Actualizar":"Actualizar",
+    "Recuperar mi":"Recuperar mi",
+    "¿No eres usuario registrado?":"¿No eres usuario registrado?",
+    "Haz click Acá":"Haz click Acá",
+    "de conductor":"de conductor",
+    "Cargando Aplicacion":"Cargando Aplicacion",
+    "regresar al login":"regresar al login"
 }
