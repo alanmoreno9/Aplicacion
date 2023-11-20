@@ -47,15 +47,28 @@ export class RegistrouserPage implements OnInit {
         id: this.generateUniqueId(),
         nombre: f.nombre
       }
-      this.fireStore.createDocument('usuarios', user).then(
-        ()=>{
-        this.auth.registro(f.correo, f.contraseña)
-        },
-        error => {
-          console.error("No se pudo registrar al usuario: ", error)
-        })
-    }else{
+      this.fireStore.getByEmailConductor('conductores', f.correo).subscribe(
+        (querySnapshot) => {
+          const documentos = querySnapshot.docs;
 
+          if (documentos.length === 1) {
+            this.message("Correo ya registrado")
+          }else{
+            this.fireStore.createDocument('usuarios', user).then(
+              ()=>{
+              this.auth.registro(f.correo, f.contraseña).then(() => {
+                this.message("Registro exitoso")
+              })
+              },
+              error => {
+                console.error("No se pudo registrar al usuario: ", error)
+              })
+          }
+        }
+      )
+      
+    }else{
+      this.message("Formulario inválido")
     }
   }
 

@@ -56,5 +56,9 @@ export class FirestoreService {
   updateDocumentConductor(nombreColeccion: string, documentId:string, data: Partial<IConductor>){
     return this.firestore.collection<IConductor>(nombreColeccion).doc(documentId).update(data);
   }
+
+  getByStatusConductor(nombreColeccion: string, estado: boolean){
+    return this.firestore.collection<IConductor>(nombreColeccion, ref => ref.where("estado", "==", estado)).get();
+  }
   
 }

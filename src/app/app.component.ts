@@ -27,7 +27,7 @@ export class AppComponent {
     private authService: AuthService
   
   ) {
-    this.transService.setDefaultLang('fr');
+    this.transService.setDefaultLang('es');
     this.transService.addLangs(['es', 'en', 'fr', 'ar']);
   }
 

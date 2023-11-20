@@ -116,6 +116,23 @@ export class AuthService {
     return new Promise((resolve,reject) => {
       this.auth.onAuthStateChanged((user) => {
         resolve(user);
+        if (user) {
+          const email = user.email
+          this.fireStore.getByEmail('usuarios', email!).subscribe(
+            (querySnapshot) => {
+  
+              const documentos = querySnapshot.docs;
+              const datosUser = documentos[0].data()
+  
+              
+              this.guardarLocal(datosUser.nombre, datosUser.apellido, datosUser.correo, datosUser.contraseña).then(() => {
+                this.router.navigate(['/home'])  
+              });
+  
+            }
+          );
+        }
+        
       }, (error) => {
         reject(error);
       });
