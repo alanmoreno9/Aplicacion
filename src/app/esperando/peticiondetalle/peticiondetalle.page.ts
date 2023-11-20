@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SolicitudesService } from 'src/app/services/api/solicitudes.service';
 import * as L from "leaflet";
-import { ConductoresService } from 'src/app/services/api/conductores.service';
 import Swal from 'sweetalert2'
-import { RutaSolicitudesService } from 'src/app/services/api/ruta-solicitudes.service';
+import { FirestoreService } from 'src/app/services/firebase/firestore.service';
 
 @Component({
   selector: 'app-peticiondetalle',
@@ -28,31 +26,31 @@ export class PeticiondetallePage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private solicitudService: SolicitudesService,
-    private conductoresService: ConductoresService,
     private router: Router, 
-    private rutaSolicitudesService: RutaSolicitudesService
+    private fireStore: FirestoreService
   ) { }
 
   ngOnInit() {
-    
+    this.ionViewDidEnter()
   }
   ionViewDidEnter(){
     this.idPeticion = this.activatedRoute.snapshot.paramMap.get("id");
-    this.solicitudService.getSolicitud(Number(this.idPeticion)).subscribe(data =>{
-      this.datosSolicitud = data
-      if (this.datosSolicitud.length > 0) {
-        this.coords = L.latLng(this.datosSolicitud[0].ubicacionUser[0], this.datosSolicitud[0].ubicacionUser[1]);
-        this.idConductor = this.datosSolicitud[0].idConductor;
-        console.log(this.coords)
-        if (this.coords) {
-          this.generarMapa()
-      }
-      }else{
+
+    this.fireStore.getByIdSolicitud('solicitudes', this.idPeticion).subscribe(
+      (querySnapshot) => {
+        this.datosSolicitud = querySnapshot.data()
+        if (this.datosSolicitud) {
+          this.coords = L.latLng(this.datosSolicitud.ubicacionUser[0], this.datosSolicitud.ubicacionUser[1]);
+          this.idConductor = this.datosSolicitud.idConductor
+          if (this.coords) {
+            this.generarMapa()
+          }
+        }else{
         this.message("","Error","Error al generar mapa")
         this.router.navigate(["/esperando"])
+        }
       }
-    })
+    )
   }
   ionViewWillLeave(){
     if (this.map) {
@@ -72,103 +70,65 @@ export class PeticiondetallePage implements OnInit {
   }
 
   updateConductor() {
-    this.solicitudService.getSolicitud(Number(this.idPeticion)).subscribe(
-      response => {
-        this.aceptarSoli = response
-        if (this.aceptarSoli.length > 0) {
-          this.conductoresService.getConductor(Number(this.idConductor)).subscribe(data =>{
-            this.conductor = data
-            if (this.conductor[0].estado === true) {
-              if (this.conductor[0].asientosDisponibles > 0 ) {
-                this.conductorUpdate = {
-                  id: this.conductor[0].id,
-                  nombre: this.conductor[0].nombre,
-                  apellido: this.conductor[0].apellido,
-                  correo: this.conductor[0].correo,
-                  contraseña: this.conductor[0].contraseña,
-                  telefono: this.conductor[0].telefono,
-                  marca: this.conductor[0].marca,
-                  modelo: this.conductor[0].modelo,
-                  año: this.conductor[0].año,
-                  placa: this.conductor[0].placa,
-                  rut: this.conductor[0].rut,
-                  estado: true,
-                  meUbi: this.conductor[0].meUbi,
-                  desUbi: this.conductor[0].desUbi,
-                  asientosDisponibles: this.conductor[0].asientosDisponibles - 1
-                }
-                this.conductoresService.updateConductor(this.conductorUpdate).subscribe(
-                  response => {
-                    this.updateSolicitud = {
-                      idConductor : this.datosSolicitud[0].idConductor,
-                      IdUsuario : this.datosSolicitud[0].IdUsuario,
-                      ubicacionUser : this.datosSolicitud[0].ubicacionUser,
-                      estado : true,
-                      id : this.datosSolicitud[0].id
-                    }
-                    this.solicitudService.updateSolicitud(this.updateSolicitud).subscribe(
-                      response => {
-                        console.log("Solicitud actualizada ", response);
-                        this.router.navigate(['/esperando'])
-                        
-                      },
-                      error => {
-                        console.error("error al actualizar solicitud ", error)
-                      }
-                    )
-                  },
-                  error => {
-                    console.error('Error al actualizar el conductor', error);
+    this.fireStore.getByIdSolicitud('solicitudes', this.idPeticion).subscribe(
+      (querySnapshot) => {
+        this.aceptarSoli = querySnapshot.data()
+        if (this.aceptarSoli) {
+          this.fireStore.getByEmailConductor('conductores', this.aceptarSoli.idConductor).subscribe(
+            (querySnapshot) => {
+              this.conductor = querySnapshot.docs[0].data();
+              this.conductor.id = querySnapshot.docs[0].id
+              console.log(this.conductor.id)
+              if (this.conductor.estado === true) {
+                if (this.conductor.asientosDisponibles > 0 ) {
+                  this.conductorUpdate = {
+                    id: this.conductor.id,
+                    nombre: this.conductor.nombre,
+                    apellido: this.conductor.apellido,
+                    correo: this.conductor.correo,
+                    contraseña: this.conductor.contraseña,
+                    telefono: this.conductor.telefono,
+                    marca: this.conductor.marca,
+                    modelo: this.conductor.modelo,
+                    año: this.conductor.año,
+                    placa: this.conductor.placa,
+                    rut: this.conductor.rut,
+                    estado: true,
+                    meUbi: this.conductor.meUbi,
+                    desUbi: this.conductor.desUbi,
+                    asientosDisponibles: this.conductor.asientosDisponibles - 1
                   }
-                )
+                  this.fireStore.updateDocumentConductor('conductores', this.conductor.id, this.conductorUpdate).then(() =>{
+                    this.updateSolicitud = {
+                      idConductor : this.datosSolicitud.idConductor,
+                      IdUsuario : this.datosSolicitud.IdUsuario,
+                      ubicacionUser : this.datosSolicitud.ubicacionUser,
+                      estado : true
+                    }
+                    this.fireStore.updateDocumentSolicitud('solicitudes', this.idPeticion, this.updateSolicitud).then(() => {
+                      this.router.navigate(['/esperando'])
+                    })
+                  })
+                }else{
+                  this.message("","Espacio insuficiente","Ya no queda espacio en tu vehiculo")
+                }
               }else{
-                this.message("","Espacio insuficiente","Ya no queda espacio en tu vehiculo")
+                this.message("","Estás desconectado","Debes conectarte para aceptar solicitudes")
               }
-            }else{
-              this.message("","Estás desconectado","Debes conectarte para aceptar solicitudes")
             }
-            
-          })
-          
-        }else{
-
+          )
         }
-      });
+      }
+    )
+  };
               
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-}
 rechazarSolicitud(){
-  this.solicitudService.deleteSolicitud(this.datosSolicitud[0]).subscribe(
-    response => {
-      console.log("Solicitud eliminada ", response)
-      this.router.navigate(['/esperando'])
-    },
-    error => {
-      console.error("No se pudo eliminar ", error)
-    }
-  )
+
+  this.fireStore.deleteSolicitud('solicitudes', this.idPeticion).then(() => {
+    this.router.navigate(['/esperando'])
+  })
+
 }
 
 async message(timerInterval: any, title: String, html: String){
@@ -198,4 +158,5 @@ async message(timerInterval: any, title: String, html: String){
     }
   })
   }
+  
 }

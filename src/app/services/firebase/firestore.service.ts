@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { IUsuario } from 'src/app/interfaces/Iusuario';
 import { Observable } from 'rxjs';
 import { IConductor } from 'src/app/interfaces/Iconductor';
+import { Isolicitud } from 'src/app/interfaces/isolicitud';
 
 
 @Injectable({
@@ -11,6 +12,8 @@ import { IConductor } from 'src/app/interfaces/Iconductor';
 export class FirestoreService {
 
   constructor(private firestore: AngularFirestore) { }
+
+  //fireStore Usuario
 
 
   getCollection(nombreColeccion: string){
@@ -60,5 +63,27 @@ export class FirestoreService {
   getByStatusConductor(nombreColeccion: string, estado: boolean){
     return this.firestore.collection<IConductor>(nombreColeccion, ref => ref.where("estado", "==", estado)).get();
   }
+
+
+  //fireStore Solicitudes
   
+  createDocumentSolicitud(nombreColeccion: string, data: Isolicitud){
+    return this.firestore.collection<Isolicitud>(nombreColeccion).add(data);
+  }
+  getByIdUsuarioCSolicitud(nombreColeccion: string, id: any){
+    return this.firestore.collection<Isolicitud>(nombreColeccion, ref => ref.where("IdUsuario", "==", id)).get();
+  }
+  updateDocumentSolicitud(nombreColeccion: string, documentId:string, data: Partial<Isolicitud>){
+    return this.firestore.collection<Isolicitud>(nombreColeccion).doc(documentId).update(data);
+  }
+  getByIdSolicitud(nombreColeccion:string, documentId: string){
+    return this.firestore.collection<Isolicitud>(nombreColeccion).doc(documentId).get();
+  }
+  deleteSolicitud(nombreColeccion: string, documentId: string){
+    return this.firestore.collection<Isolicitud>(nombreColeccion).doc(documentId).delete();
+  }
+  getByIdConductorSolicitud(nombreColeccion: string, id: any){
+    return this.firestore.collection<Isolicitud>(nombreColeccion, ref => ref.where("idConductor", "==", id)).get();
+  }
+
 }

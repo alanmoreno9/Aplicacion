@@ -1,25 +1,16 @@
-import { Component, ElementRef, Input, NgZone, OnInit } from '@angular/core';
-
-import {
-  FormGroup,
-  FormControl,
-  Validator,
-  FormBuilder,
-  Validators
-} from '@angular/forms'
+import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { MenuController, ToastController } from '@ionic/angular';
 
 import * as L from "leaflet";
 
 import { Geolocation } from '@capacitor/geolocation'
-import Swal from 'sweetalert2'
 import 'leaflet-routing-machine';
 
 import { ConductoresService } from '../services/api/conductores.service';
 
-declare var google: any;
+import { FirestoreService } from '../services/firebase/firestore.service';
+
 
 @Component({
   selector: 'app-rutaresumen',
@@ -30,12 +21,7 @@ export class RutaresumenPage implements OnInit {
 
   latitud!: number;
   longitud!: number;
-  private googleAutocomplete = new google.maps.places.AutocompleteService();
-  public searchResults = new Array<any>();
   public destination: any;
-  private destino: L.Marker | null = null;
-  private locationMe!: L.Marker;
-  private control: any | null = null;
 
   conductor: any;
   conductorUpdate: any;
@@ -50,13 +36,9 @@ export class RutaresumenPage implements OnInit {
 
 
   constructor(
-    private router: Router, 
-    private menu: MenuController, 
-    public fb: FormBuilder,
-    private toastController: ToastController,
-    private ngZone:  NgZone,
+    private router: Router,
     private conductoresService: ConductoresService,
-    private el: ElementRef,
+    private fireStore: FirestoreService
   ) { }
 
   
@@ -75,7 +57,7 @@ export class RutaresumenPage implements OnInit {
   }
 
   ionViewDidEnter(){
-    this.id = JSON.parse(localStorage.getItem('conductor')!);
+    this.id = JSON.parse(localStorage.getItem('usuario')!);
     console.log(this.id)
     this.obtenerCoordenadas().then(() => {
       this.map = L.map('mapId',{
@@ -83,52 +65,42 @@ export class RutaresumenPage implements OnInit {
       }).setView([this.latitud, this.longitud], 15);
       L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
       }).addTo(this.map);
-
-      this.locationMe = L.marker([this.latitud, this.longitud]).addTo(this.map);
+      L.marker([this.latitud, this.longitud]).addTo(this.map);
     });
     
   };
-  ionViewWillLeave(){
-    if (this.map) {
-      this.map.off();
-      this.map.remove();
-    }
-  };
+
   finalizarViaje(){
-    this.conductoresService.getConductor(this.id.id).subscribe(data =>{
-      this.conductor = data
-      console.log(this.conductor)
-      if (this.conductor[0].estado === true) {
+    this.fireStore.getByEmailConductor('conductores', this.id.correo).subscribe(
+      (querySnapshot) => {
+        this.conductor = querySnapshot.docs[0].data()
+        this.conductor.id = querySnapshot.docs[0].id
+        if (this.conductor.estado === true) {
           this.conductorUpdate = {
-            id: this.conductor[0].id,
-            nombre: this.conductor[0].nombre,
-            apellido: this.conductor[0].apellido,
-            correo: this.conductor[0].correo,
-            contraseña: this.conductor[0].contraseña,
-            telefono: this.conductor[0].telefono,
-            marca: this.conductor[0].marca,
-            modelo: this.conductor[0].modelo,
-            año: this.conductor[0].año,
-            placa: this.conductor[0].placa,
-            rut: this.conductor[0].rut,
+            id: this.conductor.id,
+            nombre: this.conductor.nombre,
+            apellido: this.conductor.apellido,
+            correo: this.conductor.correo,
+            contraseña: this.conductor.contraseña,
+            telefono: this.conductor.telefono,
+            marca: this.conductor.marca,
+            modelo: this.conductor.modelo,
+            año: this.conductor.año,
+            placa: this.conductor.placa,
+            rut: this.conductor.rut,
             estado: false,
-            meUbi: this.conductor[0].meUbi,
-            desUbi: this.conductor[0].desUbi
+            meUbi: this.conductor.meUbi,
+            desUbi: this.conductor.desUbi
           }
-          this.conductoresService.updateConductor(this.conductorUpdate).subscribe(
-            response => {
+          this.fireStore.updateDocumentConductor('conductores', this.conductor.id, this.conductorUpdate).then(
+            () => {
               this.router.navigate(["/pagoqr"])
-            },
-            error => {
-              console.error('Error al actualizar el conductor', error);
             }
           )
-        
-      }else{
-        console.error("Error")
+        }else{
+          console.error("Error")
+        }
       }
-      
-    })
+    )
   }
-
 }

@@ -128,10 +128,15 @@ export class DetallemapconductorPage implements OnInit {
 
     var solicitud = {
       idConductor: this.idConductor,
-      IdUsuario: this.userActivo.id,
+      IdUsuario: this.userActivo.correo,
       ubicacionUser: this.UbicacionUser,
       estado: false
     }
+    
+
+    this.fireStore.createDocumentSolicitud('solicitudes', solicitud).then((data) => {
+      this.router.navigate(['encontrado',this.idConductor, data.id])
+    })
    
   }
 }

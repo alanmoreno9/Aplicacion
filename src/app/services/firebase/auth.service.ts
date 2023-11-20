@@ -105,11 +105,7 @@ export class AuthService {
   }
 
   cerrar(){
-    try {
       this.auth.signOut();                                  
-    } catch (error) {
-      console.error("error al cerrar sesion", error);
-    }
   }
 
   checkAuth(){

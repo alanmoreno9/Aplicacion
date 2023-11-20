@@ -13,7 +13,7 @@
       <ion-list *ngIf="peticiones !== null">
         <ion-item *ngFor="let peticion of peticiones" [routerLink]="['/esperando/peticiondetalle/', peticion.id]">
           <ion-label>
-            {{peticion.IdUsuario}}
+            <span *ngIf="peticion.IdUsuario === peticion.usuario?.correo">{{peticion.usuario?.nombre}} {{peticion.usuario?.apellido}}</span>
             <ion-label style="float: right;">► Solicitud</ion-label>
           </ion-label>
         </ion-item>

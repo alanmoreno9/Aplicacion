@@ -75,19 +75,20 @@ export class EsperarconductorPage implements OnInit {
     this.conductor = JSON.parse(localStorage.getItem('conductor')!);
     console.log(this.conductor)
 
-    setTimeout( ()=>{
-      this.router.navigate(['/qr'])
-    },10000)
-
   }
 
   ionViewDidEnter(){
     this.obtenerCoordenadas().then(() => {
-      this.map = L.map('mapId',{
-        zoomControl: false,
-      }).setView([this.latitud, this.longitud], 15);
-      L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
-      }).addTo(this.map);
+      if (this.map) {
+        
+      }else{
+        this.map = L.map('mapId',{
+          zoomControl: false,
+        }).setView([this.latitud, this.longitud], 15);
+        L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
+        }).addTo(this.map);
+      }
+      
       
 
       this.startPoint = L.latLng(this.latitud, this.longitud)

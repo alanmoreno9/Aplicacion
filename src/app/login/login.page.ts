@@ -55,7 +55,9 @@ export class LoginPage implements OnInit {
         const transformedUser = this.transformRandomUserData(user);
         this.fireStore.createDocument('usuarios', transformedUser).then(() => {
           try {
-            this.authService.register(transformedUser.correo, transformedUser.contraseña);
+            this.authService.register(transformedUser.correo, transformedUser.contraseña).then(() => {
+              this.router.navigate(['terms-modal'])
+            }); 
           } catch (error) {
             console.log("Error: ", error)
           }
@@ -86,12 +88,6 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    
-  }
-
-  
-
-  ionViewDidEnter(){
     this.menu.enable(false);
     this.authService.checkAuth()
     .then((user) => {
@@ -102,6 +98,12 @@ export class LoginPage implements OnInit {
     .catch((error) => {
       //console.error('Error en la autenticació:',error);
     })
+  }
+
+  
+
+  ionViewDidEnter(){
+    
   }
 
 
