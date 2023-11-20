@@ -266,6 +266,8 @@ export class MapaPage implements OnInit {
         console.log('I was closed by the timer')
       }
     })
-    }
   }
+
+
+}
 

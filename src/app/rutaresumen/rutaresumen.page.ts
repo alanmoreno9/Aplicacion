@@ -70,7 +70,26 @@ export class RutaresumenPage implements OnInit {
     
   };
 
-  finalizarViaje(){
+  finalizarViaje() {
+    const idsAceptados = JSON.parse(localStorage.getItem('idsAceptados') || '[]') as string[];
+  
+    const eliminacionesId: Promise<void>[] = idsAceptados.map((id: string) =>
+        this.fireStore.deleteSolicitud('solicitudes', id)
+          .then(() => {
+            console.log(`Solicitud ${id} eliminada correctamente`);
+          })
+          .catch((error) => {
+            console.error(`Error al eliminar la solicitud ${id}`, error);
+          })
+        );
+        
+      Promise.all(eliminacionesId)
+        .then(() => {
+          console.log('Todas las solicitudes eliminadas correctamente');
+        })
+
+      localStorage.removeItem('idsAceptados');
+    
     this.fireStore.getByEmailConductor('conductores', this.id.correo).subscribe(
       (querySnapshot) => {
         this.conductor = querySnapshot.docs[0].data()
@@ -92,15 +111,16 @@ export class RutaresumenPage implements OnInit {
             meUbi: this.conductor.meUbi,
             desUbi: this.conductor.desUbi
           }
+  
           this.fireStore.updateDocumentConductor('conductores', this.conductor.id, this.conductorUpdate).then(
             () => {
-              this.router.navigate(["/pagoqr"])
+              this.router.navigate(["/pagoqr"]);
             }
-          )
-        }else{
-          console.error("Error")
+          );
+        } else {
+          console.error("Error");
         }
       }
-    )
+    );
   }
 }

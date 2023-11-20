@@ -40,5 +40,8 @@
     "Haz click Acá":"Haz click Acá",
     "de conductor":"de conductor",
     "Cargando Aplicacion":"Cargando Aplicacion",
-    "regresar al login":"regresar al login"
+    "regresar al login":"regresar al login",
+    "mediante este QR el cliente puede realizar su pago":"mediante este QR el cliente puede realizar su pago",
+    "Recuerde que este QR solo se genera un vez por viaje":"Recuerde que este QR solo se genera un vez por viaje",
+    "Finalizar pago":"Finalizar pago"
 }

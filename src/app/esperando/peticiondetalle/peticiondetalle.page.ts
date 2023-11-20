@@ -81,6 +81,12 @@ export class PeticiondetallePage implements OnInit {
               console.log(this.conductor.id)
               if (this.conductor.estado === true) {
                 if (this.conductor.asientosDisponibles > 0 ) {
+
+                const idsAceptados = JSON.parse(localStorage.getItem('idsAceptados')!) || [];
+                idsAceptados.push(this.idPeticion);
+                localStorage.setItem('idsAceptados', JSON.stringify(idsAceptados));
+                console.log(idsAceptados)
+
                   this.conductorUpdate = {
                     id: this.conductor.id,
                     nombre: this.conductor.nombre,

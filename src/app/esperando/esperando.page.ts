@@ -25,9 +25,9 @@ export class EsperandoPage implements OnInit {
 
   ngOnInit() {
     
-    
-   
   }
+
+
   ionViewDidEnter(){
     this.conductor = JSON.parse(localStorage.getItem('usuario')!);
 
@@ -45,15 +45,13 @@ export class EsperandoPage implements OnInit {
           )
         });
         
-        
       },
       (error) => {
         console.error("Error al obtener peticiones", error);
       }
     )
-    
-    }
-  
+
+  }
 
   iniciarViaje(){
     this.fireStore.getByEmailConductor('conductores', this.conductor.correo).subscribe(

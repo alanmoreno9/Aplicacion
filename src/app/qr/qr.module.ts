@@ -9,7 +9,6 @@ import { QrPageRoutingModule } from './qr-routing.module';
 import { QrPage } from './qr.page';
 
 
-
 @NgModule({
   imports: [
     CommonModule,
