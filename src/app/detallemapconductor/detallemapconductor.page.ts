@@ -40,9 +40,8 @@ export class DetallemapconductorPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    
-    
   }
+
   ionViewDidEnter(){
     this.idConductor = this.activatedRoute.snapshot.paramMap.get("id");
     if (this.idConductor) {
@@ -58,24 +57,58 @@ export class DetallemapconductorPage implements OnInit {
         this.ubicacion = this.conductor.meUbi
         this.destino = this.conductor.desUbi
         console.log(this.conductor, this.ubicacion, this.destino)
-        
+      
+
           this.map = L.map('mapId', {
             zoomControl: false,
           }).setView([this.ubicacion.lat, this.ubicacion.lng], 15);
           L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
           }).addTo(this.map);
+
           
           if (this.map) {
+            
+
+
             this.calcularRuta()
             this.obtenerCoordenadas().then(() => {
-              L.marker(this.UbicacionUser).addTo(this.map).bindPopup('Tú estás aquí').openPopup();
+
+              const customIcon = L.icon({
+                iconUrl: 'assets/img/persona4.png',
+                iconSize: [50, 50],
+              });
+
+              const conductorIcon = L.icon({
+                iconUrl: 'assets/img/auto3.png',
+                iconSize: [50, 50],
+              });
+    
+              const destinoIcon = L.icon({
+                iconUrl: 'assets/img/llegada.png',
+                iconSize: [50, 50],
+              });
+
+              
+
+    
+              L.marker([this.ubicacion.lat, this.ubicacion.lng], { icon: conductorIcon })
+                .addTo(this.map)
+                .bindPopup('Conductor está aquí');
+    
+              L.marker([this.destino.lat, this.destino.lng], { icon: destinoIcon })
+                .addTo(this.map)
+                .bindPopup('Destino');
+
+              
+              L.marker(this.UbicacionUser, { icon: customIcon }).addTo(this.map).bindPopup('Tú estás aquí').openPopup();
+            
+            
             })
           }
         
       }
     )
   }
-
 
   calcularRuta(){
     L.Routing.control({

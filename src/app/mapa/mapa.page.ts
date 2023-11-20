@@ -96,10 +96,14 @@ export class MapaPage implements OnInit {
       L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
       }).addTo(this.map);
       
+      var nuevoIcono = L.icon({
+        iconUrl: 'assets/img/auto3.png',
+        iconSize: [50, 50],
+    });
 
-      this.startPoint = L.latLng(this.latitud, this.longitud)
+      this.startPoint = L.marker([this.latitud, this.longitud], { icon: nuevoIcono }).addTo(this.map);
 
-      this.locationMe = L.marker([this.latitud, this.longitud]).addTo(this.map);
+      this.locationMe = L.marker([this.latitud, this.longitud]);
       
     });
   };
@@ -139,7 +143,12 @@ export class MapaPage implements OnInit {
       this.map.removeControl(this.control);
     };
 
-    this.endPoint = L.latLng(info.results[0].geometry.location.lat(), info.results[0].geometry.location.lng())
+    var nuevoIconoEnd = L.icon({
+      iconUrl: 'assets/img/llegada.png',
+      iconSize: [50, 50],
+  });
+
+  this.endPoint = L.marker([info.results[0].geometry.location.lat(), info.results[0].geometry.location.lng()], { icon: nuevoIconoEnd }).addTo(this.map);
 
     
     
