@@ -29,10 +29,6 @@ export class PagoqrPage implements OnInit {
     console.log('Código QR generado:', this.codigoQR);
   }
 
-  escanearCodigoQR() {
-    this.scannerService.setQRCodeResult(this.codigoQR);
-  }
-
 }
   
 

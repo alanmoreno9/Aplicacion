@@ -20,11 +20,7 @@ import 'leaflet-routing-machine';
 import { ConductoresService } from '../services/api/conductores.service';
 
 
-
-
-
 declare var google: any;
-
 
 @Component({
   selector: 'app-esperarconductor',
@@ -72,6 +68,11 @@ export class EsperarconductorPage implements OnInit {
   }
 
   ngOnInit() {
+
+    setTimeout(() =>{
+      this.router.navigate(['qr']);
+    }, 8000);
+
     this.conductor = JSON.parse(localStorage.getItem('conductor')!);
     console.log(this.conductor)
 

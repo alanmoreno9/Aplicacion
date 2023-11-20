@@ -18,3 +18,7 @@ codigo-qr {
     width: 200px;
     height: 200px;
   }
+
+  ion-content.background{
+    --background: url(img/register.jpeg) 0 0/100% 100% no-repeat;
+}

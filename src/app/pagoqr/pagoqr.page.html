@@ -1,20 +1,21 @@
-<ion-content>
-  <ion-card>
-    <ion-card-header class="centrado">
-      <h4>{{ "Esta opcion sirve para que el usuario pueda pagar mediante codigo QR"  | translate }}</h4>
+<ion-content class="background">
+  <div class="centrado">
+    <ion-card>
+      <ion-card-header class="centrado">
+        <h4>{{ "Esta opcion sirve para que el usuario pueda pagar mediante codigo QR"  | translate }}</h4>
 
-    </ion-card-header>
-    <ion-card-content>
-      <div class="centrado">
-        <button (click)="generarCodigoQR()">{{"Generar Código QR" | translate }}</button>
-      </div>
-      <br>
-      <div class="centrado">
-        <qrcode *ngIf="codigoQR" [qrdata]="codigoQR"></qrcode>
-      </div>
-    </ion-card-content>
-  </ion-card>
-
+      </ion-card-header>
+      <ion-card-content>
+        <div class="centrado">
+          <button (click)="generarCodigoQR()">{{"Generar Código QR" | translate }}</button>
+        </div>
+        <br>
+        <div class="centrado">
+          <qrcode *ngIf="codigoQR" [qrdata]="codigoQR"></qrcode>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
   
 
 
