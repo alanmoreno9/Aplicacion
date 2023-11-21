@@ -40,5 +40,13 @@
     "Haz click Acá": "انقر هنا",
     "de conductor": "للسائق",
     "Cargando Aplicacion": "جاري تحميل التطبيق",
-    "regresar al login": "العودة إلى تسجيل الدخول"
+    "regresar al login": "العودة إلى تسجيل الدخول",
+    "mediante este QR el cliente puede realizar su pago": "من خلال هذا الرمز الاستجابي، يمكن للعميل إجراء الدفع",
+    "Recuerde que este QR solo se genera un vez por viaje":"ذكر أن هذا الرمز يتم إنشاؤه مرة واحدة فقط لكل رحلةرحلة",
+    "Finalizar pago":"إنهاء الدفع",
+    "Total a pagar: $8300":"الإجمالي المطلوب دفعه: 8300 دولار",
+    "Duracion del viaje: 10 minutos":"دة الرحلة: 10 دقائق",
+    "Pago QR": "دفع بواسطة الرمز الاستجابي",
+    "Escanear QR":"دفع بواسطة الرمز الاستجابي",
+    "Llegue a mi destino" : "دفع بواسطة الرمز الاستجابي",
   }

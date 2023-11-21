@@ -65,6 +65,7 @@ export class HomePage implements OnInit {
     console.log("cerró")
     this.authService.logout()
   }
+  
   async message(timerInterval: any){
     Swal.fire({
       title: 'Cargando Conductores Activos',

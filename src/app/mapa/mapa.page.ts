@@ -232,10 +232,10 @@ export class MapaPage implements OnInit {
     this.firestore.getByEmailConductor('conductores', this.conductor.correo).subscribe(
       (querySnapshot) => {
         const conductor = querySnapshot.docs[0].data()
-        if (conductor.meUbi !== null || conductor.desUbi !== null) {
+        if (conductor.estado === true) {
           this.router.navigate(['/esperando'])
         }else{
-          this.message("","Aún no haz seleccionado un destino","Selecciona un destino para ver solicitudes entrantes")
+          this.message("","Debes conectarte","Selecciona tu ruta para conectarte")
         }
       })
   }

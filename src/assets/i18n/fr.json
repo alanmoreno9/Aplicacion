@@ -40,5 +40,13 @@
     "Haz click Acá": "Cliquez ici",
     "de conductor": "de conducteur",
     "Cargando Aplicacion": "Chargement de l'application",
-    "regresar al login": "retour au login"
+    "regresar al login": "retour au login",
+    "mediante este QR el cliente puede realizar su pago":  "À travers ce QR, le client peut effectuer son paiement",
+    "Recuerde que este QR solo se genera un vez por viaje":"N'oubliez pas que ce QR n'est généré qu'une seule fois par trajet",
+    "Finalizar pago":"Finaliser le paiement",
+    "Total a pagar: $8300":"Total à payer : 8300 $",
+    "Duracion del viaje: 10 minutos":"Durée du trajet : 10 minutes",
+    "Pago QR": "Paiement QR",
+    "Escanear QR":"Scanner le QR",
+    "Llegue a mi destino" : "Arrivé à ma destination"
   }

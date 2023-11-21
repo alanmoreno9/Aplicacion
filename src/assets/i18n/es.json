@@ -43,5 +43,10 @@
     "regresar al login":"regresar al login",
     "mediante este QR el cliente puede realizar su pago":"mediante este QR el cliente puede realizar su pago",
     "Recuerde que este QR solo se genera un vez por viaje":"Recuerde que este QR solo se genera un vez por viaje",
-    "Finalizar pago":"Finalizar pago"
+    "Finalizar pago":"Finalizar pago",
+    "Total a pagar: $8300":"Total a pagar: $8300",
+    "Duracion del viaje: 10 minutos":"Duracion del viaje: 10 minutos",
+    "Pago QR":"Pago QR",
+    "Escanear QR":"Escanear QR",
+    "Llegue a mi destino" :"Llegue a mi destino" 
 }

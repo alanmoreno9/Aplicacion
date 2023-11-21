@@ -69,10 +69,6 @@ export class EsperarconductorPage implements OnInit {
 
   ngOnInit() {
 
-    setTimeout(() =>{
-      this.router.navigate(['qr']);
-    }, 8000);
-
     this.conductor = JSON.parse(localStorage.getItem('conductor')!);
     console.log(this.conductor)
 
@@ -105,7 +101,9 @@ export class EsperarconductorPage implements OnInit {
     }
   };
 
-  
+  finalizar(){
+    this.router.navigate(['/qr'])
+  }
 
 
 }

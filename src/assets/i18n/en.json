@@ -40,5 +40,13 @@
     "Haz click Acá": "Click here",
     "de conductor": "as a driver",
     "Cargando Aplicacion": "Loading Application",
-    "regresar al login":"back to login"
+    "regresar al login":"back to login",
+    "mediante este QR el cliente puede realizar su pago": "Through this QR, the customer can make their payment",
+    "Recuerde que este QR solo se genera un vez por viaje":"Remember that this QR is only generated once per trip",
+    "Finalizar pago":"Complete payment",
+    "Total a pagar: $8300":"Total to pay: $8300",
+    "Duracion del viaje: 10 minutos":"Trip duration: 10 minutes",
+    "Pago QR": "QR Payment",
+    "Escanear QR":"Scan QR",
+    "Llegue a mi destino" : "Arrived at my destination"
   }
