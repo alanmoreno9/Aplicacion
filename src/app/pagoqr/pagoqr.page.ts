@@ -3,7 +3,6 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { IUsuario, pago } from 'src/app/interfaces/Iusuario';
 import { AlertController } from '@ionic/angular';
-import { ScannerService } from '../services/scanner.service';
 import * as QRCode from 'qrcode';
 
 import 'angularx-qrcode';
@@ -20,8 +19,7 @@ export class PagoqrPage implements OnInit {
   
   constructor(private firestore: AngularFirestore,
     private router: Router,
-    private alertController: AlertController,
-    private scannerService: ScannerService) { }
+    private alertController: AlertController) { }
 
   ngOnInit(): void{
     const paginaARedirigir = '/qr';

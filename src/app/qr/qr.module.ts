@@ -15,7 +15,6 @@ import { QrPage } from './qr.page';
     FormsModule,
     IonicModule,
     QrPageRoutingModule,
-    
   ],
   
   declarations: [QrPage]

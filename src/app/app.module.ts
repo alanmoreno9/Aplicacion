@@ -15,11 +15,11 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
-import { environment } from 'src/environments/environment';
-
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,7 +39,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader'
             })
           ],
 
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

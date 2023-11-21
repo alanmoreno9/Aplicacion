@@ -13,8 +13,10 @@ npm i angularx-qrcode
 npm install --save-dev @types/qrcode
 npm install @zxing/library
 npm install qrcode
-npm install ngx-scanner
-
+npm i -g cordova
+ionic cordova plugin add phonegap-plugin-barcodescanner
+npm install @awesome-cordova-plugins/barcode-scanner
+npm install @capacitor-community/barcode-scanner
 
 
 npm i -g @ionic/cli

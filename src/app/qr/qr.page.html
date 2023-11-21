@@ -1,5 +1,4 @@
-<ion-content class="background">
-
+<ion-content class="background" [style.visibility]="content_visibility">
   <div class="centrado">
     <ion-card class="card">
       <ion-list>
@@ -11,8 +10,11 @@
         </ion-item>
       </ion-list>
       <ion-list>
-        <ion-item>Pago QR:<ion-button>Escanear QR</ion-button></ion-item>
+        <ion-item>Pago QR:<ion-button (click)="startScan()">Escanear QR</ion-button></ion-item>
       </ion-list>
+      <ion-item *ngIf="scannedResult">
+        <ion-label>scanned result: {{scannedResult}}</ion-label>
+      </ion-item>
     </ion-card>
   </div>
 
