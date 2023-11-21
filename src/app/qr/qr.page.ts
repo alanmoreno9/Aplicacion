@@ -49,6 +49,7 @@ export class QrPage implements OnDestroy {
       if (result?.hasContent) {
         this.scannedResult = result.content;
         console.log(this.scannedResult);
+        this.router.navigate(['/home']);
       }
     } catch (error) {
       console.log(error);
