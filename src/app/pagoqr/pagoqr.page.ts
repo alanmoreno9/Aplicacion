@@ -32,7 +32,7 @@ export class PagoqrPage implements OnInit {
   }
 
   redirigir() {
-    this.router.navigate(['/mapa']);
+    this.router.navigate(['/home']);
   }
 
   generarCodigoQR() {

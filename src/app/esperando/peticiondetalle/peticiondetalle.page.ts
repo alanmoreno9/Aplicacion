@@ -137,6 +137,12 @@ rechazarSolicitud(){
 
 }
 
+handleRefresh(){
+  setTimeout(() => {
+    this.ngOnInit();
+  }, 1000);
+}
+
 async message(timerInterval: any, title: String, html: String){
   Swal.fire({
     title: title,

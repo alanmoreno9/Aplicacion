@@ -16,7 +16,7 @@ npm install qrcode
 
 
 npm i -g @ionic/cli
-npm  @capacitor/core @capacitor/cli
+npm i @capacitor/core @capacitor/cli
 ionic build
 npx cap init
 npm install @capacitor/android
