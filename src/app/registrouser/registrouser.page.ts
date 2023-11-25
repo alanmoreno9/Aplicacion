@@ -38,20 +38,20 @@ export class RegistrouserPage implements OnInit {
 
   registrar(){
     const f = this.FormRegisterUser.value;
-
+    
     if (this.FormRegisterUser.valid) {
       const user = {
         apellido: f.apellido,
         contraseña: f.contraseña,
-        correo: f.correo,
+        correo: f.correo.lower,
         id: this.generateUniqueId(),
         nombre: f.nombre
       }
-      this.fireStore.getByEmailConductor('conductores', f.correo).subscribe(
+      this.fireStore.getByEmailConductor('conductores', user.correo).subscribe(
         (querySnapshot) => {
           const documentos = querySnapshot.docs;
 
-          if (documentos.length === 1) {
+          if (documentos) {
             this.message("Correo ya registrado")
           }else{
             this.fireStore.createDocument('usuarios', user).then(

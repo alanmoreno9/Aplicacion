@@ -98,7 +98,11 @@ export class EncontradoPage implements OnInit {
       (querySnapshot) => {
         this.llego = querySnapshot.data()
         if (this.llego) {
-          this.router.navigate(['/esperarconductor'])
+          if (this.llego.estado === true) {
+            this.router.navigate(['/esperarconductor'])
+          }else{
+            this.message("", "El conductor no ha aceptado tu solicitud", "tu solicitud fue enviada al conductor, por favor, espera.");
+          }
         }else{
           this.message("", "El conductor no ha llegado", "tu solicitud fue rechazada por el conductor, te redirigiremos");
           this.router.navigate(['/conductoresactivos'])

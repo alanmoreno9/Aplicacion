@@ -57,14 +57,17 @@ export class RutaresumenPage implements OnInit {
   }
 
   ionViewDidEnter(){
+
+    this.map = L.map('mapId',{
+      zoomControl: false,
+    })
+    L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
+      }).addTo(this.map);
+
     this.id = JSON.parse(localStorage.getItem('usuario')!);
     console.log(this.id)
     this.obtenerCoordenadas().then(() => {
-      this.map = L.map('mapId',{
-        zoomControl: false,
-      }).setView([this.latitud, this.longitud], 15);
-      L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
-      }).addTo(this.map);
+      this.map.setView([this.latitud, this.longitud], 15);
       L.marker([this.latitud, this.longitud]).addTo(this.map);
     });
     

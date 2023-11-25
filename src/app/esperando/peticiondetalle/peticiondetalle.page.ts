@@ -35,15 +35,28 @@ export class PeticiondetallePage implements OnInit {
   }
   ionViewDidEnter(){
     this.idPeticion = this.activatedRoute.snapshot.paramMap.get("id");
+    if (this.map) {
+      return
+    }else{
+      this.map = L.map('mapId',{
+        zoomControl: false,
+      })
+      L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
+      }).addTo(this.map);
+    }
+    
+    
 
     this.fireStore.getByIdSolicitud('solicitudes', this.idPeticion).subscribe(
       (querySnapshot) => {
         this.datosSolicitud = querySnapshot.data()
         if (this.datosSolicitud) {
           this.coords = L.latLng(this.datosSolicitud.ubicacionUser[0], this.datosSolicitud.ubicacionUser[1]);
+          
           this.idConductor = this.datosSolicitud.idConductor
           if (this.coords) {
-            this.generarMapa()
+            this.map.setView([this.coords.lat, this.coords.lng], 15)
+            L.marker([this.coords.lat, this.coords.lng]).addTo(this.map).bindPopup('El usuario se encuentra aqui').openPopup();;
           }
         }else{
         this.message("","Error","Error al generar mapa")
@@ -58,16 +71,6 @@ export class PeticiondetallePage implements OnInit {
       this.map.remove();
     }
   };
-
-  generarMapa(){
-      this.map = L.map('mapId',{
-        zoomControl: false,
-      }).setView([this.coords.lat, this.coords.lng], 15);
-      L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
-      }).addTo(this.map);
-      L.marker([this.coords.lat, this.coords.lng]).addTo(this.map).bindPopup('El usuario se encuentra aqui')
-      .openPopup();;
-  }
 
   updateConductor() {
     this.fireStore.getByIdSolicitud('solicitudes', this.idPeticion).subscribe(
@@ -138,9 +141,9 @@ rechazarSolicitud(){
 }
 
 handleRefresh(){
-  setTimeout(() => {
+  
     this.ngOnInit();
-  }, 1000);
+  
 }
 
 async message(timerInterval: any, title: String, html: String){
