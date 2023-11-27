@@ -10,8 +10,12 @@
         </ion-item>
       </ion-list>
       <ion-list>
-        <ion-item>{{"Pago QR" | translate}}:<ion-button (click)="pagar()">{{"Escanear QR" | translate}}</ion-button></ion-item>
+        <ion-item>{{"Pago QR" | translate}}:<ion-button (click)="startScan()">{{"Escanear QR" | translate}}</ion-button></ion-item>
       </ion-list>
+
+      <ion-item *ngIf="scannedResult">
+        <ion-label>Scanned Result: {{scannedResult}}</ion-label>
+      </ion-item>
     </ion-card>
   </div>
 

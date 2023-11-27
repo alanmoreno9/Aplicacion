@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { IUsuario, pago } from 'src/app/interfaces/Iusuario';
 import { AlertController } from '@ionic/angular';
 import * as QRCode from 'qrcode';
 
@@ -17,12 +16,14 @@ export class PagoqrPage implements OnInit {
   
   codigoQR: string = '';
   
-  constructor(private firestore: AngularFirestore,
+  constructor(
+    private firestore: AngularFirestore,
     private router: Router,
-    private alertController: AlertController) { }
+    private alertController: AlertController
+    ) { }
 
   ngOnInit(): void{
-    const paginaARedirigir = '/qr';
+    const paginaARedirigir = '/login';
 
     QRCode.toCanvas(this.qrcode.nativeElement, paginaARedirigir, function (error) {
       if (error) {

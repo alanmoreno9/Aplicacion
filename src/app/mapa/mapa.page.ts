@@ -1,8 +1,4 @@
 
-
-
-
-
 import { Component, ElementRef, Input, NgZone, OnInit, Renderer2 } from '@angular/core';
 
 import {

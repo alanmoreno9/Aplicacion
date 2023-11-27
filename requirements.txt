@@ -21,4 +21,5 @@ ionic build
 npx cap init
 npm install @capacitor/android
 npx cap add android
+npx cap sync
 npx cap open android (opcional)

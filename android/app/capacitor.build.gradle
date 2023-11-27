@@ -9,6 +9,7 @@ android {
 
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
+    implementation project(':capacitor-community-barcode-scanner')
     implementation project(':capacitor-app')
     implementation project(':capacitor-geolocation')
     implementation project(':capacitor-haptics')
@@ -16,7 +17,7 @@ dependencies {
     implementation project(':capacitor-status-bar')
 
 }
-
+apply from: "../../node_modules/cordova-android-support-gradle-release/cordova-android-support-gradle-release.gradle"
 
 if (hasProperty('postBuildExtras')) {
   postBuildExtras()
