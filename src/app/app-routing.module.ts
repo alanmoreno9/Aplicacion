@@ -155,6 +155,10 @@ const routes: Routes = [
     path: 'registrouser',
     loadChildren: () => import('./registrouser/registrouser.module').then( m => m.RegistrouserPageModule)
   },
+  {
+    path: 'datospago',
+    loadChildren: () => import('./datospago/datospago.module').then( m => m.DatospagoPageModule)
+  },
 
 
 

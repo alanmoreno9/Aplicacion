@@ -14,7 +14,6 @@ npm install --save-dev @types/qrcode
 npm install @zxing/library
 npm install qrcode
 
-
 npm i -g @ionic/cli
 npm i @capacitor/core @capacitor/cli
 ionic build
