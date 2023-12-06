@@ -35,15 +35,12 @@ export class PeticiondetallePage implements OnInit {
   }
   ionViewDidEnter(){
     this.idPeticion = this.activatedRoute.snapshot.paramMap.get("id");
-    if (this.map) {
-      return
-    }else{
-      this.map = L.map('mapId',{
+    this.map = L.map('mapId',{
         zoomControl: false,
       })
       L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
       }).addTo(this.map);
-    }
+    
     
     
 

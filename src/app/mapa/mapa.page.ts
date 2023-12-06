@@ -95,7 +95,7 @@ export class MapaPage implements OnInit {
       var nuevoIcono = L.icon({
         iconUrl: 'assets/img/auto3.png',
         iconSize: [50, 50],
-    });
+      });
 
       const start = L.marker([this.latitud, this.longitud], { icon: nuevoIcono }).addTo(this.map);
 

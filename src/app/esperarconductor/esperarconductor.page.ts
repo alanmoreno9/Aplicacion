@@ -76,14 +76,11 @@ export class EsperarconductorPage implements OnInit {
 
   ionViewDidEnter(){
 
-    if (this.map) {
-      return
-    }else{
       this.map = L.map('mapId',{
         zoomControl: false,
       })
       L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {}).addTo(this.map);
-    }
+    
     
     this.obtenerCoordenadas().then(() => {
 

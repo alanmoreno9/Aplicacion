@@ -9,6 +9,7 @@ import {
 import { ToastController } from '@ionic/angular';
 import { FirestoreService } from '../services/firebase/firestore.service';
 import { AuthService } from '../services/firebase/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrouser',
@@ -23,7 +24,8 @@ export class RegistrouserPage implements OnInit {
     public fb: FormBuilder,
     private toastController: ToastController,
     private fireStore: FirestoreService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {
     this.FormRegisterUser = this.fb.group({
       'nombre' : new FormControl("", Validators.required),
@@ -40,30 +42,38 @@ export class RegistrouserPage implements OnInit {
     const f = this.FormRegisterUser.value;
     
     if (this.FormRegisterUser.valid) {
+
       const user = {
         apellido: f.apellido,
         contraseña: f.contraseña,
-        correo: f.correo.lower,
+        correo: f.correo.toLowerCase(),
         id: this.generateUniqueId(),
         nombre: f.nombre
       }
-      this.fireStore.getByEmailConductor('conductores', user.correo).subscribe(
+
+      console.log(user)
+      
+      this.fireStore.getByEmail('usuarios', user.correo).subscribe(
         (querySnapshot) => {
           const documentos = querySnapshot.docs;
-
-          if (documentos) {
+          console.log(documentos)
+          if (documentos.length > 0) {
             this.message("Correo ya registrado")
           }else{
             this.fireStore.createDocument('usuarios', user).then(
               ()=>{
               this.auth.registro(f.correo, f.contraseña).then(() => {
                 this.message("Registro exitoso")
+                this.router.navigate(['/login'])
               })
               },
               error => {
-                console.error("No se pudo registrar al usuario: ", error)
+                this.message("No se pudo registrar al usuario: ")
               })
           }
+        },
+        (error) => {
+          this.message("Error al registrar, por favor intentalo más tarde")
         }
       )
       

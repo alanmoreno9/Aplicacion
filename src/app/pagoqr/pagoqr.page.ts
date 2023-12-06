@@ -23,7 +23,7 @@ export class PagoqrPage implements OnInit {
     ) { }
 
   ngOnInit(): void{
-    const paginaARedirigir = '/login';
+    const paginaARedirigir = '/datospago';
 
     QRCode.toCanvas(this.qrcode.nativeElement, paginaARedirigir, function (error) {
       if (error) {
