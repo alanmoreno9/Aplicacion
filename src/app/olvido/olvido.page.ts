@@ -8,7 +8,7 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms';
-
+import { AuthService } from '../services/firebase/auth.service'; 
 
 @Component({
   selector: 'app-olvido',
@@ -23,7 +23,8 @@ export class OlvidoPage implements OnInit {
     private router: Router, 
     private menu: MenuController, 
     public fb: FormBuilder,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private auth: AuthService
   ) { 
 
     this.olvido = this.fb.group({
@@ -48,16 +49,14 @@ export class OlvidoPage implements OnInit {
   verificar(){
     var f = this.olvido.value;
 
-    var usuario = JSON.parse(localStorage.getItem('usuario')!);
+    if (this.olvido.valid) {
+      const reset = this.auth.resetPassword(f.email)
 
-    if(usuario.correo == f.email){
-      this.message('Redireccionando')
-      setTimeout(() =>{
-        this.router.navigate(['restablecer']);
-      }, 2000);
+      console.log(reset)
     }else{
-      this.message('Éste correo no existe')
+      this.message("Formulario invalido")
     }
+    
   }
 
 }

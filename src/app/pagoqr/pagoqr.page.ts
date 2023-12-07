@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import * as QRCode from 'qrcode';
 
+import 'angularx-qrcode';
 @Component({
   selector: 'app-pagoqr',
   templateUrl: './pagoqr.page.html',
@@ -7,9 +12,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagoqrPage implements OnInit {
 
-  constructor() { }
+  @ViewChild('qrcode', { static: true }) qrcode!: ElementRef;
+  
+  codigoQR: string = '';
+  
+  constructor(
+    private firestore: AngularFirestore,
+    private router: Router,
+    private alertController: AlertController
+    ) { }
 
-  ngOnInit() {
+  ngOnInit(): void{
+    const paginaARedirigir = '/datospago';
+
+    QRCode.toCanvas(this.qrcode.nativeElement, paginaARedirigir, function (error) {
+      if (error) {
+        console.error(error);
+      }
+    });
+  }
+
+  redirigir() {
+    this.router.navigate(['/home']);
+  }
+
+  generarCodigoQR() {
+    this.codigoQR = '/qr';
+    console.log('Código QR generado:', this.codigoQR);
   }
 
 }
+  
+
+

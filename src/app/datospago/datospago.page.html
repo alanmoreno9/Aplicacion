@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content class="background">
+  <div class="centrado">
+
+  
+  <ion-card class="card">
+    <ion-card-header>
+      <h2 style="text-align: center;">Datos de Tarjeta</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formularioPago">
+      <div>
+        <ion-input formControlName="num" label-placement="floating" label="Numero Tarjeta"></ion-input>
+      </div>
+
+      <br>
+    
+      <div style="display: flex;">
+        <div style="width: 50%; display: flex;">
+          <ion-input formControlName="fecha" label-placement="floating" label="Fecha Venc"></ion-input>
+        </div>
+        <div style="width: 30%; display: flex; margin-left: 10%;">
+          <ion-input formControlName="cvv" label-placement="floating" label="CVV"></ion-input>
+        </div>
+      </div>
+      <div class="login">
+        <ion-button class="boton" (click)="pagar()">Completar Pago</ion-button>
+      </div>
+    </form>
+    </ion-card-content>
+  </ion-card>
+
+</div>
+</ion-content>

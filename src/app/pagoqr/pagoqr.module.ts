@@ -8,12 +8,17 @@ import { PagoqrPageRoutingModule } from './pagoqr-routing.module';
 
 import { PagoqrPage } from './pagoqr.page';
 
+import { QRCodeModule } from 'angularx-qrcode';
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PagoqrPageRoutingModule
+    PagoqrPageRoutingModule,
+    QRCodeModule,
+    TranslateModule
   ],
   declarations: [PagoqrPage]
 })

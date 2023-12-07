@@ -6,11 +6,19 @@ npm install ngx-google-places-autocomplete
 npm install -g @angular/cli
 npm install --save @types/leaflet @types/leaflet-routing-machine
 npm install leaflet leaflet-routing-machine
+npm install @angular/fire firebase --save
+npm install @ngx-translate/core --save
+npm install @ngx-translate/http-loader --save
+npm i angularx-qrcode
+npm install --save-dev @types/qrcode
+npm install @zxing/library
+npm install qrcode
 
 npm i -g @ionic/cli
-npm  @capacitor/core @capacitor/cli
+npm i @capacitor/core @capacitor/cli
 ionic build
 npx cap init
 npm install @capacitor/android
 npx cap add android
+npx cap sync
 npx cap open android (opcional)

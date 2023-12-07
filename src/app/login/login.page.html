@@ -3,7 +3,7 @@
   <div class="centrado">
     <ion-card class="card">
       <ion-card-header>
-        <h3 class="login">Ingreso</h3>
+        <h3 class="login">{{ "Ingreso" | translate }}</h3>
       </ion-card-header>
     
       <ion-card-content>
@@ -14,20 +14,34 @@
             <p>
               <ion-input formControlName="password" label="Contraseña" type="password" label-placement="floating" errorText=" "></ion-input>
               <span *ngIf="this.formularioLogin.get('password')?.errors?.['minlength']" style="color: red;">
-                (Debe tener como mínimo 6 caracteres)
+                {{"(Debe tener como mínimo 6 caracteres)" | translate }}
               </span>
             </p>
+            <br>
+          <div class="login">
+            <span>{{"Recuperar mi" | translate}} <span style="text-decoration-line: underline;" [routerLink]="['/olvido']">{{"Contraseña" | translate}}</span></span>
+          </div>
+          <div class="login">
+            <ion-button (click)="login()" class="boton">{{ "ingresar" | translate }}</ion-button>
+
+          </div>
 
           <div class="login">
-            <ion-button (click)="login()" class="boton">Ingresar</ion-button>
+            <span class="colorboton">{{"¿No eres usuario registrado?" | translate}}</span>
+          </div>
+          <div class="login">
+            <span class="colorboton" [routerLink]="['/registrouser']">{{"Haz click Acá" | translate}}</span>
           </div>
           </form>
       </ion-card-content>
-      
+      <div class="login">
+        <ion-icon (click)="generateAndUploadUserData()" name="person-add-outline"></ion-icon>
+      </div>
       <br>
+
     </ion-card>
-    
   </div>
+
   
   
 </ion-content>

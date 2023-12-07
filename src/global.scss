@@ -56,4 +56,15 @@
 .button{
     margin: 8%;
 }
-
+.leaflet-routing-container.leaflet-bar.leaflet-routing-container-hide.leaflet-routing-collapsible.leaflet-control {
+    display: none !important;
+}
+ion-button.boton{
+    --background:  #049c7c;
+    --background-hover: #087060 ;
+    --background-activated: #049c7c 
+}
+body.scanner-active {
+    --background: transparent;
+    --ion-background-color: transparent;
+  }

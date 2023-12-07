@@ -1,0 +1,42 @@
+
+<ion-content class="background">
+  <div class="centrado">
+    <ion-card class="card">
+      <ion-card-header>
+        <h3 class="login">{{ "Registro" | translate }}</h3>
+      </ion-card-header>
+    
+      <ion-card-content>
+         <form [formGroup]="FormRegisterUser">
+          <p>
+            <ion-input formControlName="nombre" label="Nombre" type="nombre" label-placement="floating" nombre></ion-input>
+          </p>
+
+          <p>
+            <ion-input formControlName="apellido" label="Apellido" type="apellido" label-placement="floating" apellido></ion-input>
+          </p>
+
+          <p>
+            <ion-input formControlName="correo" label="Correo" type="correo" label-placement="floating" correo></ion-input>
+          </p>
+
+          <p>
+            <ion-input formControlName="contraseña" label="Contraseña" type="contraseña" label-placement="floating" errorText=" "></ion-input>
+            <span *ngIf="this.FormRegisterUser.get('contraseña')?.errors?.['minlength']" style="color: red;">
+              {{"(Debe tener como mínimo 6 caracteres)" | translate }}
+            </span>
+          </p>
+         </form>
+           
+          <div class="login">
+            <ion-button (click)="registrar()" class="boton">{{ "Registrarse" | translate }}</ion-button>
+          </div>
+
+          <div class="login">
+            <ion-button [routerLink]="['/login']" class="boton">{{ "regresar al login" | translate }}</ion-button>
+          </div>
+         
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

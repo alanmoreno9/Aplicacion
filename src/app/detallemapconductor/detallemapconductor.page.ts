@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConductoresService } from '../services/api/conductores.service';
 import * as L from "leaflet";
 import 'leaflet-routing-machine';
 import { Geolocation } from '@capacitor/geolocation'
-import { Isolicitud } from '../interfaces/isolicitud';
-import { SolicitudesService } from '../services/api/solicitudes.service';
-import { Isolicitudes } from '../interfaces/isolicitudes';
+import { FirestoreService } from '../services/firebase/firestore.service';
 
 
 @Component({
@@ -16,7 +13,7 @@ import { Isolicitudes } from '../interfaces/isolicitudes';
 })
 export class DetallemapconductorPage implements OnInit {
 
-  conductor!: any;
+  conductor: any;
 
   map!: L.Map;
 
@@ -37,55 +34,87 @@ export class DetallemapconductorPage implements OnInit {
   idPeticion: any;
 
   constructor(
-    private conductoresService: ConductoresService,
     private activatedRoute: ActivatedRoute,
-    private solicitudesService: SolicitudesService,
-    private router: Router
+    private router: Router,
+    private fireStore: FirestoreService
   ) { }
 
   ngOnInit() {
-    
-
-    
   }
+
   ionViewDidEnter(){
     this.idConductor = this.activatedRoute.snapshot.paramMap.get("id");
-    console.log(this.idConductor)
-
-    this.conductoresService.getConductor(Number(this.idConductor)).subscribe(data =>{
-      
-      this.conductor = data;
-      this.ubicacion = this.conductor[0].meUbi;
-      this.destino = this.conductor[0].desUbi;
-      console.log(this.ubicacion, this.destino);
-
-      this.iniciarMapa()
-      this.calcularRuta()
-      this.obtenerCoordenadas()
-      
-    });
-  }
-
-
-  iniciarMapa() {
-    if (this.ubicacion && this.destino) {
-      this.map = L.map('mapId', {
-        zoomControl: false,
-      });
-      L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
-      }).addTo(this.map);
-    } else {
-      console.log('sin coordenadas');
+    if (this.idConductor) {
+      this.obtenerConductor()
     }
+    console.log(this.idConductor)
   }
+  
+  async obtenerConductor(){
+    this.fireStore.getByEmailConductor('conductores', this.idConductor).subscribe(
+      (querySnapshot) => {
+        this.conductor = querySnapshot.docs[0].data()
+        this.ubicacion = this.conductor.meUbi
+        this.destino = this.conductor.desUbi
+        console.log(this.conductor, this.ubicacion, this.destino)
+      
 
+          this.map = L.map('mapId', {
+            zoomControl: false,
+          }).setView([this.ubicacion.lat, this.ubicacion.lng], 15);
+          L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
+          }).addTo(this.map);
+
+          
+          if (this.map) {
+            
+
+
+            this.calcularRuta()
+            this.obtenerCoordenadas().then(() => {
+
+              const customIcon = L.icon({
+                iconUrl: 'assets/img/persona4.png',
+                iconSize: [50, 50],
+              });
+
+              const conductorIcon = L.icon({
+                iconUrl: 'assets/img/auto3.png',
+                iconSize: [50, 50],
+              });
+    
+              const destinoIcon = L.icon({
+                iconUrl: 'assets/img/llegada.png',
+                iconSize: [50, 50],
+              });
+
+              
+
+    
+              L.marker([this.ubicacion.lat, this.ubicacion.lng], { icon: conductorIcon })
+                .addTo(this.map)
+                .bindPopup('Conductor está aquí');
+    
+              L.marker([this.destino.lat, this.destino.lng], { icon: destinoIcon })
+                .addTo(this.map)
+                .bindPopup('Destino');
+
+              
+              L.marker(this.UbicacionUser, { icon: customIcon }).addTo(this.map).bindPopup('Tú estás aquí').openPopup();
+            
+            
+            })
+          }
+        
+      }
+    )
+  }
 
   calcularRuta(){
     L.Routing.control({
       waypoints: [this.ubicacion, this.destino],
       show: false, 
     }).addTo(this.map);
-
   }
 
   async obtenerCoordenadas(){
@@ -97,19 +126,17 @@ export class DetallemapconductorPage implements OnInit {
   generarSolicitud(){
     this.userActivo = JSON.parse(localStorage.getItem('usuario')!);
 
-    var solicitud: Isolicitud ={
+    var solicitud = {
       idConductor: this.idConductor,
-      IdUsuario: this.userActivo.id,
+      IdUsuario: this.userActivo.correo,
       ubicacionUser: this.UbicacionUser,
       estado: false
     }
-
-    this.solicitudesService.addSolicitud(solicitud).subscribe((response)=>{
-      this.idPeticion = response
-      console.log(this.idPeticion.id)
-      this.router.navigate(['/encontrado',this.idConductor,this.idPeticion.id])
-    });
-
     
+
+    this.fireStore.createDocumentSolicitud('solicitudes', solicitud).then((data) => {
+      this.router.navigate(['encontrado',this.idConductor, data.id])
+    })
+   
   }
 }

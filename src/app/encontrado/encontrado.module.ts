@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { EncontradoPageRoutingModule } from './encontrado-routing.module';
 
 import { EncontradoPage } from './encontrado.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EncontradoPageRoutingModule
+    EncontradoPageRoutingModule,
+    TranslateModule
   ],
   declarations: [EncontradoPage]
 })

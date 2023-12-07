@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input, NgZone, OnInit } from '@angular/core';
+
+import { Component, ElementRef, Input, NgZone, OnInit, Renderer2 } from '@angular/core';
 
 import {
   FormGroup,
@@ -17,8 +18,9 @@ import { Geolocation } from '@capacitor/geolocation'
 import Swal from 'sweetalert2'
 import 'leaflet-routing-machine';
 
-import { ConductoresService } from '../services/api/conductores.service';
+import { FirestoreService } from '../services/firebase/firestore.service';
 
+import { IConductor } from '../interfaces/Iconductor';
 
 
 
@@ -60,27 +62,28 @@ export class MapaPage implements OnInit {
     public fb: FormBuilder,
     private toastController: ToastController,
     private ngZone:  NgZone,
-    private conductoresService: ConductoresService,
     private el: ElementRef,
+    private renderer: Renderer2,
+    private firestore: FirestoreService
 
-  ) { }
+  ) {
+    
+   }
 
   async obtenerCoordenadas(){
     const obtenerCoordenadas = await Geolocation.getCurrentPosition()
     this.latitud = obtenerCoordenadas.coords.latitude;
     this.longitud = obtenerCoordenadas.coords.longitude;
-    console.log(this.latitud)
-    console.log(this.longitud)
   }
 
   ngOnInit() {
     
-    this.conductor = JSON.parse(localStorage.getItem('conductor')!);
-    console.log(this.conductor)
-
+    
   }
 
   ionViewDidEnter(){
+    this.conductor = JSON.parse(localStorage.getItem('conductor')!);
+    console.log(this.conductor) 
     this.message("","Cargando Mapa","Esto tardará un poco");
     this.obtenerCoordenadas().then(() => {
       this.map = L.map('mapId',{
@@ -89,14 +92,16 @@ export class MapaPage implements OnInit {
       L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
       }).addTo(this.map);
       
+      var nuevoIcono = L.icon({
+        iconUrl: 'assets/img/auto3.png',
+        iconSize: [50, 50],
+      });
 
-      this.startPoint = L.latLng(this.latitud, this.longitud)
+      const start = L.marker([this.latitud, this.longitud], { icon: nuevoIcono }).addTo(this.map);
 
-      this.locationMe = L.marker([this.latitud, this.longitud]).addTo(this.map);
+      this.startPoint = L.latLng([this.latitud, this.longitud]);
       
-     
     });
-    
   };
 
   ionViewWillLeave(){
@@ -125,53 +130,44 @@ export class MapaPage implements OnInit {
     let geocoder = new google.maps.Geocoder()
     this.search = "";
     this.destination = item;
-    
 
-    document.getElementById('route-instructions')!.style.display = 'none';
-
-    
     const info: any = await geocoder.geocode({address: this.destination.description})
 
     console.log(info.results)
 
-    if (this.destino !== null) {
-      this.map.removeLayer(this.destino);
-    }
     if (this.control !== null) {
       this.map.removeControl(this.control);
     };
 
-    this.endPoint = L.latLng(info.results[0].geometry.location.lat(), info.results[0].geometry.location.lng())
+    var nuevoIconoEnd = L.icon({
+      iconUrl: 'assets/img/llegada.png',
+      iconSize: [50, 50],
+  });
 
-    this.destino = L.marker([info.results[0].geometry.location.lat(), info.results[0].geometry.location.lng()]).addTo(this.map);
+    this.endPoint = L.latLng([info.results[0].geometry.location.lat(), info.results[0].geometry.location.lng()])
+
+    this.locationMe = L.marker([info.results[0].geometry.location.lat(), info.results[0].geometry.location.lng()], { icon: nuevoIconoEnd }).addTo(this.map);
+    
+    
+
+    if (this.locationMe !== null) {
+      this.map.removeLayer(this.locationMe)
+    }
 
     this.control = L.Routing.control({
       waypoints: [this.startPoint, this.endPoint],
       show: false,
     }).addTo(this.map);
 
-    this.control.hide();
-
-    this.control.on('routeselected', (e: any) => {
-      const instructionsDiv = document.getElementById('route-instructions');
-      if (instructionsDiv) {
-        instructionsDiv.innerHTML = '';
-        e.route.instructions.forEach((instruction: L.Routing.IInstruction) => {
-          const instructionElement = document.createElement('div');
-          instructionElement.textContent = instruction.text!;
-          instructionsDiv.appendChild(instructionElement);
-          
-        });
-      }
-    });
+    
+      
         
   }
 
   esperando(){
     
-    if (this.destino != null) {
-      this.updateConductor();
-      this.router.navigate(['esperando'])
+    if (this.endPoint != null) {
+      this.updateConductor()
     }else{
       this.message('',"Alerta","Debes seleccionar un destino");
     }
@@ -179,32 +175,65 @@ export class MapaPage implements OnInit {
 
 
   updateConductor() {
-    this.conductorUpdate = {
-      id: this.conductor.id,
-      nombre: this.conductor.nombre,
-      apellido: this.conductor.apellido,
-      correo: this.conductor.correo,
-      contraseña: this.conductor.contraseña,
-      telefono: this.conductor.telefono,
-      marca: this.conductor.marca,
-      modelo: this.conductor.modelo,
-      año: this.conductor.año,
-      placa: this.conductor.placa,
-      rut: this.conductor.rut,
-      estado: true,
-      meUbi: this.startPoint,
-      desUbi: this.endPoint,
-      asientosDisponibles: 4
-    }
+    this.firestore.getByEmailConductor('conductores', this.conductor.correo).subscribe(
+      (querySnapshot) => {
+        const documentos = querySnapshot.docs;
+        if (documentos.length === 0) {
+          console.error("No existe el conductor para asignar la ruta")
+        }else{
+          const primerDocumento = documentos[0];
+          if (primerDocumento) {
+            const documentId = primerDocumento.id;
+            
+            this.firestore.getByIdConductor('conductores', documentId).subscribe(
+              (documentSnapshot) => {
+                const conductor = documentSnapshot.data();
+                if (conductor) {
+                  var conduAct : IConductor = {
+                    apellido: conductor.apellido,
+                    asientosDisponibles: conductor.asientosDisponibles,
+                    año: conductor.año,
+                    contraseña: conductor.contraseña,
+                    correo: conductor.correo,
+                    desUbi: {lat : this.endPoint.lat, lng : this.endPoint.lng},
+                    estado: true,
+                    marca: conductor.marca,
+                    meUbi: {lat : this.startPoint.lat, lng : this.startPoint.lng},
+                    modelo: conductor.modelo,
+                    nombre: conductor.nombre,
+                    placa: conductor.placa,
+                    rut: conductor.rut,
+                    telefono: conductor.telefono       
+                  }
 
-    this.conductoresService.updateConductor(this.conductorUpdate).subscribe(
-      response => {
-        console.log('Conductor actualizado con éxito', response);
-      },
-      error => {
-        console.error('Error al actualizar el conductor', error);
+                  console.log(this.endPoint, this.startPoint)
+                  this.firestore.updateDocumentConductor('conductores', documentId, conduAct).then(() => {
+                    this.router.navigate(['esperando'])
+                  })
+                }
+                
+              }
+            )
+            
+          }else{
+            console.error("Primer documento no definido")
+          }
+        }
       }
     )
+
+  }
+
+  rutaSolicitudes(){
+    this.firestore.getByEmailConductor('conductores', this.conductor.correo).subscribe(
+      (querySnapshot) => {
+        const conductor = querySnapshot.docs[0].data()
+        if (conductor.estado === true) {
+          this.router.navigate(['/esperando'])
+        }else{
+          this.message("","Debes conectarte","Selecciona tu ruta para conectarte")
+        }
+      })
   }
 
   async message(timerInterval: any, title: String, html: String){
@@ -233,6 +262,8 @@ export class MapaPage implements OnInit {
         console.log('I was closed by the timer')
       }
     })
-    }
   }
+
+
+}
 

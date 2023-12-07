@@ -1,7 +1,7 @@
 
 import { Router } from '@angular/router';
 import { ConductoresService } from '../services/api/conductores.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {
   FormGroup,
@@ -36,12 +36,7 @@ export class BuscandoPage implements OnInit {
   map!: L.Map;
 
 
-  constructor(private router: Router,
-              private ConductoresApi: ConductoresService,
- 
-              private menu: MenuController, 
-              public fb: FormBuilder,
-             private toastController: ToastController) { }
+  constructor() { }
 
   ngOnInit() {
     
@@ -71,7 +66,7 @@ export class BuscandoPage implements OnInit {
       
 
 
-      var marker = L.marker([this.latitud, this.longitud]).addTo(this.map);
+      L.marker([this.latitud, this.longitud]).addTo(this.map);
     });
   }
 

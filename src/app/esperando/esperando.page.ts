@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SolicitudesService } from '../services/api/solicitudes.service';
-import { UsuariosService } from '../services/api/usuarios.service';
 import Swal from 'sweetalert2'
-import { ConductoresService } from '../services/api/conductores.service';
 import { Router } from '@angular/router';
+import { FirestoreService } from '../services/firebase/firestore.service';
 
 @Component({
   selector: 'app-esperando',
@@ -18,54 +16,54 @@ export class EsperandoPage implements OnInit {
   resultado: any;
   conductorGet: any;
   nombreUser: any;
+  usuarios: any[] = [];
+  idPeticion: any;
   constructor(
-    private solicitudesService: SolicitudesService,
-    private usuarioService: UsuariosService,
-    private conductoresService: ConductoresService,
     private router: Router, 
+    private fireStore: FirestoreService
   ) { }
 
   ngOnInit() {
     
-    
-   
   }
+
+
   ionViewDidEnter(){
-    this.conductor = JSON.parse(localStorage.getItem('conductor')!);
-    this.solicitudesService.getSolicitudPorConductor(this.conductor.id).subscribe(
-      (data) => {
-        this.resultado = data;
+    this.conductor = JSON.parse(localStorage.getItem('usuario')!);
+
+    this.fireStore.getByIdConductorSolicitud('solicitudes', this.conductor.correo).subscribe(
+      (querySnapshot) => {
+        this.resultado = querySnapshot.docs.map( doc => doc.data());
         this.peticiones = this.resultado.filter((solicitud: any) => solicitud.estado === false)
+        console.log(this.peticiones)
+        this.peticiones.forEach((solicitud: any) => {
+          solicitud.id = querySnapshot.docs[0].id
+          this.fireStore.getByEmail('usuarios', solicitud.IdUsuario).subscribe(
+            (querySnapshot) => {
+              solicitud.usuario = querySnapshot.docs[0].data()
+            }
+          )
+        });
         
-          this.usuarioService.getUsuario(this.peticiones.IdUsuario).subscribe(
-            (data) => {
-              this.usuario = data
-            },
-            (error) =>{
-      
-              console.error("Error al obtener usuario")
-            }        
-          );
       },
       (error) => {
         console.error("Error al obtener peticiones", error);
       }
-    );
-    console.log(this.peticiones)
-    console.log(this.usuario)
+    )
+
   }
 
   iniciarViaje(){
-    this.conductoresService.getConductor(this.conductor.id).subscribe(data =>{
-      this.conductorGet = data
-      if (this.conductorGet[0].asientosDisponibles === 4) {
-        this.message("","Error", "Debes aceptar almenos una peticion")
-      }else{
-        this.router.navigate(['/rutaresumen'])
+    this.fireStore.getByEmailConductor('conductores', this.conductor.correo).subscribe(
+      (querySnapshot) =>{
+        this.conductorGet = querySnapshot.docs[0].data()
+        if (this.conductorGet.asientosDisponibles === 4) {
+          this.message("","Error", "Debes aceptar almenos una peticion")
+        }else{
+          this.router.navigate(['/rutaresumen'])
+        }
       }
-    })
-    
-    
+    )
   }
 
 
@@ -103,4 +101,5 @@ export class EsperandoPage implements OnInit {
       }
     })
     }
+
 }

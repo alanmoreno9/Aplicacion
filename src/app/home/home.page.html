@@ -12,6 +12,16 @@
           <ion-buttons slot="start" style="margin-top: -15%;margin-left: 80%;">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
+          <ion-card>
+            <ion-item>
+              <ion-label>
+                {{ "idioma" | translate }}
+              </ion-label>
+              <ion-select [(ngModel)]="idioma" (ionChange)="changeLang($event)">
+                <ion-select-option  *ngFor="let lang of langs">{{lang}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-card>
       </div>
     </ion-card>
     <ion-button shape="round" (click)="getWeather()" slot="start" style="margin-bottom: -20%;margin-left: 80%; width: 5%; border-radius: 50%; color: black;">C°</ion-button>
@@ -21,6 +31,6 @@
     <ion-img class="fotoabajo" src="https://static.vecteezy.com/system/resources/previews/016/017/119/original/current-location-logo-world-map-location-logo-sign-map-graphic-free-png.png" alt=""></ion-img>
   </div>
   <div class="login">
-    <ion-button shape="round" (click)="iniciar()" class="botonabajo">¡Empecemos!</ion-button>
+    <ion-button shape="round" (click)="iniciar()" class="botonabajo">{{ "Empecemos" | translate }}</ion-button>
   </div>  
 </ion-content>

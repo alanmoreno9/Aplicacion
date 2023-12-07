@@ -13,7 +13,7 @@
       <ion-list *ngIf="peticiones !== null">
         <ion-item *ngFor="let peticion of peticiones" [routerLink]="['/esperando/peticiondetalle/', peticion.id]">
           <ion-label>
-            {{peticion.IdUsuario}}
+            <span *ngIf="peticion.IdUsuario === peticion.usuario?.correo">{{peticion.usuario?.nombre}} {{peticion.usuario?.apellido}}</span>
             <ion-label style="float: right;">► Solicitud</ion-label>
           </ion-label>
         </ion-item>
@@ -21,9 +21,9 @@
       <div class="login" *ngIf="peticiones === null || peticiones.length === 0"> 
         <ion-text style="flex-direction: column;">
           <br>
-          <ion-label class="login">No hay peticiones activas</ion-label>
+          <ion-label class="login">{{"No hay peticiones activas" | translate}}</ion-label>
           <br>
-          <ion-label class="login">Desliza hacia abajo para actualizar</ion-label>
+          <ion-label class="login">{{"Desliza hacia abajo para actualizar" | translate}}</ion-label>
           <br>
         </ion-text>
       </div>
@@ -33,6 +33,6 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button class="centrado" shape="round" (click)="iniciarViaje()">Iniciar Viaje</ion-button>
+    <ion-button class="centrado" shape="round" (click)="iniciarViaje()">{{"Iniciar Viaje" | translate}}</ion-button>
   </ion-toolbar>
 </ion-footer>

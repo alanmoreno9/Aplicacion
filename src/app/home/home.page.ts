@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IonRouterOutlet, MenuController } from '@ionic/angular';
 import Swal from 'sweetalert2'
 import { WeatherService } from '../services/api/weather.service';
 import { WeatherData } from '../services/api/weather.service';
 import { ToastController } from '@ionic/angular';
+import { AuthService } from '../services/firebase/auth.service';
+import { FirestoreService } from '../services/firebase/firestore.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { TranslateService } from '@ngx-translate/core';
+import { LenguageService } from '../services/lenguage.service';
 
 
 @Component({
@@ -14,31 +19,52 @@ import { ToastController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
+  langs : string[] =[];
+  idioma!: string;
+
   city: string = 'Santiago';
   weatherData: any;
 
-  usuario:any;
+  usuario: any;
+
   textContent: any;
 
+  constructor(
+    private router: Router,
+    private menu: MenuController, 
+    private routerOutlet: IonRouterOutlet, 
+    private weatherService: WeatherService,
+    private toastController: ToastController,
+    private authService: AuthService,
+    private fireStore: FirestoreService,
+    private route: ActivatedRoute,
+    private auth: AngularFireAuth,
+    private languageService: LenguageService
+    ) { 
+     }
 
-  constructor(private router: Router,private menu: MenuController, private routerOutlet: IonRouterOutlet, private weatherService: WeatherService, private toastController: ToastController) { 
 
-  }
-
-  
   ngOnInit() {
     this.menu.enable(true);
     this.routerOutlet.swipeGesture = false;
-    this.usuario = JSON.parse(localStorage.getItem("usuario")!);
-
+    this.usuario = JSON.parse(localStorage.getItem('usuario')!)
+    this.langs = this.languageService.getLangs();
   }
 
 
-  ionViewWillLoad(){
-    
-    
+  ionViewWillEnter(){
+    this.menu.enable(true);
+    this.ngOnInit()
+  }
+  
+  changeLang(event: any) {
+    this.languageService.setLanguage(event.detail.value);
   }
 
+  cerrar(){
+    console.log("cerró")
+    this.authService.logout()
+  }
   
   async message(timerInterval: any){
     Swal.fire({
@@ -97,5 +123,7 @@ export class HomePage implements OnInit {
     this.message('')
     this.router.navigate(['conductoresactivos'])
   }
+
+  
 
 }

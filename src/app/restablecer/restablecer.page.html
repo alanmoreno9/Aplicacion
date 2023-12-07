@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/olvido"></ion-back-button>
+      <ion-back-button defaultHref="/ingresaconductor"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -9,15 +9,23 @@
 <ion-content class="background">
   <div class="centrado">
     <ion-card class="card">
-      <h1 class="login">Cambiar contraseña</h1>
+      <ion-card-header>
+        <h3 class="login">{{"Recuperar Contraseña" | translate}}</h3>
+        
+      </ion-card-header>
+      
     
       <ion-card-content>
-
+        <div class="login">
+          <span>{{"Se actualizará la contraseña en base al " | translate}}</span>
+        </div>
+        <div class="login">
+          <span>{{"email logeado cómo usuario" | translate}}</span>
+        </div>
         <form [formGroup]="formularioCambio">
-          <ion-input formControlName="contraseña" label="Contraseña" type="password" label-placement="floating" errorText="Contraseña Inválido" ></ion-input>
-          <ion-input formControlName="confirmcontraseña" label="Confirmar Contraseña" type="password" label-placement="floating" errorText="Contraseña Inválido" ></ion-input>
+          <ion-input formControlName="contraseña" label="Nueva Contraseña" type="email" label-placement="floating" errorText="contraseña Inválida"></ion-input>
           <div class="login">
-            <ion-button class="boton" (click)="guardar()">Registrarse</ion-button>
+            <ion-button class="boton" (click)="guardar()">{{"Actualizar" | translate}}</ion-button>
           </div>
         </form>
 

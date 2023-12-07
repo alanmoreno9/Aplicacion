@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { EsperarconductorPageRoutingModule } from './esperarconductor-routing.module';
 
 import { EsperarconductorPage } from './esperarconductor.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EsperarconductorPageRoutingModule
+    EsperarconductorPageRoutingModule,
+    TranslateModule
   ],
   declarations: [EsperarconductorPage]
 })

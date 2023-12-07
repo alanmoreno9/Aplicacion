@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RegisterconductorPageRoutingModule } from './registerconductor-routing.module';
 
 import { RegisterconductorPage } from './registerconductor.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { RegisterconductorPage } from './registerconductor.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    RegisterconductorPageRoutingModule
+    RegisterconductorPageRoutingModule,
+    TranslateModule
   ],
   declarations: [RegisterconductorPage]
 })

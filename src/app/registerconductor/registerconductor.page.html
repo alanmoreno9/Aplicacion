@@ -11,7 +11,7 @@
   <div class="centrado">
     <ion-card class="card">
       <ion-card-header>
-        <h2 class="login">Registro</h2>
+        <h2 class="login">{{"Registro" | translate}}</h2>
       </ion-card-header>
     
       <ion-card-content>
@@ -24,7 +24,7 @@
             <ion-input formControlName="placa" label="Placa de tu vehículo" type="text" labelPlacement="floating" placeholder="Placa" errorText="Placa Inválido"></ion-input>
             <ion-input formControlName="rut" label="Tú Rut" type="text" labelPlacement="floating" placeholder="123456789" errorText="Rut Inválido"></ion-input>
             <div class="login">
-              <ion-button class="boton" (click)="guardar()">Registrarse</ion-button>
+              <ion-button class="boton" (click)="guardar()">{{"Registrarse" | translate}}</ion-button>
             </div>
           </form>
    

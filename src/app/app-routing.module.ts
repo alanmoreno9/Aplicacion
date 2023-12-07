@@ -151,7 +151,15 @@ const routes: Routes = [
   {
     path: 'rutaresumen',
     loadChildren: () => import('./rutaresumen/rutaresumen.module').then( m => m.RutaresumenPageModule)
+  },  {
+    path: 'registrouser',
+    loadChildren: () => import('./registrouser/registrouser.module').then( m => m.RegistrouserPageModule)
   },
+  {
+    path: 'datospago',
+    loadChildren: () => import('./datospago/datospago.module').then( m => m.DatospagoPageModule)
+  },
+
 
 
 ];

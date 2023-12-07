@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConductoresService } from '../services/api/conductores.service';
-import { SolicitudesService } from '../services/api/solicitudes.service';
-import { UsuariosService } from '../services/api/usuarios.service';
+import { FirestoreService } from '../services/firebase/firestore.service';
 import Swal from 'sweetalert2'
+import { error } from 'console';
 
 
 @Component({
@@ -30,10 +29,8 @@ export class EncontradoPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private conductoresService: ConductoresService,
-    private solicitudesService: SolicitudesService,
-    private usuariosService: UsuariosService,
-    private router: Router
+    private router: Router,
+    private fireStore: FirestoreService
   ) { }
 
   ngOnInit() {
@@ -43,69 +40,69 @@ export class EncontradoPage implements OnInit {
   ionViewDidEnter(){
     this.idConductor = this.activatedRoute.snapshot.paramMap.get("id");
       this.idPeticion = this.activatedRoute.snapshot.paramMap.get("idpeticion");
-      console.log(this.idConductor)
 
-      this.conductoresService.getConductor(Number(this.idConductor)).subscribe(data =>{
-        
-        this.datosConductor = data
-        
-        this.nombreCompleto = this.datosConductor[0].nombre + " " + this.datosConductor[0].apellido;
-        this.telefonoConductor = this.datosConductor[0].telefono;
-        this.patenteConductor = this.datosConductor[0].placa;
-        this.marcaYModelo = this.datosConductor[0].marca + " " + this.datosConductor[0].modelo
-      });
+      this.fireStore.getByEmailConductor('conductores', this.idConductor).subscribe(
+        (querySnapshot) => {
+          this.datosConductor = querySnapshot.docs[0].data()
 
-      this.solicitudesService.getSolicitud(Number(this.idPeticion)).subscribe(
-        data =>{
-        this.datosPeticion = data;
-        if (this.datosPeticion) {
-          this.usuariosService.getUsuario(Number(this.datosPeticion[0].IdUsuario)).subscribe(data =>{
-            this.datosUsuario = data;
-            console.log(this.datosUsuario);
-            this.nombreUser = this.datosUsuario[0].nombre;
-            this.apellidoUser = this.datosUsuario[0].apellido;
-  
-          });
-        }else{
-          console.log("la solicitud no existe")
+          this.nombreCompleto = this.datosConductor.nombre + " " + this.datosConductor.apellido;
+          this.telefonoConductor = this.datosConductor.telefono;
+          this.patenteConductor = this.datosConductor.placa;
+          this.marcaYModelo = this.datosConductor.marca + " " + this.datosConductor.modelo;
+
+        });
+
+      this.fireStore.getByIdSolicitud('solicitudes', this.idPeticion).subscribe(
+        (querySnapshot) => {
+          this.datosPeticion = querySnapshot.data()
+          if (this.datosPeticion) {
+            this.fireStore.getByEmail('usuarios', this.datosPeticion.IdUsuario).subscribe(
+              (querySnapshot) => {
+                this.datosUsuario = querySnapshot.docs[0].data();
+                this.nombreUser = this.datosUsuario.nombre;
+                this.apellidoUser = this.datosUsuario.apellido;
+              }
+            )
+          }else{
+            console.log("La solicitud no existe")
+          }
         }
-        
-      });
+      )
   }
 
   cancelarSolicitud(){
-    this.solicitudesService.getSolicitud(Number(this.idPeticion)).subscribe(
-      response =>{
-      this.soli = response
-      console.log(this.soli)
-      if (this.soli.length > 0) {
-        if (this.soli[0].estado === false) {
-          this.solicitudesService.deleteSolicitud(this.datosPeticion[0]).subscribe(data =>{
-            console.log("eliminado")
+
+    this.fireStore.getByIdSolicitud('solicitudes', this.idPeticion).subscribe(
+      (querySnapshot) => {
+        this.soli = querySnapshot.data()
+        if (this.soli) {
+          if (this.soli.estado === false) {
+            this.fireStore.deleteSolicitud('solicitudes', this.idPeticion)
             this.router.navigate(['/conductoresactivos'])
-          })
-        
+          }else{
+            this.message("","No puedes cancelar","El conductor ya aceptó tu peticion")
+          }
         }else{
-          this.message("","No puedes cancelar","El conductor ya aceptó tu peticion")
+          this.message("", "Ya fue cancelada", "tu solicitud fue rechazada por el conductor, te redirigiremos");
+          this.router.navigate(['/conductoresactivos'])
         }
-      }else{
-        this.message("", "No puedes cancelar", "tu solicitud fue rechazada por el conductor, te redirigiremos");
-        this.router.navigate(['/conductoresactivos'])
-      }
-      
       },
       error => {
         console.error("error al recuperar dato: ",error)
-      })
-
+      }
+    )
   }
 
   llegoAccion(){
-    this.solicitudesService.getSolicitud(Number(this.idPeticion)).subscribe(
-      response => {
-        this.llego = response
-        if (this.llego.length > 0) {
-          this.router.navigate(['/esperarconductor'])
+    this.fireStore.getByIdSolicitud('solicitudes', this.idPeticion).subscribe(
+      (querySnapshot) => {
+        this.llego = querySnapshot.data()
+        if (this.llego) {
+          if (this.llego.estado === true) {
+            this.router.navigate(['/esperarconductor'])
+          }else{
+            this.message("", "El conductor no ha aceptado tu solicitud", "tu solicitud fue enviada al conductor, por favor, espera.");
+          }
         }else{
           this.message("", "El conductor no ha llegado", "tu solicitud fue rechazada por el conductor, te redirigiremos");
           this.router.navigate(['/conductoresactivos'])

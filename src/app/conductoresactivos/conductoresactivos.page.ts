@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Isolicitud } from '../interfaces/isolicitud';
+import { FirestoreService } from '../services/firebase/firestore.service';
 
 @Component({
   selector: 'app-conductoresactivos',
@@ -14,15 +13,17 @@ export class ConductoresactivosPage implements OnInit {
   usuarioActivo: any;
 
   constructor(
-    private httpClient : HttpClient
+    private fireStore: FirestoreService
   ) { }
 
   ngOnInit() {
-    this.httpClient.get<any>("https://jsonserver-x5h4.onrender.com/conductores").subscribe(resultado => {
-    this.conductores = resultado
-    console.log(this.conductores);
-    this.conductoresActivos = this.conductores.filter(conductor => conductor.estado === true)
-    });
+    this.fireStore.getByStatusConductor('conductores', true).subscribe(
+      (querySnapshot) => {
+        this.conductoresActivos = querySnapshot.docs.map( doc => doc.data());
+        console.log(this.conductoresActivos)
+      }
+    )
+     
     this.usuarioActivo = JSON.parse(localStorage.getItem("usuario")!)
   }
 

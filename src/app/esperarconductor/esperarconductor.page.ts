@@ -20,11 +20,7 @@ import 'leaflet-routing-machine';
 import { ConductoresService } from '../services/api/conductores.service';
 
 
-
-
-
 declare var google: any;
-
 
 @Component({
   selector: 'app-esperarconductor',
@@ -72,24 +68,24 @@ export class EsperarconductorPage implements OnInit {
   }
 
   ngOnInit() {
+
     this.conductor = JSON.parse(localStorage.getItem('conductor')!);
     console.log(this.conductor)
-
-    setTimeout( ()=>{
-      this.router.navigate(['/home'])
-    },10000)
 
   }
 
   ionViewDidEnter(){
-    this.obtenerCoordenadas().then(() => {
+
       this.map = L.map('mapId',{
         zoomControl: false,
-      }).setView([this.latitud, this.longitud], 15);
-      L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {
-      }).addTo(this.map);
-      
+      })
+      L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png', {}).addTo(this.map);
+    
+    
+    this.obtenerCoordenadas().then(() => {
 
+      this.map.setView([this.latitud, this.longitud], 15);
+          
       this.startPoint = L.latLng(this.latitud, this.longitud)
 
       this.locationMe = L.marker([this.latitud, this.longitud]).addTo(this.map);
@@ -103,7 +99,9 @@ export class EsperarconductorPage implements OnInit {
     }
   };
 
-  
+  finalizar(){
+    this.router.navigate(['/qr'])
+  }
 
 
 }
